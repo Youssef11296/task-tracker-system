@@ -41,10 +41,18 @@ The system has many dependencies in both side the frontend and the backend.
 
 # Run Scripts
 
-To run this app, you can clone it and install the depencies by openning your terminal and run: - npm i
+### npm i
 
-The you can run both sides backend and frontend by one command which is: - npm run start:dev
+To run this app, you can clone it and install the depencies by openning your terminal and running this command.
 
-If you wanna just run the frontend you can run this command: - npm run start:client
+### npm run start:dev
 
-If you wanna just run the backend you can run this command: - npm run start:server
+The you can run both sides backend and frontend by this command.
+
+### npm run start:client
+
+If you wanna just run the frontend you can run this command.
+
+### npm run start:server
+
+If you wanna just run the backend you can run this command.
