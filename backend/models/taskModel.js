@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose';
+import {TASK_SATUS} from '../utils/contants.js';
 
 const taskSchema = new Schema (
   {
@@ -13,6 +14,10 @@ const taskSchema = new Schema (
       type: String,
       required: true,
       unique: true,
+    },
+    status: {
+      type: String,
+      default: TASK_SATUS.NOT_COMPLETED,
     },
     userId: {
       type: Schema.Types.ObjectId,
