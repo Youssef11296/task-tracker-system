@@ -55,4 +55,19 @@ const loginUser = asyncHandler (async (req, res) => {
   }
 });
 
-export {registerUser, loginUser};
+const getMe = asyncHandler (async (req, res) => {
+  try {
+    const {user} = req;
+    const userData = await User.findOne ({email: user.email});
+    res.status (200).json ({
+      success: true,
+      data: {
+        username: userData.username,
+        email: userData.email,
+        tasks: userData.tasks,
+      },
+    });
+  } catch (error) {}
+});
+
+export {registerUser, loginUser, getMe};

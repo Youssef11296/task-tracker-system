@@ -1,16 +1,31 @@
 // modules
-import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 // models
 import User from '../models/userModel.js';
 
-const isAuth = async (req, res) => {
+const isAuth = async (req, res, next) => {
   try {
+    let token;
     if (
-      !req.headers.authentication ||
-      !req.headers.authentication.startsWith ('Bearer')
+      req.headers.authorization &&
+      req.headers.authorization.startsWith ('Bearer')
     ) {
-      res.status (401);
-      throw new Error ('No Bearer token');
+      token = req.headers.authorization.split (' ')[1];
+
+      const decoded = jwt.verify (token, process.env.JWT_SECRET);
+
+      req.user = await User.findOne ({_id: decoded.userId});
     }
-  } catch (error) {}
+
+    if (!token) {
+      res.status (401);
+      res.send ('Not aithorized, no token.');
+    }
+
+    next ();
+  } catch (error) {
+    res.status (401).json ({success: false, message: 'Not authorized.'});
+  }
 };
+
+export {isAuth};
