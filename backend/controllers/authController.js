@@ -2,14 +2,13 @@
 import asyncHandler from 'express-async-handler';
 import bcrypt from 'bcryptjs';
 // models
-import User from '../models/userModel';
-import {generateToken, isValidUser} from '../utils/helpers';
+import User from '../models/userModel.js';
+import {generateToken} from '../utils/helpers.js';
 
 // controller
 const registerUser = asyncHandler (async (req, res) => {
   try {
     const {username, email, password} = req.body;
-    await isValidUser (username, email, password);
 
     const hashedPassword = await bcrypt.hash (password, 10);
 
@@ -32,7 +31,9 @@ const registerUser = asyncHandler (async (req, res) => {
 const loginUser = asyncHandler (async (req, res) => {
   try {
     const {email, password} = req.body;
-    if (!email) throw new Error ('Email is required.');
+
+    if (!email || !password)
+      throw new Error ('Both email and password are required.');
 
     const user = await User.findOne ({email});
     if (!user) throw new Error ('User does not exist.');
