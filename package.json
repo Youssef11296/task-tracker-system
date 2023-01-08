@@ -1,0 +1,25 @@
+{
+  "name": "task-tracker-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "cd backend && npm run server",
+    "start:client": "cd frontend && npm run dev",
+    "start:dev": "concurrently \"npm run start:server\" \"npm run start:client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Youssef11296/task-tracker-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Youssef11296/task-tracker-system/issues"
+  },
+  "homepage": "https://github.com/Youssef11296/task-tracker-system#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
