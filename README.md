@@ -19,6 +19,8 @@ The system has many dependencies in both side the frontend and the backend.
 
 ## Backend Dependencies
 
+- Node.js
+
 - Express
 
 - Cors
