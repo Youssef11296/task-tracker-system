@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-const RegisterComponent = () => {
+const LoginComponent = () => {
   const {
     formState: { errors },
     register,
@@ -16,26 +16,6 @@ const RegisterComponent = () => {
     <div className="auth-component register">
       <h2>Register Form</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="input-container">
-          <div className="input-field flex-column">
-            <label htmlFor="username">User name</label>
-            <input
-              type="text"
-              placeholder="Ex. John Doe"
-              {...register("username", {
-                required: true,
-                minLength: 3,
-                maxLength: 30,
-              })}
-            />
-          </div>
-          {errors.username?.type ? (
-            <span className="error">
-              User name is required and must contain in range from 3 to 30
-              letters.
-            </span>
-          ) : null}
-        </div>
         <div className="input-container">
           <div className="input-field flex-column">
             <label htmlFor="email">Email</label>
@@ -63,15 +43,11 @@ const RegisterComponent = () => {
           ) : null}
         </div>
         <div className="form-question">
-          Already have an account? <Link to="/auth/login">Login</Link>
+          Not have an account yet? <Link to="/auth/sign-up">Register</Link>
         </div>
         <button
           type="submit"
-          disabled={
-            (errors.username || errors.email || errors.password)?.type
-              ? true
-              : false
-          }
+          disabled={(errors.email || errors.password)?.type ? true : false}
         >
           Submit
         </button>
@@ -80,4 +56,4 @@ const RegisterComponent = () => {
   );
 };
 
-export default RegisterComponent;
+export default LoginComponent;
