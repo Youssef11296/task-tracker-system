@@ -21,6 +21,8 @@ The system has many dependencies in both side the frontend and the backend.
 
 - React Hook Form
 
+- React Router Dom
+
 - SASS (CSS Pre-processor)
 
 - Material UI
