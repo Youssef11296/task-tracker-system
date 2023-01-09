@@ -1,6 +1,10 @@
 # System overview
 
 This is a system that allow the user to create and track his own tasks.
+
+The application provide end-to-end CRUD functionalities to the user so, he can easily,
+Create, Read, Update, adn Delete his own tasks.
+
 It's built with many technologies and Javascript frameworks mainly using ReactJS, Typescript, and Node.js.
 
 # System top used dependencies
@@ -13,7 +17,11 @@ The system has many dependencies in both side the frontend and the backend.
 
 - Typescript
 
-- SASS
+- Redux
+
+- React Hook Form
+
+- SASS (CSS Pre-processor)
 
 - Material UI
 

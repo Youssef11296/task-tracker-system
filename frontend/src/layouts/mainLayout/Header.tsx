@@ -11,13 +11,13 @@ const MainHeader = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/my-tasks">My Tasks</Link>
+          </li>
+          <li>
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/tasks">Your Tasks</Link>
-          </li>
-          <li>
-            <Link to="/logout">Logout</Link>
+            <Link to="/auth/sign-up">Sign up</Link>
           </li>
         </ul>
       </nav>

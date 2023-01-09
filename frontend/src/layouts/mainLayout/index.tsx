@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom";
-import React from "react";
+import { BrowserRouter, Link } from "react-router-dom";
 import MainHeader from "./Header";
 import MainFooter from "./MainFooter";
 
