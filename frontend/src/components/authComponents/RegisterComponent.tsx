@@ -70,9 +70,7 @@ const RegisterComponent = () => {
             <span className="error">Password is required.</span>
           ) : null}
         </div>
-        <div className="form-question">
-          Already have an account? <Link to="/auth/login">Login</Link>
-        </div>
+
         <button
           type="submit"
           disabled={

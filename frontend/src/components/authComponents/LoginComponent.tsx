@@ -66,9 +66,7 @@ const LoginComponent = () => {
             <span className="error">Password is required.</span>
           ) : null}
         </div>
-        <div className="form-question">
-          Not have an account yet? <Link to="/auth/sign-up">Register</Link>
-        </div>
+
         <button
           type="submit"
           disabled={(errors.email || errors.password)?.type ? true : false}

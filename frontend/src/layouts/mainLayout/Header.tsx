@@ -1,13 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { logoutUser } from "../../context/actions/actions";
-import { RootState } from "../../context";
+import { useAuth } from "../../hooks/useAuth";
+
 const MainHeader = () => {
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
-
-  const dispatch = useDispatch();
-
-  const logoutHandler = () => dispatch(logoutUser());
+  const { isAuthenticated, logoutHandler } = useAuth();
 
   return (
     <header>
