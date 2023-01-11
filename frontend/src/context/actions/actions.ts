@@ -8,6 +8,15 @@ export const registerUser =
       const { data } = await api.registerUser({ username, email, password });
       dispatch({
         type: actionTypes.REGISTER_USER,
+      });
+      if (!data.success) {
+        dispatch({
+          type: actionTypes.REGISTER_FAIL,
+        });
+        return;
+      }
+      dispatch({
+        type: actionTypes.REGISTER_SUCCESS,
         payload: data.data,
       });
     } catch (error) {
@@ -22,6 +31,15 @@ export const loginUser =
       const { data } = await api.registerUser({ email, password });
       dispatch({
         type: actionTypes.LOGIN_USER,
+      });
+      if (!data.success) {
+        dispatch({
+          type: actionTypes.LOGIN_FAIL,
+        });
+        return;
+      }
+      dispatch({
+        type: actionTypes.LOGIN_SUCCESS,
         payload: data.data,
       });
     } catch (error) {
