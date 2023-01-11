@@ -1,7 +1,14 @@
-import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { logoutUser } from "../../context/actions/actions";
+import { RootState } from "../../context";
 const MainHeader = () => {
+  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => dispatch(logoutUser());
+
   return (
     <header>
       <h2>LOGO</h2>
@@ -16,9 +23,11 @@ const MainHeader = () => {
           <li>
             <Link to="/about">About</Link>
           </li>
-          <li>
-            <Link to="/auth/sign-up">Sign up</Link>
-          </li>
+          {isAuthenticated ? (
+            <li>
+              <button onClick={logoutHandler}>Logout</button>
+            </li>
+          ) : null}
         </ul>
       </nav>
     </header>

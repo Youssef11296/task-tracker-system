@@ -5,7 +5,7 @@ const cookies = new Cookies();
 
 const initialState = {
   user: null,
-  isAuthenticated: false,
+  isAuthenticated: cookies.get("auth-token") ? true : false,
   loading: false,
 };
 
@@ -18,7 +18,7 @@ const authReducer = (state = initialState, action: any) => {
         loading: true,
       };
     case actionTypes.REGISTER_SUCCESS: {
-      cookies.set("auth-token", action.payload.token);
+      console.log({ p: action.payload });
       return { ...state, loading: false, user: action.payload };
     }
     case actionTypes.LOGIN_SUCCESS: {
@@ -33,8 +33,10 @@ const authReducer = (state = initialState, action: any) => {
     case actionTypes.REGISTER_FAIL:
     case actionTypes.LOGIN_FAIL:
       return { ...state, loading: false, isAuthenticated: false, user: null };
-    case actionTypes.LOGOUT_USER:
+    case actionTypes.LOGOUT_USER: {
+      cookies.remove("auth-token");
       return { ...state, loading: false, isAuthenticated: false, user: null };
+    }
     default:
       return { ...state };
   }

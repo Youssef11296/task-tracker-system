@@ -28,7 +28,7 @@ export const loginUser =
   ({ email, password }: User) =>
   async (dispatch: any) => {
     try {
-      const { data } = await api.registerUser({ email, password });
+      const { data } = await api.loginUser({ email, password });
       dispatch({
         type: actionTypes.LOGIN_USER,
       });
@@ -46,3 +46,9 @@ export const loginUser =
       console.log(error);
     }
   };
+
+export const logoutUser = () => {
+  return {
+    type: actionTypes.LOGOUT_USER,
+  };
+};

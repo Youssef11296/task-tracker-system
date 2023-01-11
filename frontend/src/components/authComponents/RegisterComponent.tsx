@@ -1,5 +1,8 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { registerUser } from "../../context/actions/actions";
+import { AppDispatch } from "../../context";
 
 const RegisterComponent = () => {
   const {
@@ -8,8 +11,13 @@ const RegisterComponent = () => {
     handleSubmit,
   } = useForm();
 
+  const dispatch: AppDispatch = useDispatch();
+
   const onSubmit = (values: any) => {
     console.log(values);
+
+    const { username, email, password } = values;
+    dispatch(registerUser({ username, email, password }));
   };
 
   return (

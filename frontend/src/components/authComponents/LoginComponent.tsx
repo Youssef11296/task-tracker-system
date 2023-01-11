@@ -1,5 +1,12 @@
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { AppDispatch } from "../../context";
+import { loginUser } from "../../context/actions/actions";
+import { useNavigate } from "react-router-dom";
+import Cookies from "universal-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoginComponent = () => {
   const {
@@ -8,13 +15,30 @@ const LoginComponent = () => {
     handleSubmit,
   } = useForm();
 
+  const cookies = new Cookies();
+
+  const navigate = useNavigate();
+
+  const dispatch: AppDispatch = useDispatch();
+
   const onSubmit = (values: any) => {
     console.log(values);
+
+    const { username, email, password } = values;
+    dispatch(loginUser({ username, email, password }));
+
+    const toastId = "someId";
+    toast.success("Success Notification !", {
+      position: toast.POSITION.TOP_CENTER,
+      toastId,
+    });
+    if (!cookies.get("auth-token")) return;
+    // navigate("/");
   };
 
   return (
     <div className="auth-component register">
-      <h2>Register Form</h2>
+      <h2>Login Form</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="input-container">
           <div className="input-field flex-column">

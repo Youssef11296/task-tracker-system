@@ -21,5 +21,8 @@
   "homepage": "https://github.com/Youssef11296/task-tracker-system#readme",
   "devDependencies": {
     "concurrently": "^7.6.0"
+  },
+  "dependencies": {
+    "react-toastify": "^9.1.1"
   }
 }
