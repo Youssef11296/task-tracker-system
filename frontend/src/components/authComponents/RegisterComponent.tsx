@@ -1,8 +1,11 @@
+// hooks & modules
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { registerUser } from "../../context/actions/actions";
 import { AppDispatch } from "../../context";
+// toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RegisterComponent = () => {
   const {

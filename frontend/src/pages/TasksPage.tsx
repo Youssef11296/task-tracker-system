@@ -1,4 +1,3 @@
-import React from "react";
 import { TasksComponent } from "../components/tasksComponents";
 import { useAuth } from "../hooks/useAuth";
 import NotAuthComponent from "../shared/components/NotAuthComponent";

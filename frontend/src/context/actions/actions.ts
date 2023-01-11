@@ -1,5 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../../utils/api";
+import { toast } from "react-toastify";
+import { AxiosError, AxiosResponse } from "axios";
 
 export const registerUser =
   ({ username, email, password }: User) =>
@@ -9,18 +11,20 @@ export const registerUser =
       dispatch({
         type: actionTypes.REGISTER_USER,
       });
-      if (!data.success) {
-        dispatch({
-          type: actionTypes.REGISTER_FAIL,
-        });
-        return;
-      }
       dispatch({
         type: actionTypes.REGISTER_SUCCESS,
-        payload: data.data,
+        payload: {
+          message: data.message,
+          user: data.data,
+        },
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      dispatch({
+        type: actionTypes.REGISTER_FAIL,
+        payload: {
+          message: error?.response?.data?.message,
+        },
+      });
     }
   };
 
@@ -32,23 +36,28 @@ export const loginUser =
       dispatch({
         type: actionTypes.LOGIN_USER,
       });
-      if (!data.success) {
-        dispatch({
-          type: actionTypes.LOGIN_FAIL,
-        });
-        return;
-      }
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
-        payload: data.data,
+        payload: {
+          message: data.message,
+          user: data.data,
+        },
       });
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      dispatch({
+        type: actionTypes.LOGIN_FAIL,
+        payload: {
+          message: error?.response?.data?.message,
+        },
+      });
     }
   };
 
 export const logoutUser = () => {
   return {
     type: actionTypes.LOGOUT_USER,
+    payload: {
+      message: "You've just logged out.",
+    },
   };
 };

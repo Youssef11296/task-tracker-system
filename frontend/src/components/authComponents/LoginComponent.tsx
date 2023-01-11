@@ -1,11 +1,11 @@
+// hooks & modules
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { AppDispatch } from "../../context";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../context";
+// redux
 import { loginUser } from "../../context/actions/actions";
-import { useNavigate } from "react-router-dom";
-import Cookies from "universal-cookie";
-import { ToastContainer, toast } from "react-toastify";
+// toastify
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoginComponent = () => {
@@ -15,25 +15,13 @@ const LoginComponent = () => {
     handleSubmit,
   } = useForm();
 
-  const cookies = new Cookies();
-
-  const navigate = useNavigate();
-
   const dispatch: AppDispatch = useDispatch();
 
   const onSubmit = (values: any) => {
     console.log(values);
 
-    const { username, email, password } = values;
-    dispatch(loginUser({ username, email, password }));
-
-    const toastId = "someId";
-    toast.success("Success Notification !", {
-      position: toast.POSITION.TOP_CENTER,
-      toastId,
-    });
-    if (!cookies.get("auth-token")) return;
-    // navigate("/");
+    const { email, password } = values;
+    dispatch(loginUser({ email, password }));
   };
 
   return (

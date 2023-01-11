@@ -1,12 +1,9 @@
+import { useSelector } from "react-redux";
 import { HomeComponent } from "../components/homeComponents";
-import {
-  LoginComponent,
-  RegisterComponent,
-} from "../components/authComponents";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useAuth } from "../hooks/useAuth";
 import NotAuthComponent from "../shared/components/NotAuthComponent";
+import "react-toastify/dist/ReactToastify.css";
+import { RootState } from "../context";
 
 const HomePage = () => {
   const { isAuthenticated } = useAuth();
@@ -16,7 +13,6 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <HomeComponent />
-      <ToastContainer />
     </div>
   );
 };

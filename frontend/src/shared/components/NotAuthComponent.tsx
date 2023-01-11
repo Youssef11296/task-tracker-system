@@ -5,13 +5,8 @@ import {
 import { useAuth } from "../../hooks/useAuth";
 
 const NotAuthComponent = () => {
-  const {
-    isAuthenticated,
-    openLogin,
-    openRegister,
-    openLoginForm,
-    openRegisterForm,
-  } = useAuth();
+  const { openLogin, openRegister, openLoginForm, openRegisterForm } =
+    useAuth();
 
   return (
     <div className="home-not-auth">

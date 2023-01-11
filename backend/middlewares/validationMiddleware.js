@@ -4,17 +4,27 @@ import User from '../models/userModel.js';
 const isValidUser = async (req, res, next) => {
   try {
     const {username, email, password} = req.body;
-    if (!username || username === '' || username.length < 2)
-      throw new Error (
-        'Username required and must contain 2 letters at least.'
-      );
-    if (!email) throw new Error ('Email is required.');
-    if (!password) throw new Error ('Password is required.');
+    if (!username || username === '' || username.length < 2) {
+      res.status (400).json ({
+        success: false,
+        message: 'Username required and must contain 2 letters at least.',
+      });
+    }
+    if (!email) {
+      res.status (400).json ({success: false, message: 'Email is required.'});
+    }
+    if (!password) {
+      res.satus (400).json ({success: false, message: 'Password is required.'});
+    }
 
     const isExistedUser =
       (await User.findOne ({username})) || (await User.findOne ({email}));
-    if (isExistedUser)
-      throw new Error ('User with same name or email is already exist.');
+    if (isExistedUser) {
+      res.status (400).json ({
+        success: false,
+        message: 'User with same name or email is already exist.',
+      });
+    }
 
     next ();
   } catch (error) {

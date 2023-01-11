@@ -18,6 +18,8 @@ const registerUser = asyncHandler (async (req, res) => {
       password: hashedPassword,
     });
 
+    newUser.token = generateToken (newUser._id);
+
     res.status (201).json ({
       success: true,
       message: 'Successfully registered.',
@@ -43,6 +45,7 @@ const loginUser = asyncHandler (async (req, res) => {
 
     res.status (200).json ({
       success: true,
+      message: 'Successfully logged in.',
       data: {
         email,
         username: user.username,
