@@ -3,12 +3,14 @@ import Cookies from "universal-cookie";
 // toastify
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+// contants
+import { VAR_NAME } from "../../utils/constants";
 
 const cookies = new Cookies();
 
 const initialState = {
   user: null,
-  isAuthenticated: cookies.get("auth-token") ? true : false,
+  isAuthenticated: cookies.get(VAR_NAME.AUTH_TOKEN) ? true : false,
   loading: false,
 };
 
@@ -22,7 +24,7 @@ const authReducer = (state = initialState, action: any) => {
       };
 
     case actionTypes.REGISTER_SUCCESS: {
-      cookies.set("auth-token", action.payload.user.token);
+      cookies.set(VAR_NAME.AUTH_TOKEN, action.payload.user.token);
 
       const toastId = "someId";
       toast.success(action.payload.message, {
@@ -69,7 +71,7 @@ const authReducer = (state = initialState, action: any) => {
         user: null,
       };
     case actionTypes.LOGOUT_USER: {
-      cookies.remove("auth-token");
+      cookies.remove(VAR_NAME.AUTH_TOKEN);
       return {
         ...state,
         loading: false,
