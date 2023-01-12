@@ -48,17 +48,18 @@ const deleteTask = asyncHandler (async (req, res) => {
   try {
     const {taskId} = req.params;
     const {user} = req;
+
     const task = await Task.findOne ({_id: taskId});
     if (!task) throw new Error ('Task not found.');
+
     const userData = await User.findOne ({_id: user._id});
-    console.log ({
-      tId: task.userId,
-      uId: user._id,
-    });
-    if (task.userId != user._id) {
-      await Task.findByIdAndDelete (taskId);
-      res.status (201).json ({success: true, message: 'Successfully deleted.'});
-    }
+    if (!userData) throw new Error ('User not found.');
+
+    if (task.userId.toString () !== user._id.toString ())
+      throw new Error ("You're not authorized to manage this content.");
+
+    await Task.findByIdAndDelete (taskId);
+    res.status (201).json ({success: true, message: 'Successfully deleted.'});
   } catch (error) {
     res.status (400).json ({success: false, message: error.message});
   }
@@ -68,17 +69,22 @@ const updateTask = asyncHandler (async (req, res) => {
   try {
     const {taskId} = req.params;
     const {user} = req;
+
     const task = await Task.findOne ({_id: taskId});
     if (!task) throw new Error ('Task not found.');
+
     const userData = await User.findOne ({_id: user._id});
-    if (task.userId !== userData._id)
-      throw new Error ("Sorry, you're not authorized.");
+    if (!userData) throw new Error ('User not found.');
+
+    if (task.userId.toString () !== user._id.toString ())
+      throw new Error ("You're not authorized to manage this content.");
+
     const updatedTask = await Task.findByIdAndUpdate (taskId, req.body, {
       new: true,
     });
     res.status (201).json ({
       success: true,
-      message: 'Successfully deleted.',
+      message: 'Successfully updated.',
       data: updatedTask,
     });
   } catch (error) {

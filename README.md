@@ -1,4 +1,4 @@
-# System overview
+# System overview:
 
 This is a system that allow the user to create and track his own tasks.
 
@@ -6,6 +6,24 @@ The application provide end-to-end CRUD functionalities to the user so, he can e
 Create, Read, Update, adn Delete his own tasks.
 
 It's built with many technologies and Javascript frameworks mainly using ReactJS, Typescript, and Node.js.
+
+## Main Functionalities:
+
+### Create Task
+
+The user can create his own task.
+
+### Get All Tasks
+
+At the "My tasks" page the user can find his all tasks.
+
+### Delete Task
+
+User also has the ability to delete his own tasks.
+
+### Edit Task
+
+User can edit any task that belongs to him.
 
 # System top used dependencies
 
