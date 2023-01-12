@@ -1,7 +1,7 @@
 import {
   LoginComponent,
   RegisterComponent,
-} from "../../components/authComponents";
+} from "../pagesComponents/authComponents";
 import { useAuth } from "../../hooks/useAuth";
 
 const NotAuthComponent = () => {

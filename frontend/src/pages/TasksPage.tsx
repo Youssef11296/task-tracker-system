@@ -1,6 +1,6 @@
-import { TasksComponent } from "../components/tasksComponents";
+import { TasksComponent } from "../components/pagesComponents/tasksComponents";
 import { useAuth } from "../hooks/useAuth";
-import NotAuthComponent from "../shared/components/NotAuthComponent";
+import NotAuthComponent from "../components/sharedComponents/NotAuthComponent";
 
 const TasksPage = () => {
   const { isAuthenticated } = useAuth();

@@ -1,13 +1,15 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../../utils/api";
-import { toast } from "react-toastify";
-import { AxiosError, AxiosResponse } from "axios";
 
 export const registerUser =
-  ({ username, email, password }: User) =>
+  (
+    username: User["username"],
+    email: User["email"],
+    password: User["password"]
+  ) =>
   async (dispatch: any) => {
     try {
-      const { data } = await api.registerUser({ username, email, password });
+      const { data } = await api.registerUser(username, email, password);
       dispatch({
         type: actionTypes.REGISTER_USER,
       });
@@ -29,10 +31,10 @@ export const registerUser =
   };
 
 export const loginUser =
-  ({ email, password }: User) =>
+  (email: User["email"], password: User["password"]) =>
   async (dispatch: any) => {
     try {
-      const { data } = await api.loginUser({ email, password });
+      const { data } = await api.loginUser(email, password);
       dispatch({
         type: actionTypes.LOGIN_USER,
       });

@@ -1,8 +1,7 @@
-import * as actionTypes from "../actions/actionTypes";
+// Hooks & modules
+import { useToast } from "../../hooks/useToast";
 import Cookies from "universal-cookie";
-// toastify
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import * as actionTypes from "../actions/actionTypes";
 // contants
 import { VAR_NAME } from "../../utils/constants";
 
@@ -26,11 +25,7 @@ const authReducer = (state = initialState, action: any) => {
     case actionTypes.REGISTER_SUCCESS: {
       cookies.set(VAR_NAME.AUTH_TOKEN, action.payload.user.token);
 
-      const toastId = "someId";
-      toast.success(action.payload.message, {
-        position: toast.POSITION.TOP_RIGHT,
-        toastId,
-      });
+      useToast("success", action.payload.message);
 
       return {
         ...state,
@@ -43,11 +38,7 @@ const authReducer = (state = initialState, action: any) => {
     case actionTypes.LOGIN_SUCCESS: {
       cookies.set("auth-token", action.payload.user.token);
 
-      const toastId = "someId";
-      toast.success(action.payload.message, {
-        position: toast.POSITION.TOP_RIGHT,
-        toastId,
-      });
+      useToast("success", action.payload.message);
 
       return {
         ...state,
@@ -58,11 +49,7 @@ const authReducer = (state = initialState, action: any) => {
     }
     case actionTypes.REGISTER_FAIL:
     case actionTypes.LOGIN_FAIL:
-      const toastId = "someId2";
-      toast.error(action.payload.message, {
-        position: toast.POSITION.TOP_RIGHT,
-        toastId,
-      });
+      useToast("error", action.payload.message);
 
       return {
         ...state,
@@ -72,6 +59,9 @@ const authReducer = (state = initialState, action: any) => {
       };
     case actionTypes.LOGOUT_USER: {
       cookies.remove(VAR_NAME.AUTH_TOKEN);
+
+      useToast("info", action.payload.message);
+
       return {
         ...state,
         loading: false,

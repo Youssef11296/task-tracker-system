@@ -16,8 +16,13 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <MainLayout>
           <App />
         </MainLayout>
-        <ToastContainer />
       </Provider>
+      <ToastContainer
+        style={{ width: "fit-content", minWidth: "300px" }}
+        autoClose={3000}
+        pauseOnHover={false}
+        hideProgressBar={false}
+      />
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,15 +1,26 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
-export const ToastifyContainer = (props: any) => {
-  const { children, text } = props;
+export const useToast = (
+  type: "success" | "error" | "warning" | "info",
+  text: string
+) => {
+  const toastId = "someId";
 
-  const notify = () => toast(text);
-
-  return (
-    <div className="toastify-container">
-      {children}
-      <ToastContainer />
-    </div>
-  );
+  type === "success"
+    ? toast.success(text, {
+        position: toast.POSITION.TOP_RIGHT,
+        style: { outerWidth: 500 },
+        toastId,
+      })
+    : type === "error"
+    ? toast.error(text, {
+        position: toast.POSITION.TOP_RIGHT,
+        toastId,
+      })
+    : type === "warning"
+    ? toast.warning(text, {
+        position: toast.POSITION.TOP_RIGHT,
+        toastId,
+      })
+    : type === "info" && toast.info(text);
 };

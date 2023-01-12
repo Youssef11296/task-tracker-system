@@ -1,14 +1,10 @@
 // hooks & modules
 import { useForm } from "react-hook-form";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../context";
-// redux
-import { loginUser } from "../../context/actions/actions";
-// toastify
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { registerUser } from "../../../context/actions/actions";
+import { AppDispatch } from "../../../context";
 
-const LoginComponent = () => {
+const RegisterComponent = () => {
   const {
     formState: { errors },
     register,
@@ -20,14 +16,34 @@ const LoginComponent = () => {
   const onSubmit = (values: any) => {
     console.log(values);
 
-    const { email, password } = values;
-    dispatch(loginUser({ email, password }));
+    const { username, email, password } = values;
+    dispatch(registerUser(username, email, password));
   };
 
   return (
     <div className="auth-component register">
-      <h2>Login Form</h2>
+      <h2>Register Form</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="input-container">
+          <div className="input-field flex-column">
+            <label htmlFor="username">User name</label>
+            <input
+              type="text"
+              placeholder="Ex. John Doe"
+              {...register("username", {
+                required: true,
+                minLength: 3,
+                maxLength: 30,
+              })}
+            />
+          </div>
+          {errors.username?.type ? (
+            <span className="error">
+              User name is required and must contain in range from 3 to 30
+              letters.
+            </span>
+          ) : null}
+        </div>
         <div className="input-container">
           <div className="input-field flex-column">
             <label htmlFor="email">Email</label>
@@ -57,7 +73,11 @@ const LoginComponent = () => {
 
         <button
           type="submit"
-          disabled={(errors.email || errors.password)?.type ? true : false}
+          disabled={
+            (errors.username || errors.email || errors.password)?.type
+              ? true
+              : false
+          }
         >
           Submit
         </button>
@@ -66,4 +86,4 @@ const LoginComponent = () => {
   );
 };
 
-export default LoginComponent;
+export default RegisterComponent;

@@ -1,9 +1,8 @@
-import { useSelector } from "react-redux";
-import { HomeComponent } from "../components/homeComponents";
+// Hooks & modules
 import { useAuth } from "../hooks/useAuth";
-import NotAuthComponent from "../shared/components/NotAuthComponent";
-import "react-toastify/dist/ReactToastify.css";
-import { RootState } from "../context";
+// components
+import { HomeComponent } from "../components/pagesComponents/homeComponents";
+import NotAuthComponent from "../components/sharedComponents/NotAuthComponent";
 
 const HomePage = () => {
   const { isAuthenticated } = useAuth();

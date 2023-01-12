@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../context";
+import { AppDispatch, RootState } from "../context";
 import { logoutUser } from "../context/actions/actions";
 
 export const useAuth = () => {
-  const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+  const { isAuthenticated, user } = useSelector(
+    (state: RootState) => state.auth
+  );
+
+  //* TODO: GET USER BY ID
+
+  console.log({ user });
 
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
@@ -18,7 +24,7 @@ export const useAuth = () => {
     !openRegister && setOpenRegister(true);
   };
 
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
   const logoutHandler = () => dispatch(logoutUser());
 
