@@ -1,7 +1,7 @@
 // hooks & modules
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { registerUser } from "../../../context/actions/actions";
+import { registerUser } from "../../../context/actions/authActions";
 import { AppDispatch } from "../../../context";
 
 const RegisterComponent = () => {

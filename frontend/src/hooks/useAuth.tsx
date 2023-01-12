@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../context";
-import { getMe, logoutUser } from "../context/actions/actions";
+import { getMe, logoutUser } from "../context/actions/authActions";
 import Cookies from "universal-cookie";
 import { VAR_NAME } from "../utils/constants";
 
@@ -19,8 +19,6 @@ export const useAuth = () => {
   const getMeHandler = () => {
     dispatch(getMe(authToken));
   };
-
-  console.log({ user });
 
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
@@ -44,5 +42,6 @@ export const useAuth = () => {
     isAuthenticated,
     logoutHandler,
     getMeHandler,
+    user,
   };
 };

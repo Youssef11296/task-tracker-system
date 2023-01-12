@@ -9,7 +9,11 @@ export const registerUser =
   ) =>
   async (dispatch: any) => {
     try {
-      const { data } = await api.registerUser(username, email, password);
+      const { data } = await api.authAPI.registerUser(
+        username,
+        email,
+        password
+      );
       dispatch({
         type: actionTypes.REGISTER_USER,
       });
@@ -34,7 +38,7 @@ export const loginUser =
   (email: User["email"], password: User["password"]) =>
   async (dispatch: any) => {
     try {
-      const { data } = await api.loginUser(email, password);
+      const { data } = await api.authAPI.loginUser(email, password);
       dispatch({
         type: actionTypes.LOGIN_USER,
       });
@@ -66,7 +70,7 @@ export const logoutUser = () => {
 
 export const getMe = (token: User["token"]) => async (dispatch: any) => {
   try {
-    const { data } = await api.getMe(token);
+    const { data } = await api.authAPI.getMe(token);
     dispatch({
       type: actionTypes.GET_ME,
       payload: {

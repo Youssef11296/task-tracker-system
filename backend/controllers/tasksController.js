@@ -17,7 +17,7 @@ const getTasks = asyncHandler (async (req, res) => {
 
 const createTask = asyncHandler (async (req, res) => {
   try {
-    const {taskName, description} = req.body;
+    const {taskName, description, status} = req.body;
     const {user} = req; // comming from isAuth middleware
 
     if (!taskName || taskName.length < 3)
@@ -32,6 +32,7 @@ const createTask = asyncHandler (async (req, res) => {
     const newTask = await Task.create ({
       taskName,
       description,
+      status,
       userId: user._id,
     });
 

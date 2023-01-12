@@ -6,7 +6,7 @@ import NotAuthComponent from "../components/sharedComponents/NotAuthComponent";
 import { useEffect } from "react";
 
 const HomePage = () => {
-  const { isAuthenticated, getMeHandler } = useAuth();
+  const { isAuthenticated, getMeHandler, user } = useAuth();
 
   useEffect(() => {
     getMeHandler();
@@ -16,6 +16,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page">
+      Welcome, {user?.username}
       <HomeComponent />
     </div>
   );

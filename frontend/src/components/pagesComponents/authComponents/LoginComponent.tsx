@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../context";
 // redux
-import { loginUser } from "../../../context/actions/actions";
+import { loginUser } from "../../../context/actions/authActions";
 
 const LoginComponent = () => {
   const {

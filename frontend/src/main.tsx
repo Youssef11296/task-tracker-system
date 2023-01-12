@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
       </Provider>
       <ToastContainer
         style={{ width: "fit-content", minWidth: "300px" }}
-        autoClose={3000}
+        autoClose={2000}
         pauseOnHover={false}
         hideProgressBar={false}
       />
