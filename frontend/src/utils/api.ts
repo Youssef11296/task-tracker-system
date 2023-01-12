@@ -12,5 +12,7 @@ export const registerUser = (
 export const loginUser = (email: User["email"], password: User["password"]) =>
   axios.post(`${baseUrlv1}/auth/login`, { email, password });
 
-export const getUser = (userId: User["_id"]) =>
-  axios.get(`${baseUrlv1}/users/${userId}`);
+export const getMe = (token: User["token"]) =>
+  axios.get(`${baseUrlv1}/auth/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });

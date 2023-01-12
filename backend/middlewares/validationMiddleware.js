@@ -22,7 +22,7 @@ const isValidUser = async (req, res, next) => {
     if (isExistedUser) {
       res.status (400).json ({
         success: false,
-        message: 'User with same name or email is already exist.',
+        message: 'User with same name or email is already exist. Try login.',
       });
     }
 

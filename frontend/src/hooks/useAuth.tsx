@@ -1,14 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../context";
-import { logoutUser } from "../context/actions/actions";
+import { getMe, logoutUser } from "../context/actions/actions";
+import Cookies from "universal-cookie";
+import { VAR_NAME } from "../utils/constants";
 
 export const useAuth = () => {
   const { isAuthenticated, user } = useSelector(
     (state: RootState) => state.auth
   );
 
-  //* TODO: GET USER BY ID
+  const dispatch: AppDispatch = useDispatch();
+
+  const cookies = new Cookies();
+
+  const authToken = cookies.get(VAR_NAME.AUTH_TOKEN);
+
+  const getMeHandler = () => {
+    dispatch(getMe(authToken));
+  };
 
   console.log({ user });
 
@@ -24,8 +34,6 @@ export const useAuth = () => {
     !openRegister && setOpenRegister(true);
   };
 
-  const dispatch: AppDispatch = useDispatch();
-
   const logoutHandler = () => dispatch(logoutUser());
 
   return {
@@ -35,5 +43,6 @@ export const useAuth = () => {
     openRegisterForm,
     isAuthenticated,
     logoutHandler,
+    getMeHandler,
   };
 };

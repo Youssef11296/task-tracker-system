@@ -15,6 +15,19 @@ const initialState = {
 
 const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case actionTypes.GET_ME:
+      return {
+        ...state,
+        user: action.payload.user,
+      };
+
+    case actionTypes.NOT_AUTH:
+      useToast("success", action.payload.message);
+      return {
+        ...state,
+        isAuthenticated: false,
+      };
+
     case actionTypes.REGISTER_USER:
     case actionTypes.LOGIN_USER:
       return {

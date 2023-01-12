@@ -63,3 +63,20 @@ export const logoutUser = () => {
     },
   };
 };
+
+export const getMe = (token: User["token"]) => async (dispatch: any) => {
+  try {
+    const { data } = await api.getMe(token);
+    dispatch({
+      type: actionTypes.GET_ME,
+      payload: {
+        user: data.data,
+      },
+    });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.NOT_AUTH,
+      message: "NO TOKEN",
+    });
+  }
+};

@@ -47,6 +47,7 @@ const loginUser = asyncHandler (async (req, res) => {
       success: true,
       message: 'Successfully logged in.',
       data: {
+        _id: user._id,
         email,
         username: user.username,
         tasks: user.tasks,
@@ -65,6 +66,7 @@ const getMe = asyncHandler (async (req, res) => {
     res.status (200).json ({
       success: true,
       data: {
+        _id: user._id,
         username: userData.username,
         email: userData.email,
         tasks: userData.tasks,
