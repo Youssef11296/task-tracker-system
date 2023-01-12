@@ -71,7 +71,7 @@ const authReducer = (state = initialState, action: any) => {
         user: null,
       };
     case actionTypes.LOGOUT_USER: {
-      cookies.remove(VAR_NAME.AUTH_TOKEN);
+      cookies.set(VAR_NAME.AUTH_TOKEN, undefined);
 
       useToast("info", action.payload.message);
 

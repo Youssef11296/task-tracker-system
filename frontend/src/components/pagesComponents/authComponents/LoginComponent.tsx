@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../context";
 // redux
 import { loginUser } from "../../../context/actions/authActions";
+import { ErrorMessage } from "@hookform/error-message";
 
 const LoginComponent = () => {
   const {
@@ -31,12 +32,12 @@ const LoginComponent = () => {
             <input
               type="text"
               placeholder="Ex. john@domain.com"
-              {...register("email", { required: true })}
+              {...register("email", { required: "Email is required." })}
             />
           </div>
-          {errors.email?.type ? (
-            <span className="error">Email is required and must be valid.</span>
-          ) : null}
+          <span className="error">
+            <ErrorMessage errors={errors} name="email" />
+          </span>
         </div>
         <div className="input-container">
           <div className="input-field flex-column">
@@ -44,12 +45,12 @@ const LoginComponent = () => {
             <input
               type="password"
               placeholder="Ex. youraccountpassword"
-              {...register("password", { required: true })}
+              {...register("password", { required: "Password is required." })}
             />
           </div>
-          {errors.password?.type ? (
-            <span className="error">Password is required.</span>
-          ) : null}
+          <span className="error">
+            <ErrorMessage errors={errors} name="password" />
+          </span>
         </div>
 
         <button

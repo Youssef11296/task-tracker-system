@@ -22,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         autoClose={2000}
         pauseOnHover={false}
         hideProgressBar={false}
+        pauseOnFocusLoss={false}
       />
     </BrowserRouter>
   </React.StrictMode>

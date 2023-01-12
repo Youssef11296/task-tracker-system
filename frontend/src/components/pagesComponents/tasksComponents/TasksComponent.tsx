@@ -11,23 +11,27 @@ const TasksComponent = () => {
   const openCreateTaskHandler = () => setOpenCreateTask((ps) => !ps);
 
   const { tasks } = useTasks();
+  console.log({ tasks });
 
   return (
     <div>
       {!tasks || tasks.length === 0 ? (
         <p>You do not have any tasks yet!</p>
       ) : null}
+
       <button onClick={openCreateTaskHandler}>
         {openCreateTask ? "Close" : "Create"}
       </button>
 
-      {openCreateTask ? <CreateTask /> : null}
-
-      <div className="tasks-container">
-        {tasks?.map((task: Task) => {
-          <TaskItem key={task?._id} task={task} />;
-        })}
-      </div>
+      {openCreateTask ? (
+        <CreateTask openCreateTaskHandler={openCreateTaskHandler} />
+      ) : (
+        <div className="tasks-container">
+          {tasks?.map((task: Task) => (
+            <TaskItem key={task?._id} task={task} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

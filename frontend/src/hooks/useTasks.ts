@@ -6,6 +6,7 @@ import Cookies from "universal-cookie";
 import { VAR_NAME } from "../utils/constants";
 // redux
 import { createTask, getAllTasks } from "../context/actions/tasksActions";
+import { useEffect } from "react";
 
 export const useTasks = () => {
   const cookies = new Cookies();
@@ -16,6 +17,10 @@ export const useTasks = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const getAllTasksHandler = () => dispatch(getAllTasks(authToken));
+
+  useEffect(() => {
+    getAllTasksHandler();
+  }, []);
 
   const createTaskHandler = (
     taskName: Task["taskName"],

@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../../../context/actions/authActions";
 import { AppDispatch } from "../../../context";
+import { ErrorMessage } from "@hookform/error-message";
 
 const RegisterComponent = () => {
   const {
@@ -31,18 +32,15 @@ const RegisterComponent = () => {
               type="text"
               placeholder="Ex. John Doe"
               {...register("username", {
-                required: true,
+                required: "Username is required.",
                 minLength: 3,
                 maxLength: 30,
               })}
             />
           </div>
-          {errors.username?.type ? (
-            <span className="error">
-              User name is required and must contain in range from 3 to 30
-              letters.
-            </span>
-          ) : null}
+          <span className="error">
+            <ErrorMessage errors={errors} name="username" />
+          </span>
         </div>
         <div className="input-container">
           <div className="input-field flex-column">
@@ -50,12 +48,12 @@ const RegisterComponent = () => {
             <input
               type="text"
               placeholder="Ex. john@domain.com"
-              {...register("email", { required: true })}
+              {...register("email", { required: "Email is required." })}
             />
           </div>
-          {errors.email?.type ? (
-            <span className="error">Email is required and must be valid.</span>
-          ) : null}
+          <span className="error">
+            <ErrorMessage errors={errors} name="email" />
+          </span>
         </div>
         <div className="input-container">
           <div className="input-field flex-column">
@@ -63,12 +61,12 @@ const RegisterComponent = () => {
             <input
               type="password"
               placeholder="Ex. youraccountpassword"
-              {...register("password", { required: true })}
+              {...register("password", { required: "Password is required." })}
             />
           </div>
-          {errors.password?.type ? (
-            <span className="error">Password is required.</span>
-          ) : null}
+          <span className="error">
+            <ErrorMessage errors={errors} name="password" />
+          </span>
         </div>
 
         <button

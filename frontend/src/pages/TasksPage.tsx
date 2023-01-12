@@ -11,17 +11,7 @@ const TasksPage = () => {
 
   if (!isAuthenticated) return <NotAuthComponent />;
 
-  const { getAllTasksHandler } = useTasks();
-
-  useEffect(() => {
-    getAllTasksHandler();
-  }, []);
-
-  return (
-    <div>
-      <TasksComponent />
-    </div>
-  );
+  return <TasksComponent />;
 };
 
 export default TasksPage;
