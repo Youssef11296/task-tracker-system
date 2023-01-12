@@ -5,9 +5,11 @@
     .tasks-component {
         .tasks-container {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
+
 
             .task-item {
+                cursor: pointer;
                 border-radius: 5px;
                 padding: .5rem 1rem;
                 color: #000;

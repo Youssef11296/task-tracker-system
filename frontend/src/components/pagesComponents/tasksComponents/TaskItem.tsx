@@ -1,16 +1,28 @@
 // constants
+import { useTasks } from "../../../hooks/useTasks";
 import { TASK_SATUS } from "../../../utils/constants";
 
 interface Props {
   task: Task;
+  onOpenTaskModal: () => void;
+  setSelectedTask: (task: Task | null) => void;
 }
 
-const TaskItem: React.FC<Props> = ({ task }) => {
+const TaskItem: React.FC<Props> = ({
+  task,
+  onOpenTaskModal,
+  setSelectedTask,
+}) => {
   return (
     <div
       className="task-item"
       style={{
         background: task?.status === TASK_SATUS.COMPLETED ? "#080" : "",
+      }}
+      onClick={() => {
+        console.log("SELCER");
+        setSelectedTask(task);
+        onOpenTaskModal();
       }}
     >
       <div className="task-content">

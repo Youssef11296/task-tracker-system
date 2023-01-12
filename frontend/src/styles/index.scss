@@ -11,6 +11,28 @@
     --toastify-toast-width: 500px;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    border-radius: 10px;
+}
+
 button {
     border: none;
     background: #000;
@@ -38,6 +60,13 @@ button {
         align-items: center;
         padding: .5rem 1rem;
         border-bottom: 1px solid #000;
+
+        position: sticky;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: #fff;
 
         nav {
             flex: .25;
@@ -70,6 +99,12 @@ button {
         background-color: #000;
         color: #fff;
         padding: .5rem 1rem;
+
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
     }
 
     .auth-component,

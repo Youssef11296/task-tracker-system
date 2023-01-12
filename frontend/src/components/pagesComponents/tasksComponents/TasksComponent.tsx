@@ -1,17 +1,23 @@
 // hooks & modules
-import { useState } from "react";
 import { useTasks } from "../../../hooks/useTasks";
 // components
 import TaskItem from "./TaskItem";
 import CreateTask from "./CreateTask";
+import SelectedTask from "./TaskModal";
+import { useState } from "react";
+import TaskModal from "./TaskModal";
 
 const TasksComponent = () => {
-  const [openCreateTask, setOpenCreateTask] = useState(false);
-
-  const openCreateTaskHandler = () => setOpenCreateTask((ps) => !ps);
-
-  const { tasks } = useTasks();
-  console.log({ tasks });
+  const {
+    tasks,
+    openCreateTask,
+    openCreateTaskHandler,
+    openTaskModal,
+    onOpenTaskModal,
+    onCloseTaskModal,
+    selectedTask,
+    setSelectedTask,
+  } = useTasks();
 
   return (
     <div className="tasks-component">
@@ -27,9 +33,23 @@ const TasksComponent = () => {
         <CreateTask openCreateTaskHandler={openCreateTaskHandler} />
       ) : (
         <div className="tasks-container">
-          {tasks?.map((task: Task) => (
-            <TaskItem key={task?._id} task={task} />
-          ))}
+          <div className="tasks-list flex-column">
+            {tasks?.map((task: Task) => (
+              <TaskItem
+                key={task?._id}
+                task={task}
+                onOpenTaskModal={onOpenTaskModal}
+                setSelectedTask={setSelectedTask}
+              />
+            ))}
+          </div>
+
+          <TaskModal
+            open={openTaskModal}
+            onOpen={onOpenTaskModal}
+            onClose={onCloseTaskModal}
+            selectedTask={selectedTask}
+          />
         </div>
       )}
     </div>
