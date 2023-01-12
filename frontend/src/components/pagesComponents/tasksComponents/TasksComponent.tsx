@@ -14,7 +14,7 @@ const TasksComponent = () => {
   console.log({ tasks });
 
   return (
-    <div>
+    <div className="tasks-component">
       {!tasks || tasks.length === 0 ? (
         <p>You do not have any tasks yet!</p>
       ) : null}

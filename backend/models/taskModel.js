@@ -17,7 +17,7 @@ const taskSchema = new Schema (
     },
     status: {
       type: String,
-      default: TASK_SATUS.NOT_COMPLETED,
+      default: TASK_SATUS.TODO,
     },
     userId: {
       type: Schema.Types.ObjectId,

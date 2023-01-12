@@ -9,7 +9,11 @@ const cookies = new Cookies();
 
 const initialState = {
   user: null,
-  isAuthenticated: cookies.get(VAR_NAME.AUTH_TOKEN) ? true : false,
+  isAuthenticated:
+    cookies.get(VAR_NAME.AUTH_TOKEN) &&
+    cookies.get(VAR_NAME.AUTH_TOKEN) !== "undefined"
+      ? true
+      : false,
   loading: false,
 };
 

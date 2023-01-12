@@ -10,17 +10,14 @@ export const useToast = (
     ? toast.success(text, {
         position: toast.POSITION.TOP_RIGHT,
         style: { outerWidth: 500 },
-        toastId,
       })
     : type === "error"
     ? toast.error(text, {
         position: toast.POSITION.TOP_RIGHT,
-        toastId,
       })
     : type === "warning"
     ? toast.warning(text, {
         position: toast.POSITION.TOP_RIGHT,
-        toastId,
       })
     : type === "info" && toast.info(text);
 };

@@ -1,4 +1,6 @@
+// hooks & modules
 import { Routes, Route } from "react-router-dom";
+// pages & components
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import TasksPage from "./pages/TasksPage";
@@ -7,7 +9,7 @@ import LoginPage from "./pages/auth/LoginPage";
 
 const App = () => {
   return (
-    <div className="app container">
+    <div className="app">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/my-tasks" element={<TasksPage />} />
