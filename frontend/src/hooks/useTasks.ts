@@ -5,7 +5,11 @@ import Cookies from "universal-cookie";
 // constants
 import { VAR_NAME } from "../utils/constants";
 // redux
-import { createTask, getAllTasks } from "../context/actions/tasksActions";
+import {
+  createTask,
+  getAllTasks,
+  updateTask,
+} from "../context/actions/tasksActions";
 import { useEffect, useState } from "react";
 
 export const useTasks = () => {
@@ -14,14 +18,24 @@ export const useTasks = () => {
 
   const [openCreateTask, setOpenCreateTask] = useState(false);
 
-  const openCreateTaskHandler = () => setOpenCreateTask((ps) => !ps);
+  const openCreateTaskHandler = (e?: any) => {
+    e.stopPropagation();
+    console.log("TEST EDIT");
+    setOpenCreateTask((ps) => !ps);
+  };
   const { tasks } = useSelector((state: RootState) => state.tasks);
 
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [selectedTaskForUpdate, setSelectedTaskForUpdate] =
+    useState<Task | null>(null);
 
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const onOpenTaskModal = () => setOpenTaskModal(true);
   const onCloseTaskModal = () => setOpenTaskModal(false);
+
+  const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
+  const onOpenConfirmModal = () => setOpenConfirmModal(true);
+  const onCloseConfirmModal = () => setOpenConfirmModal(false);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -37,9 +51,13 @@ export const useTasks = () => {
     status: Task["status"]
   ) => dispatch(createTask(authToken, taskName, description, status));
 
+  const updatTaskHandler = (task: Task, taskId: Task["_id"]) =>
+    dispatch(updateTask(authToken, task, taskId));
+
   return {
     getAllTasksHandler,
     createTaskHandler,
+    updatTaskHandler,
     tasks,
     openCreateTask,
     openCreateTaskHandler,
@@ -48,5 +66,10 @@ export const useTasks = () => {
     onCloseTaskModal,
     selectedTask,
     setSelectedTask,
+    selectedTaskForUpdate,
+    setSelectedTaskForUpdate,
+    openConfirmModal,
+    onOpenConfirmModal,
+    onCloseConfirmModal,
   };
 };

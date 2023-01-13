@@ -11,13 +11,13 @@ const TasksPage = () => {
 
   if (!isAuthenticated)
     return (
-      <div className="tasks-page container">
+      <div className="tasks-page page container">
         <NotAuthComponent />
       </div>
     );
 
   return (
-    <div className="tasks-page container">
+    <div className="tasks-page page container">
       <TasksComponent />
     </div>
   );

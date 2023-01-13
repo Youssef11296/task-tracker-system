@@ -42,6 +42,11 @@ button {
     cursor: pointer;
 }
 
+.page {
+    flex: 1;
+    background-color: #c7ecee;
+}
+
 .main-layout {
     height: 100vh;
     display: flex;

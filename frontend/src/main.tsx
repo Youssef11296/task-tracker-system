@@ -10,20 +10,20 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <MainLayout>
-          <App />
-        </MainLayout>
-      </Provider>
-      <ToastContainer
-        style={{ width: "fit-content", minWidth: "300px" }}
-        autoClose={2000}
-        pauseOnHover={false}
-        hideProgressBar={false}
-        pauseOnFocusLoss={false}
-      />
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <Provider store={store}>
+      <MainLayout>
+        <App />
+      </MainLayout>
+    </Provider>
+    <ToastContainer
+      style={{ width: "fit-content", minWidth: "300px" }}
+      autoClose={2000}
+      pauseOnHover={false}
+      hideProgressBar={false}
+      pauseOnFocusLoss={false}
+    />
+  </BrowserRouter>
+  // </React.StrictMode>
 );

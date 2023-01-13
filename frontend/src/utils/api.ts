@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 const baseUrl = "http://localhost:4000/api";
 const baseUrlv1 = `${baseUrl}/v1`;
@@ -30,13 +30,21 @@ export const tasksAPI = {
     taskName: Task["taskName"],
     description: Task["description"],
     status: Task["status"]
-  ) => {
+  ) =>
     axios.post(
       `${baseUrlv1}/tasks`,
       { taskName, description, status },
       {
         headers: { Authorization: `Bearer ${token}` },
       }
-    );
-  },
+    ),
+
+  updateTask: (token: User["token"], task: Task, taskId: Task["_id"]) =>
+    axios.patch(
+      `${baseUrlv1}/tasks/${taskId}`,
+      { task },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    ),
 };

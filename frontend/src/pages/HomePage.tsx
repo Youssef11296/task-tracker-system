@@ -9,7 +9,6 @@ import "../styles/home.scss";
 
 const HomePage = () => {
   const { isAuthenticated, getMeHandler, user } = useAuth();
-  console.log(isAuthenticated);
 
   useEffect(() => {
     isAuthenticated && !user && getMeHandler();
@@ -17,13 +16,13 @@ const HomePage = () => {
 
   if (!isAuthenticated)
     return (
-      <div className="home-page container">
+      <div className="home-page page container">
         <NotAuthComponent />
       </div>
     );
 
   return (
-    <div className="home-page container">
+    <div className="home-page page container">
       Welcome, {user?.username}
       <HomeComponent />
     </div>

@@ -1,28 +1,39 @@
 // constants
+import { Delete, Edit } from "@mui/icons-material";
 import { useTasks } from "../../../hooks/useTasks";
 import { TASK_SATUS } from "../../../utils/constants";
+import { Button } from "@mui/material";
+import { useState } from "react";
+import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
 
 interface Props {
   task: Task;
   onOpenTaskModal: () => void;
   setSelectedTask: (task: Task | null) => void;
+  openCreateTaskHandler: () => void;
+  onOpenConfirmModal: () => void;
 }
 
 const TaskItem: React.FC<Props> = ({
   task,
   onOpenTaskModal,
   setSelectedTask,
+  openCreateTaskHandler,
+  onOpenConfirmModal,
 }) => {
+  const { setSelectedTaskForUpdate } = useTasks();
+
   return (
     <div
       className="task-item"
       style={{
-        background: task?.status === TASK_SATUS.COMPLETED ? "#080" : "",
+        background:
+          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "#95a5a6",
       }}
       onClick={() => {
         console.log("SELCER");
         setSelectedTask(task);
-        onOpenTaskModal();
+        // onOpenTaskModal();
       }}
     >
       <div className="task-content">
@@ -31,6 +42,12 @@ const TaskItem: React.FC<Props> = ({
         {task?.description?.length > 50 ? <span>...</span> : null}
       </div>
       <span className="task-status">{task?.status}</span>
+
+      {/* <Button onClick={openCreateTaskHandler}>
+        <Edit />
+      </Button> */}
+
+      <Delete sx={{ color: "#c0392b" }} onClick={onOpenConfirmModal} />
     </div>
   );
 };

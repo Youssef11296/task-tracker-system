@@ -6,6 +6,7 @@ import CreateTask from "./CreateTask";
 import SelectedTask from "./TaskModal";
 import { useState } from "react";
 import TaskModal from "./TaskModal";
+import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
 
 const TasksComponent = () => {
   const {
@@ -17,7 +18,12 @@ const TasksComponent = () => {
     onCloseTaskModal,
     selectedTask,
     setSelectedTask,
+    openConfirmModal,
+    onOpenConfirmModal,
+    onCloseConfirmModal,
   } = useTasks();
+
+  console.log({ openConfirmModal });
 
   return (
     <div className="tasks-component">
@@ -40,6 +46,8 @@ const TasksComponent = () => {
                 task={task}
                 onOpenTaskModal={onOpenTaskModal}
                 setSelectedTask={setSelectedTask}
+                openCreateTaskHandler={openCreateTaskHandler}
+                onOpenConfirmModal={onOpenConfirmModal}
               />
             ))}
           </div>
@@ -49,6 +57,12 @@ const TasksComponent = () => {
             onOpen={onOpenTaskModal}
             onClose={onCloseTaskModal}
             selectedTask={selectedTask}
+          />
+
+          <ConfirmComponent
+            question="You're sure you want to delete this task?"
+            open={openConfirmModal}
+            onClose={onCloseConfirmModal}
           />
         </div>
       )}

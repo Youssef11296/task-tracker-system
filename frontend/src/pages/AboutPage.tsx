@@ -2,7 +2,7 @@ import { AboutComponent } from "../components/pagesComponents/aboutComponents";
 
 const AboutPage = () => {
   return (
-    <div>
+    <div className="about-page page container">
       <AboutComponent />
     </div>
   );

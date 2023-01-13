@@ -1,18 +1,6 @@
 // hooks & modules
-import { Button, Modal, Box, Typography } from "@mui/material";
-
-// styles
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import { Modal, Box, Typography } from "@mui/material";
+import { MODAL_STYLE } from "../../../utils/constants";
 
 interface Props {
   selectedTask: Task | null;
@@ -30,7 +18,7 @@ const TaskModal: React.FC<Props> = ({ onClose, open, selectedTask }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={MODAL_STYLE}>
           <Typography
             sx={{ textAlign: "center", mb: 2 }}
             id="modal-modal-title"

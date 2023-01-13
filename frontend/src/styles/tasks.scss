@@ -1,7 +1,4 @@
 .tasks-page {
-    flex: 1;
-    background-color: rgba(220, 220, 220, .8);
-
     .tasks-component {
         .tasks-container {
             display: flex;
@@ -16,7 +13,6 @@
                 margin: .5rem 0;
                 min-width: 30rem;
                 max-width: fit-content;
-                background-color: rgba($color: #000, $alpha: 0.3);
                 display: flex;
                 justify-content: space-between;
                 align-items: center;

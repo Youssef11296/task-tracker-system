@@ -19,13 +19,10 @@ const CreateTask: React.FC<Props> = ({ openCreateTaskHandler }) => {
   const { createTaskHandler, getAllTasksHandler } = useTasks();
 
   const onSubmit = (values: any) => {
-    console.log(values);
-
     const { taskName, description } = values;
     createTaskHandler(taskName, description, TASK_SATUS.TODO);
 
     openCreateTaskHandler();
-
     getAllTasksHandler();
   };
 

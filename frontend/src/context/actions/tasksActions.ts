@@ -32,14 +32,32 @@ export const createTask =
         description,
         status
       );
+
       dispatch({
         type: actionTypes.CREATE_TASK,
         payload: {
-          message: data.message,
-          task: data.data,
+          message: data?.message,
+          task: data?.data,
         },
       });
-    } catch (error) {
+    } catch (error: any) {
+      useToast("error", error);
+    }
+  };
+
+export const updateTask =
+  (token: User["token"], task: Task, taskId: Task["_id"]) =>
+  async (dispatch: any) => {
+    try {
+      const { data } = await api.tasksAPI.updateTask(token, task, taskId);
+      dispatch({
+        type: actionTypes.UPDATE_TASK,
+        payload: {
+          message: data.message,
+          updatedTask: data.data,
+        },
+      });
+    } catch (error: any) {
       useToast("error", error);
     }
   };
