@@ -61,3 +61,18 @@ export const updateTask =
       useToast("error", error);
     }
   };
+
+export const deleteTask =
+  (token: User["token"], taskId: Task["_id"]) => async (dispatch: any) => {
+    try {
+      const { data } = await api.tasksAPI.deleteTask(token, taskId);
+      dispatch({
+        type: actionTypes.DELETE_TASK,
+        payload: {
+          message: data.message,
+        },
+      });
+    } catch (error: any) {
+      useToast("error", error);
+    }
+  };

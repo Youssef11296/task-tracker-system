@@ -8,12 +8,10 @@ const taskSchema = new Schema (
       required: true,
       minlength: 2,
       maxlength: 30,
-      unique: true,
     },
     description: {
       type: String,
       required: true,
-      unique: true,
     },
     status: {
       type: String,

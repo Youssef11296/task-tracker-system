@@ -7,6 +7,7 @@ import { VAR_NAME } from "../utils/constants";
 // redux
 import {
   createTask,
+  deleteTask,
   getAllTasks,
   updateTask,
 } from "../context/actions/tasksActions";
@@ -20,11 +21,11 @@ export const useTasks = () => {
 
   const openCreateTaskHandler = (e?: any) => {
     e.stopPropagation();
-    console.log("TEST EDIT");
     setOpenCreateTask((ps) => !ps);
   };
   const { tasks } = useSelector((state: RootState) => state.tasks);
 
+  // states
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [selectedTaskForUpdate, setSelectedTaskForUpdate] =
     useState<Task | null>(null);
@@ -39,11 +40,7 @@ export const useTasks = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const getAllTasksHandler = () => dispatch(getAllTasks(authToken));
-
-  useEffect(() => {
-    getAllTasksHandler();
-  }, []);
+  // api actions
 
   const createTaskHandler = (
     taskName: Task["taskName"],
@@ -54,6 +51,17 @@ export const useTasks = () => {
   const updatTaskHandler = (task: Task, taskId: Task["_id"]) =>
     dispatch(updateTask(authToken, task, taskId));
 
+  const deleteTaskHandler = async (taskId: Task["_id"]) => {
+    await dispatch(deleteTask(authToken, taskId));
+    await dispatch(getAllTasks(authToken));
+  };
+
+  const getAllTasksHandler = () => dispatch(getAllTasks(authToken));
+
+  useEffect(() => {
+    getAllTasksHandler();
+  }, []);
+
   return {
     getAllTasksHandler,
     createTaskHandler,
@@ -61,6 +69,7 @@ export const useTasks = () => {
     tasks,
     openCreateTask,
     openCreateTaskHandler,
+    setOpenCreateTask,
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
@@ -71,5 +80,6 @@ export const useTasks = () => {
     openConfirmModal,
     onOpenConfirmModal,
     onCloseConfirmModal,
+    deleteTaskHandler,
   };
 };

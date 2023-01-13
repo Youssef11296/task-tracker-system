@@ -31,6 +31,9 @@ const tasksReducer = (state = initialState, action: any) => {
             : task
         ),
       };
+    case actionTypes.DELETE_TASK:
+      useToast("success", action.payload?.message);
+
     default:
       return { ...state };
   }

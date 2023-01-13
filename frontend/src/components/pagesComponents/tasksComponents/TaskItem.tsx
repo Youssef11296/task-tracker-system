@@ -47,7 +47,13 @@ const TaskItem: React.FC<Props> = ({
         <Edit />
       </Button> */}
 
-      <Delete sx={{ color: "#c0392b" }} onClick={onOpenConfirmModal} />
+      <Delete
+        sx={{ color: "#c0392b" }}
+        onClick={() => {
+          onOpenConfirmModal();
+          setSelectedTask(task);
+        }}
+      />
     </div>
   );
 };

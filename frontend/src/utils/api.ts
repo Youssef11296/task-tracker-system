@@ -47,4 +47,9 @@ export const tasksAPI = {
         headers: { Authorization: `Bearer ${token}` },
       }
     ),
+
+  deleteTask: (token: User["token"], taskId: Task["_id"]) =>
+    axios.delete(`${baseUrlv1}/tasks/${taskId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
 };

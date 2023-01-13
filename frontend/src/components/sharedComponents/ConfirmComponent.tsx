@@ -1,14 +1,42 @@
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import React from "react";
 import { MODAL_STYLE } from "../../utils/constants";
+import { useTasks } from "../../hooks/useTasks";
+import { useToast } from "../../hooks/useToast";
 
 interface Props {
   open: boolean;
   onClose: () => void;
   question: string;
+  purpose: "DELETE_TASK" | "LOGOUT";
+  selectedTask?: Task;
 }
 
-const ConfirmComponent: React.FC<Props> = ({ question, open, onClose }) => {
+const ConfirmComponent: React.FC<Props> = ({
+  purpose,
+  question,
+  open,
+  onClose,
+  selectedTask,
+}) => {
+  const { deleteTaskHandler } = useTasks();
+
+  const onClickYes = () => {
+    switch (purpose) {
+      case "DELETE_TASK":
+        selectedTask
+          ? deleteTaskHandler(selectedTask?._id)
+          : useToast("error", "Task ID is required.");
+        break;
+      default:
+        return 0;
+    }
+
+    onClose();
+  };
+
+  const onClickNo = () => onClose();
+
   return (
     <Modal
       open={open}
@@ -31,10 +59,18 @@ const ConfirmComponent: React.FC<Props> = ({ question, open, onClose }) => {
           alignItems="center"
           mt={3}
         >
-          <Button variant="outlined" sx={{ textTransform: "capitalize" }}>
+          <Button
+            variant="outlined"
+            sx={{ textTransform: "capitalize" }}
+            onClick={onClickNo}
+          >
             No, cancel.
           </Button>
-          <Button variant="contained" sx={{ textTransform: "capitalize" }}>
+          <Button
+            variant="contained"
+            sx={{ textTransform: "capitalize" }}
+            onClick={onClickYes}
+          >
             Yes, I'm sure.
           </Button>
         </Grid>

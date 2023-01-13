@@ -13,6 +13,7 @@ const TasksComponent = () => {
     tasks,
     openCreateTask,
     openCreateTaskHandler,
+    setOpenCreateTask,
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
@@ -60,9 +61,11 @@ const TasksComponent = () => {
           />
 
           <ConfirmComponent
+            purpose="DELETE_TASK"
             question="You're sure you want to delete this task?"
             open={openConfirmModal}
             onClose={onCloseConfirmModal}
+            selectedTask={selectedTask as Task}
           />
         </div>
       )}
