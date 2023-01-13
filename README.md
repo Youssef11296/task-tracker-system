@@ -9,21 +9,25 @@ It's built with many technologies and Javascript frameworks mainly using ReactJS
 
 ## Main Functionalities:
 
-### Create Task
+### Create Task (End to End)
 
-The user can create his own task.
+The user can create his new own task.
 
-### Get All Tasks
+### Get All Tasks (End to End)
 
 At the "My tasks" page the user can find his all tasks.
 
-### Delete Task
+### Delete Task (End to End)
 
 User also has the ability to delete his own tasks.
 
-### Edit Task
+### Edit Task (End to End)
 
 User can edit any task that belongs to him.
+
+### View The Task Details in a Modal (Frontend)
+
+User can view the full task details in a modal by clicking on the task.
 
 # System top used dependencies
 
