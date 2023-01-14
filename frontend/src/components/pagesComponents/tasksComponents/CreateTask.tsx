@@ -22,11 +22,9 @@ const CreateTask: React.FC<Props> = ({ openCreateTaskHandler }) => {
     const { taskName, description } = values;
     createTaskHandler(taskName, description, TASK_SATUS.TODO);
 
-    openCreateTaskHandler();
     getAllTasksHandler();
+    openCreateTaskHandler();
   };
-
-  console.log({ errors });
 
   return (
     <div className="create-task-component">
