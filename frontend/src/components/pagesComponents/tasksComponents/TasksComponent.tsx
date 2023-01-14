@@ -11,9 +11,9 @@ import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
 const TasksComponent = () => {
   const {
     tasks,
-    openCreateTask,
-    openCreateTaskHandler,
-    setOpenCreateTask,
+    openCreateTaskModal,
+    onOpenCreateTaskModal,
+    setOpenCreateTaskModal,
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
@@ -22,6 +22,7 @@ const TasksComponent = () => {
     openConfirmModal,
     onOpenConfirmModal,
     onCloseConfirmModal,
+    onCloseCreateTaskModal,
   } = useTasks();
 
   console.log({ openConfirmModal });
@@ -32,43 +33,40 @@ const TasksComponent = () => {
         <p>You do not have any tasks yet!</p>
       ) : null}
 
-      <button onClick={openCreateTaskHandler}>
-        {openCreateTask ? "Close" : "Create"}
+      <button onClick={onOpenCreateTaskModal}>
+        {openCreateTaskModal ? "Close" : "Create"}
       </button>
 
-      {openCreateTask ? (
-        <CreateTask openCreateTaskHandler={openCreateTaskHandler} />
-      ) : (
-        <div className="tasks-container">
-          <div className="tasks-list flex-column">
-            {tasks?.map((task: Task) => (
-              <TaskItem
-                key={task?._id}
-                task={task}
-                onOpenTaskModal={onOpenTaskModal}
-                setSelectedTask={setSelectedTask}
-                openCreateTaskHandler={openCreateTaskHandler}
-                onOpenConfirmModal={onOpenConfirmModal}
-              />
-            ))}
-          </div>
-
-          <TaskModal
-            open={openTaskModal}
-            onOpen={onOpenTaskModal}
-            onClose={onCloseTaskModal}
-            selectedTask={selectedTask}
-          />
-
-          <ConfirmComponent
-            purpose="DELETE_TASK"
-            question="You're sure you want to delete this task?"
-            open={openConfirmModal}
-            onClose={onCloseConfirmModal}
-            selectedTask={selectedTask as Task}
-          />
+      <CreateTask open={openCreateTaskModal} onClose={onCloseCreateTaskModal} />
+      <div className="tasks-container">
+        <div className="tasks-list flex-column">
+          {tasks?.map((task: Task) => (
+            <TaskItem
+              key={task?._id}
+              task={task}
+              onOpenTaskModal={onOpenTaskModal}
+              setSelectedTask={setSelectedTask}
+              openCreateTaskHandler={() => console.log("OPEN CAETE TASK")}
+              onOpenConfirmModal={onOpenConfirmModal}
+            />
+          ))}
         </div>
-      )}
+
+        <TaskModal
+          open={openTaskModal}
+          onOpen={onOpenTaskModal}
+          onClose={onCloseTaskModal}
+          selectedTask={selectedTask}
+        />
+
+        <ConfirmComponent
+          purpose="DELETE_TASK"
+          question="You're sure you want to delete this task?"
+          open={openConfirmModal}
+          onClose={onCloseConfirmModal}
+          selectedTask={selectedTask as Task}
+        />
+      </div>
     </div>
   );
 };

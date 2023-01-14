@@ -11,10 +11,11 @@ export const TASK_SATUS = {
 // styles
 export const MODAL_STYLE = {
   position: "absolute" as "absolute",
-  top: "25%",
+  top: "40%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
+  minWidth: 500,
+  maxWdith: "60vw",
   bgcolor: "background.paper",
   border: "none",
   borderRadius: "5px",

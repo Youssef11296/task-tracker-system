@@ -33,7 +33,7 @@ const TaskItem: React.FC<Props> = ({
       onClick={() => {
         console.log("SELCER");
         setSelectedTask(task);
-        // onOpenTaskModal();
+        onOpenTaskModal();
       }}
     >
       <div className="task-content">
@@ -49,7 +49,8 @@ const TaskItem: React.FC<Props> = ({
 
       <Delete
         sx={{ color: "#c0392b" }}
-        onClick={() => {
+        onClick={(e: any) => {
+          e.stopPropagation();
           onOpenConfirmModal();
           setSelectedTask(task);
         }}

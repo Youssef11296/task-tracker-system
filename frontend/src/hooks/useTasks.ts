@@ -17,12 +17,14 @@ export const useTasks = () => {
   const cookies = new Cookies();
   const authToken = cookies.get(VAR_NAME.AUTH_TOKEN);
 
-  const [openCreateTask, setOpenCreateTask] = useState(false);
+  const [openCreateTaskModal, setOpenCreateTaskModal] = useState(false);
 
-  const openCreateTaskHandler = (e?: any) => {
+  const onOpenCreateTaskModal = (e?: any) => {
     e.stopPropagation();
-    setOpenCreateTask((ps) => !ps);
+    setOpenCreateTaskModal((ps) => !ps);
   };
+  const onCloseCreateTaskModal = () => setOpenCreateTaskModal(false);
+
   const { tasks } = useSelector((state: RootState) => state.tasks);
 
   // states
@@ -67,9 +69,10 @@ export const useTasks = () => {
     createTaskHandler,
     updatTaskHandler,
     tasks,
-    openCreateTask,
-    openCreateTaskHandler,
-    setOpenCreateTask,
+    openCreateTaskModal,
+    onOpenCreateTaskModal,
+    onCloseCreateTaskModal,
+    setOpenCreateTaskModal,
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
