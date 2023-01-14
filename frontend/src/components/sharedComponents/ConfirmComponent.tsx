@@ -3,6 +3,7 @@ import React from "react";
 import { MODAL_STYLE } from "../../utils/constants";
 import { useTasks } from "../../hooks/useTasks";
 import { useToast } from "../../hooks/useToast";
+import { useAuth } from "../../hooks/useAuth";
 
 interface Props {
   open: boolean;
@@ -19,6 +20,7 @@ const ConfirmComponent: React.FC<Props> = ({
   onClose,
   selectedTask,
 }) => {
+  const { logoutHandler } = useAuth();
   const { deleteTaskHandler } = useTasks();
 
   const onClickYes = () => {
@@ -27,6 +29,8 @@ const ConfirmComponent: React.FC<Props> = ({
         selectedTask
           ? deleteTaskHandler(selectedTask?._id)
           : useToast("error", "Task ID is required.");
+      case "LOGOUT":
+        logoutHandler();
         break;
       default:
         return 0;

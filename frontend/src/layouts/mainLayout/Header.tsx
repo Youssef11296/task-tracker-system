@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import ConfirmComponent from "../../components/sharedComponents/ConfirmComponent";
+import { useState } from "react";
 
 const MainHeader = () => {
-  const { isAuthenticated, logoutHandler } = useAuth();
+  const { isAuthenticated } = useAuth();
+
+  const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
+  const onOpenConfirmModal = () => setOpenConfirmModal(true);
+  const onCloseConfirmModal = () => setOpenConfirmModal(false);
 
   return (
     <header>
@@ -20,11 +26,18 @@ const MainHeader = () => {
           </li>
           {isAuthenticated ? (
             <li>
-              <button onClick={logoutHandler}>Logout</button>
+              <button onClick={onOpenConfirmModal}>Logout</button>
             </li>
           ) : null}
         </ul>
       </nav>
+
+      <ConfirmComponent
+        purpose="LOGOUT"
+        question="You're sure you want to log out?"
+        open={openConfirmModal}
+        onClose={onCloseConfirmModal}
+      />
     </header>
   );
 };
