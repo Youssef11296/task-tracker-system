@@ -13,7 +13,6 @@ const TasksComponent = () => {
     tasks,
     openCreateTaskModal,
     onOpenCreateTaskModal,
-    setOpenCreateTaskModal,
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
@@ -46,7 +45,7 @@ const TasksComponent = () => {
               task={task}
               onOpenTaskModal={onOpenTaskModal}
               setSelectedTask={setSelectedTask}
-              openCreateTaskHandler={() => console.log("OPEN CAETE TASK")}
+              onOpenCreateTaskModal={onOpenCreateTaskModal}
               onOpenConfirmModal={onOpenConfirmModal}
             />
           ))}

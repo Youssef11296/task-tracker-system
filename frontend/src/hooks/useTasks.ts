@@ -19,10 +19,7 @@ export const useTasks = () => {
 
   const [openCreateTaskModal, setOpenCreateTaskModal] = useState(false);
 
-  const onOpenCreateTaskModal = (e?: any) => {
-    e.stopPropagation();
-    setOpenCreateTaskModal((ps) => !ps);
-  };
+  const onOpenCreateTaskModal = (e?: any) => setOpenCreateTaskModal(true);
   const onCloseCreateTaskModal = () => setOpenCreateTaskModal(false);
 
   const { tasks } = useSelector((state: RootState) => state.tasks);

@@ -41,7 +41,8 @@ export const createTask =
         },
       });
     } catch (error: any) {
-      useToast("error", error);
+      console.log({ error });
+      useToast("warning", error?.response?.data?.message);
     }
   };
 
@@ -58,7 +59,7 @@ export const updateTask =
         },
       });
     } catch (error: any) {
-      useToast("error", error);
+      useToast("error", error?.response?.data?.message);
     }
   };
 
@@ -73,6 +74,6 @@ export const deleteTask =
         },
       });
     } catch (error: any) {
-      useToast("error", error);
+      useToast("error", error?.response?.data?.message);
     }
   };

@@ -29,6 +29,12 @@ const createTask = asyncHandler (async (req, res) => {
         'Task description is required, and must contain 10 letters at least.'
       );
 
+    const isExistedTask = await Task.findOne ({userId: user._id, taskName});
+    if (isExistedTask)
+      return res
+        .status (400)
+        .json ({success: false, message: 'You already added this task!'});
+
     const newTask = await Task.create ({
       taskName,
       description,
