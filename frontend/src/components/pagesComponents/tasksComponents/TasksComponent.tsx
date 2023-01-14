@@ -7,6 +7,7 @@ import SelectedTask from "./TaskModal";
 import { useState } from "react";
 import TaskModal from "./TaskModal";
 import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
+import { Button } from "@mui/material";
 
 const TasksComponent = () => {
   const {
@@ -31,11 +32,16 @@ const TasksComponent = () => {
         <p>You do not have any tasks yet!</p>
       ) : null}
 
-      <button onClick={onOpenCreateTaskModal}>
-        {openCreateTaskModal ? "Close" : "Create"}
-      </button>
+      <Button
+        variant="contained"
+        sx={{ textTransform: "capitalize" }}
+        onClick={onOpenCreateTaskModal}
+      >
+        Add Task
+      </Button>
 
       <CreateTask open={openCreateTaskModal} onClose={onCloseCreateTaskModal} />
+
       <div className="tasks-container">
         <div className="tasks-list flex-column">
           {tasks?.map((task: Task) => (

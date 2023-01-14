@@ -4,7 +4,7 @@ import { useTasks } from "../../../hooks/useTasks";
 import { ErrorMessage } from "@hookform/error-message";
 // constants
 import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
-import { Modal, Box } from "@mui/material";
+import { Modal, Box, Button } from "@mui/material";
 
 interface Props {
   open: boolean;
@@ -98,7 +98,14 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
                 <ErrorMessage errors={errors} name="status" />
               </span>
             </div>
-            <button
+            <Button
+              variant="contained"
+              sx={{
+                textTransform: "capitalize",
+                margin: "auto",
+                display: "block",
+                width: "150px",
+              }}
               type="submit"
               disabled={
                 (errors.username || errors.email || errors.password)?.type
@@ -107,7 +114,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
               }
             >
               {selectedTask ? "Save" : "Add"}
-            </button>
+            </Button>
           </form>
         </div>
       </Box>

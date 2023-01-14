@@ -28,15 +28,15 @@ const TaskItem: React.FC<Props> = ({
   const onClickDeleteBtn = (e: any) => {
     e.stopPropagation();
     onOpenConfirmModal();
-    // setSelectedTaskHandler(task);
   };
 
   return (
     <div
       className="task-item"
       style={{
+        color: "#fff",
         background:
-          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "#95a5a6",
+          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "#2c3e50",
       }}
       onClick={() => {
         setSelectedTaskHandler(task);
@@ -50,7 +50,6 @@ const TaskItem: React.FC<Props> = ({
           {task?.description?.length > 18 ? <span>...</span> : null}
         </Grid>
       </div>
-      {/* <span className="task-status">{task?.status}</span> */}
 
       <Grid
         container

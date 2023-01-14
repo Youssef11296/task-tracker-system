@@ -1,9 +1,10 @@
-import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import React from "react";
-import { MODAL_STYLE } from "../../utils/constants";
+// hooks & modules
+import { useAuth } from "../../hooks/useAuth";
 import { useTasks } from "../../hooks/useTasks";
 import { useToast } from "../../hooks/useToast";
-import { useAuth } from "../../hooks/useAuth";
+// mui & styles
+import { Box, Button, Grid, Modal, Typography } from "@mui/material";
+import { MODAL_STYLE } from "../../utils/constants";
 
 interface Props {
   open: boolean;
@@ -29,6 +30,7 @@ const ConfirmComponent: React.FC<Props> = ({
         selectedTask
           ? deleteTaskHandler(selectedTask?._id)
           : useToast("error", "Task ID is required.");
+        break;
       case "LOGOUT":
         logoutHandler();
         break;

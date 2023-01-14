@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import ConfirmComponent from "../../components/sharedComponents/ConfirmComponent";
 import { useState } from "react";
+import { Button } from "@mui/material";
 
 const MainHeader = () => {
   const { isAuthenticated } = useAuth();
@@ -26,7 +27,9 @@ const MainHeader = () => {
           </li>
           {isAuthenticated ? (
             <li>
-              <button onClick={onOpenConfirmModal}>Logout</button>
+              <Button variant="outlined" onClick={onOpenConfirmModal}>
+                Logout
+              </Button>
             </li>
           ) : null}
         </ul>
