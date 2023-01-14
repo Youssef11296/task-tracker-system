@@ -27,7 +27,11 @@ const MainHeader = () => {
           </li>
           {isAuthenticated ? (
             <li>
-              <Button variant="outlined" onClick={onOpenConfirmModal}>
+              <Button
+                variant="outlined"
+                onClick={onOpenConfirmModal}
+                sx={{ textTransform: "capitalize" }}
+              >
                 Logout
               </Button>
             </li>

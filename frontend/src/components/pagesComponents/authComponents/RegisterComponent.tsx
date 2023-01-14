@@ -4,8 +4,15 @@ import { useDispatch } from "react-redux";
 import { registerUser } from "../../../context/actions/authActions";
 import { AppDispatch } from "../../../context";
 import { ErrorMessage } from "@hookform/error-message";
+import { Box, Button, Modal } from "@mui/material";
+import { MODAL_STYLE } from "../../../utils/constants";
 
-const RegisterComponent = () => {
+interface Props {
+  open: boolean;
+  onClose: () => void;
+}
+
+const RegisterComponent: React.FC<Props> = ({ open, onClose }) => {
   const {
     formState: { errors },
     register,
@@ -22,65 +29,78 @@ const RegisterComponent = () => {
   };
 
   return (
-    <div className="auth-component register">
-      <h2>Register Form</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="input-container">
-          <div className="input-field flex-column">
-            <label htmlFor="username">User name</label>
-            <input
-              type="text"
-              placeholder="Ex. John Doe"
-              {...register("username", {
-                required: "Username is required.",
-                minLength: 3,
-                maxLength: 30,
-              })}
-            />
-          </div>
-          <span className="error">
-            <ErrorMessage errors={errors} name="username" />
-          </span>
-        </div>
-        <div className="input-container">
-          <div className="input-field flex-column">
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              placeholder="Ex. john@domain.com"
-              {...register("email", { required: "Email is required." })}
-            />
-          </div>
-          <span className="error">
-            <ErrorMessage errors={errors} name="email" />
-          </span>
-        </div>
-        <div className="input-container">
-          <div className="input-field flex-column">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              placeholder="Ex. youraccountpassword"
-              {...register("password", { required: "Password is required." })}
-            />
-          </div>
-          <span className="error">
-            <ErrorMessage errors={errors} name="password" />
-          </span>
-        </div>
+    <Modal
+      sx={{ background: "rgba(0,0,0,.75)" }}
+      open={open}
+      onClose={onClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <Box sx={MODAL_STYLE}>
+        <div className="auth-component register">
+          <h2>Register Form</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="input-container">
+              <div className="input-field flex-column">
+                <label htmlFor="username">User name</label>
+                <input
+                  type="text"
+                  placeholder="Ex. John Doe"
+                  {...register("username", {
+                    required: "Username is required.",
+                    minLength: 3,
+                    maxLength: 30,
+                  })}
+                />
+              </div>
+              <span className="error">
+                <ErrorMessage errors={errors} name="username" />
+              </span>
+            </div>
+            <div className="input-container">
+              <div className="input-field flex-column">
+                <label htmlFor="email">Email</label>
+                <input
+                  type="text"
+                  placeholder="Ex. john@domain.com"
+                  {...register("email", { required: "Email is required." })}
+                />
+              </div>
+              <span className="error">
+                <ErrorMessage errors={errors} name="email" />
+              </span>
+            </div>
+            <div className="input-container">
+              <div className="input-field flex-column">
+                <label htmlFor="password">Password</label>
+                <input
+                  type="password"
+                  placeholder="Ex. youraccountpassword"
+                  {...register("password", {
+                    required: "Password is required.",
+                  })}
+                />
+              </div>
+              <span className="error">
+                <ErrorMessage errors={errors} name="password" />
+              </span>
+            </div>
 
-        <button
-          type="submit"
-          disabled={
-            (errors.username || errors.email || errors.password)?.type
-              ? true
-              : false
-          }
-        >
-          Submit
-        </button>
-      </form>
-    </div>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                margin: "auto",
+                display: "block",
+                textTransform: "capitalize",
+              }}
+            >
+              Submit
+            </Button>
+          </form>
+        </div>
+      </Box>
+    </Modal>
   );
 };
 

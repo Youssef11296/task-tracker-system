@@ -23,22 +23,21 @@ export const useAuth = () => {
   const [openLogin, setOpenLogin] = useState(false);
   const [openRegister, setOpenRegister] = useState(false);
 
-  const openLoginForm = () => {
-    openRegister && setOpenRegister(false);
-    !openLogin && setOpenLogin(true);
-  };
-  const openRegisterForm = () => {
-    openLogin && setOpenLogin(false);
-    !openRegister && setOpenRegister(true);
-  };
+  const onOpenLoginForm = () => setOpenLogin(true);
+  const onCloseLoginForm = () => setOpenLogin(false);
+
+  const onOpenRegisterForm = () => setOpenRegister(true);
+  const onCloseRegisterForm = () => setOpenRegister(false);
 
   const logoutHandler = () => dispatch(logoutUser());
 
   return {
     openLogin,
     openRegister,
-    openLoginForm,
-    openRegisterForm,
+    onOpenLoginForm,
+    onCloseLoginForm,
+    onOpenRegisterForm,
+    onCloseRegisterForm,
     isAuthenticated,
     logoutHandler,
     getMeHandler,

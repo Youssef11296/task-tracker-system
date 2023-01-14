@@ -22,6 +22,7 @@ export const useTasks = () => {
 
   const onOpenCreateTaskModal = (e?: any) => setOpenCreateTaskModal(true);
   const onCloseCreateTaskModal = () => {
+    dispatch(setSelectedTask(null));
     setOpenCreateTaskModal(false);
   };
 
@@ -37,10 +38,6 @@ export const useTasks = () => {
   const onCloseConfirmModal = () => setOpenConfirmModal(false);
 
   const dispatch: AppDispatch = useDispatch();
-
-  const { selectedTask } = useSelector((state: RootState) => state.tasks);
-  const setSelectedTaskHandler = (task: Task | null) =>
-    dispatch(setSelectedTask(task));
 
   // api actions
 
@@ -69,7 +66,6 @@ export const useTasks = () => {
     createTaskHandler,
     updatTaskHandler,
     tasks,
-    selectedTask,
     openCreateTaskModal,
     onOpenCreateTaskModal,
     onCloseCreateTaskModal,
@@ -81,6 +77,5 @@ export const useTasks = () => {
     onOpenConfirmModal,
     onCloseConfirmModal,
     deleteTaskHandler,
-    setSelectedTaskHandler,
   };
 };

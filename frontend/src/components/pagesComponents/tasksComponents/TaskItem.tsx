@@ -3,6 +3,9 @@ import { Delete, Edit } from "@mui/icons-material";
 import { useTasks } from "../../../hooks/useTasks";
 import { TASK_SATUS } from "../../../utils/constants";
 import { Grid, IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../context";
+import { setSelectedTask } from "../../../context/actions/tasksActions";
 
 interface Props {
   task: Task;
@@ -17,16 +20,27 @@ const TaskItem: React.FC<Props> = ({
   onOpenConfirmModal,
   onOpenCreateTaskModal,
 }) => {
-  const { setSelectedTaskHandler } = useTasks();
+  const dispatch: AppDispatch = useDispatch();
+
+  // const { selectedTask } = useSelector((state: RootState) => state.tasks);
 
   const onClickEditBtn = (e: any) => {
     e.stopPropagation();
-    setSelectedTaskHandler(task);
+    console.log({ task });
+    dispatch(setSelectedTask(task));
+    // console.log("SELECTED", selectedTask);
     onOpenCreateTaskModal();
+  };
+
+  const onClickTaskItem = () => {
+    dispatch(setSelectedTask(task));
+    onOpenTaskModal();
   };
 
   const onClickDeleteBtn = (e: any) => {
     e.stopPropagation();
+    dispatch(setSelectedTask(task));
+    // console.log(selectedTask);
     onOpenConfirmModal();
   };
 
@@ -38,10 +52,7 @@ const TaskItem: React.FC<Props> = ({
         background:
           task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "#2c3e50",
       }}
-      onClick={() => {
-        setSelectedTaskHandler(task);
-        onOpenTaskModal();
-      }}
+      onClick={onClickTaskItem}
     >
       <div className="task-content">
         <h4 className="task-name">{task?.taskName}</h4>
@@ -58,7 +69,7 @@ const TaskItem: React.FC<Props> = ({
         alignItems="center"
       >
         <Edit
-          sx={{ color: "#2980b9", fontSize: "1.2rem" }}
+          sx={{ color: "#fff", fontSize: "1.2rem" }}
           onClick={onClickEditBtn}
         />
 

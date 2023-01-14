@@ -1,25 +1,30 @@
 // hooks & modules
 import { Modal, Box, Typography } from "@mui/material";
 import { MODAL_STYLE } from "../../../utils/constants";
-import { useTasks } from "../../../hooks/useTasks";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../context";
+import { setSelectedTask } from "../../../context/actions/tasksActions";
 
 interface Props {
-  selectedTask: Task | null;
   open: boolean;
   onClose: () => void;
   onOpen: () => void;
 }
 
-const TaskModal: React.FC<Props> = ({ onClose, open, selectedTask }) => {
-  const { setSelectedTaskHandler } = useTasks();
+const TaskModal: React.FC<Props> = ({ onClose, open }) => {
+  const { selectedTask } = useSelector((state: RootState) => state.tasks);
+
+  const dispatch: AppDispatch = useDispatch();
 
   const closeHandler = () => {
-    setSelectedTaskHandler(null);
+    dispatch(setSelectedTask(null));
     onClose();
   };
+
   return (
     <div>
       <Modal
+        sx={{ background: "rgba(0,0,0,.75)" }}
         open={open}
         onClose={closeHandler}
         aria-labelledby="modal-modal-title"

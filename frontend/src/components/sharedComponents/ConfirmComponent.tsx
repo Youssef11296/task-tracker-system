@@ -5,13 +5,14 @@ import { useToast } from "../../hooks/useToast";
 // mui & styles
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import { MODAL_STYLE } from "../../utils/constants";
+import { useSelector } from "react-redux";
+import { RootState } from "../../context";
 
 interface Props {
   open: boolean;
   onClose: () => void;
   question: string;
   purpose: "DELETE_TASK" | "LOGOUT";
-  selectedTask?: Task;
 }
 
 const ConfirmComponent: React.FC<Props> = ({
@@ -19,10 +20,12 @@ const ConfirmComponent: React.FC<Props> = ({
   question,
   open,
   onClose,
-  selectedTask,
 }) => {
   const { logoutHandler } = useAuth();
   const { deleteTaskHandler } = useTasks();
+
+  const { selectedTask } = useSelector((state: RootState) => state.tasks);
+  console.log(selectedTask);
 
   const onClickYes = () => {
     switch (purpose) {
@@ -45,6 +48,7 @@ const ConfirmComponent: React.FC<Props> = ({
 
   return (
     <Modal
+      sx={{ background: "rgba(0,0,0,.75)" }}
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"

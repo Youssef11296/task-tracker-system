@@ -7,9 +7,9 @@ interface User {
 }
 
 interface Task {
-  _id: string;
+  _id?: string;
   taskName: string;
   description: string;
-  status: string;
-  userId: User["_id"];
+  status?: string;
+  userId?: User["_id"];
 }

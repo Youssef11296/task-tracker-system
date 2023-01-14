@@ -5,6 +5,9 @@ import { ErrorMessage } from "@hookform/error-message";
 // constants
 import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
 import { Modal, Box, Button } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../context";
+import { setSelectedTask } from "../../../context/actions/tasksActions";
 
 interface Props {
   open: boolean;
@@ -18,27 +21,27 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     register,
     reset,
   } = useForm();
-  const { setSelectedTaskHandler, selectedTask } = useTasks();
 
   const { createTaskHandler, getAllTasksHandler } = useTasks();
 
-  const closeHandler = () => {
-    setSelectedTaskHandler(null);
-    onClose();
-  };
+  const { selectedTask } = useSelector((state: RootState) => state.tasks);
+
+  const dispatch: AppDispatch = useDispatch();
 
   const onSubmit = (values: any) => {
     const { taskName, description } = values;
     createTaskHandler(taskName, description, TASK_SATUS.TODO);
 
     getAllTasksHandler();
+    dispatch(setSelectedTask(null));
 
     reset();
-    closeHandler();
+    onClose();
   };
 
   return (
     <Modal
+      sx={{ background: "rgba(0,0,0,.75)" }}
       open={open}
       onClose={onClose}
       aria-labelledby="modal-modal-title"
@@ -46,7 +49,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     >
       <Box sx={MODAL_STYLE}>
         <div className="create-task-component">
-          <h2>Let's create your new task, fill the form below</h2>
+          <h2>{selectedTask ? "Edit Task" : "Create Task"}</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-container">
               <div className="input-field flex-column flex-column">

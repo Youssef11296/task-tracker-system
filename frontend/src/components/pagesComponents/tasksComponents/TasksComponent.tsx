@@ -17,15 +17,11 @@ const TasksComponent = () => {
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
-    selectedTask,
     openConfirmModal,
     onOpenConfirmModal,
     onCloseConfirmModal,
     onCloseCreateTaskModal,
   } = useTasks();
-
-  console.log({ selectedTask });
-
   return (
     <div className="tasks-component">
       {!tasks || tasks.length === 0 ? (
@@ -33,8 +29,13 @@ const TasksComponent = () => {
       ) : null}
 
       <Button
-        variant="contained"
-        sx={{ textTransform: "capitalize" }}
+        variant="outlined"
+        sx={{
+          textTransform: "capitalize",
+          // margin: "auto",
+          display: "block",
+          mb: 4,
+        }}
         onClick={onOpenCreateTaskModal}
       >
         Add Task
@@ -59,7 +60,6 @@ const TasksComponent = () => {
           open={openTaskModal}
           onOpen={onOpenTaskModal}
           onClose={onCloseTaskModal}
-          selectedTask={selectedTask}
         />
 
         <ConfirmComponent
@@ -67,7 +67,6 @@ const TasksComponent = () => {
           question="You're sure you want to delete this task?"
           open={openConfirmModal}
           onClose={onCloseConfirmModal}
-          selectedTask={selectedTask as Task}
         />
       </div>
     </div>
