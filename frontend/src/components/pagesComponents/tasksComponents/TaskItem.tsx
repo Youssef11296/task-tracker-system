@@ -7,7 +7,6 @@ import { Grid, IconButton } from "@mui/material";
 interface Props {
   task: Task;
   onOpenTaskModal: () => void;
-  setSelectedTask: (task: Task | null) => void;
   onOpenCreateTaskModal: () => void;
   onOpenConfirmModal: () => void;
 }
@@ -15,19 +14,21 @@ interface Props {
 const TaskItem: React.FC<Props> = ({
   task,
   onOpenTaskModal,
-  setSelectedTask,
   onOpenConfirmModal,
   onOpenCreateTaskModal,
 }) => {
+  const { setSelectedTaskHandler } = useTasks();
+
   const onClickEditBtn = (e: any) => {
     e.stopPropagation();
+    setSelectedTaskHandler(task);
     onOpenCreateTaskModal();
   };
 
   const onClickDeleteBtn = (e: any) => {
     e.stopPropagation();
     onOpenConfirmModal();
-    setSelectedTask(task);
+    // setSelectedTaskHandler(task);
   };
 
   return (
@@ -38,31 +39,34 @@ const TaskItem: React.FC<Props> = ({
           task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "#95a5a6",
       }}
       onClick={() => {
-        console.log("SELCER");
-        setSelectedTask(task);
+        setSelectedTaskHandler(task);
         onOpenTaskModal();
       }}
     >
       <div className="task-content">
         <h4 className="task-name">{task?.taskName}</h4>
-        <p className="task-description">{task?.description?.slice(0, 50)}</p>
-        {task?.description?.length > 50 ? <span>...</span> : null}
+        <Grid container>
+          <p className="task-description">{task?.description?.slice(0, 18)}</p>
+          {task?.description?.length > 18 ? <span>...</span> : null}
+        </Grid>
       </div>
-      <span className="task-status">{task?.status}</span>
+      {/* <span className="task-status">{task?.status}</span> */}
 
       <Grid
         container
-        flex={0.3}
+        flex={0.15}
         justifyContent="space-between"
         alignItems="center"
       >
-        <IconButton onClick={onClickEditBtn}>
-          <Edit sx={{ color: "#2980b9" }} />
-        </IconButton>
+        <Edit
+          sx={{ color: "#2980b9", fontSize: "1.2rem" }}
+          onClick={onClickEditBtn}
+        />
 
-        <IconButton onClick={onClickDeleteBtn}>
-          <Delete sx={{ color: "#c0392b" }} />
-        </IconButton>
+        <Delete
+          sx={{ color: "#c0392b", fontSize: "1.2rem" }}
+          onClick={onClickDeleteBtn}
+        />
       </Grid>
     </div>
   );

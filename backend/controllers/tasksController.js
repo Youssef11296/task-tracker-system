@@ -85,6 +85,15 @@ const updateTask = asyncHandler (async (req, res) => {
     if (task.userId.toString () !== user._id.toString ())
       throw new Error ("You're not authorized to manage this content.");
 
+    const isExistedTask = await Task.findOne ({
+      userId: user._id,
+      taskName: req.body.taskName,
+    });
+    if (isExistedTask)
+      return res
+        .status (400)
+        .json ({success: false, message: 'You already added this task!'});
+
     const updatedTask = await Task.findByIdAndUpdate (taskId, req.body, {
       new: true,
     });

@@ -17,14 +17,13 @@ const TasksComponent = () => {
     onOpenTaskModal,
     onCloseTaskModal,
     selectedTask,
-    setSelectedTask,
     openConfirmModal,
     onOpenConfirmModal,
     onCloseConfirmModal,
     onCloseCreateTaskModal,
   } = useTasks();
 
-  console.log({ openConfirmModal });
+  console.log({ selectedTask });
 
   return (
     <div className="tasks-component">
@@ -44,7 +43,6 @@ const TasksComponent = () => {
               key={task?._id}
               task={task}
               onOpenTaskModal={onOpenTaskModal}
-              setSelectedTask={setSelectedTask}
               onOpenCreateTaskModal={onOpenCreateTaskModal}
               onOpenConfirmModal={onOpenConfirmModal}
             />

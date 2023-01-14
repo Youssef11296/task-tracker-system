@@ -1,6 +1,7 @@
 // hooks & modules
 import { Modal, Box, Typography } from "@mui/material";
 import { MODAL_STYLE } from "../../../utils/constants";
+import { useTasks } from "../../../hooks/useTasks";
 
 interface Props {
   selectedTask: Task | null;
@@ -10,11 +11,17 @@ interface Props {
 }
 
 const TaskModal: React.FC<Props> = ({ onClose, open, selectedTask }) => {
+  const { setSelectedTaskHandler } = useTasks();
+
+  const closeHandler = () => {
+    setSelectedTaskHandler(null);
+    onClose();
+  };
   return (
     <div>
       <Modal
         open={open}
-        onClose={onClose}
+        onClose={closeHandler}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >

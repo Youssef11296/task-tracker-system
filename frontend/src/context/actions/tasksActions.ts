@@ -77,3 +77,12 @@ export const deleteTask =
       useToast("error", error?.response?.data?.message);
     }
   };
+
+export const setSelectedTask = (task: Task | null) => {
+  return {
+    type: actionTypes.SET_SELECTED_TASK,
+    payload: {
+      task,
+    },
+  };
+};

@@ -9,6 +9,7 @@ import {
   createTask,
   deleteTask,
   getAllTasks,
+  setSelectedTask,
   updateTask,
 } from "../context/actions/tasksActions";
 import { useEffect, useState } from "react";
@@ -20,15 +21,13 @@ export const useTasks = () => {
   const [openCreateTaskModal, setOpenCreateTaskModal] = useState(false);
 
   const onOpenCreateTaskModal = (e?: any) => setOpenCreateTaskModal(true);
-  const onCloseCreateTaskModal = () => setOpenCreateTaskModal(false);
+  const onCloseCreateTaskModal = () => {
+    setOpenCreateTaskModal(false);
+  };
 
   const { tasks } = useSelector((state: RootState) => state.tasks);
 
   // states
-  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
-  const [selectedTaskForUpdate, setSelectedTaskForUpdate] =
-    useState<Task | null>(null);
-
   const [openTaskModal, setOpenTaskModal] = useState(false);
   const onOpenTaskModal = () => setOpenTaskModal(true);
   const onCloseTaskModal = () => setOpenTaskModal(false);
@@ -38,6 +37,10 @@ export const useTasks = () => {
   const onCloseConfirmModal = () => setOpenConfirmModal(false);
 
   const dispatch: AppDispatch = useDispatch();
+
+  const { selectedTask } = useSelector((state: RootState) => state.tasks);
+  const setSelectedTaskHandler = (task: Task | null) =>
+    dispatch(setSelectedTask(task));
 
   // api actions
 
@@ -66,6 +69,7 @@ export const useTasks = () => {
     createTaskHandler,
     updatTaskHandler,
     tasks,
+    selectedTask,
     openCreateTaskModal,
     onOpenCreateTaskModal,
     onCloseCreateTaskModal,
@@ -73,13 +77,10 @@ export const useTasks = () => {
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
-    selectedTask,
-    setSelectedTask,
-    selectedTaskForUpdate,
-    setSelectedTaskForUpdate,
     openConfirmModal,
     onOpenConfirmModal,
     onCloseConfirmModal,
     deleteTaskHandler,
+    setSelectedTaskHandler,
   };
 };

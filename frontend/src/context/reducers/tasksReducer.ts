@@ -3,6 +3,7 @@ import * as actionTypes from "../actions/actionTypes";
 
 const initialState = {
   tasks: [],
+  selectedTask: null,
 };
 
 const tasksReducer = (state = initialState, action: any) => {
@@ -34,6 +35,11 @@ const tasksReducer = (state = initialState, action: any) => {
     case actionTypes.DELETE_TASK:
       useToast("success", action.payload?.message);
 
+    case actionTypes.SET_SELECTED_TASK:
+      return {
+        ...state,
+        selectedTask: action.payload?.task,
+      };
     default:
       return { ...state };
   }

@@ -18,8 +18,14 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     register,
     reset,
   } = useForm();
+  const { setSelectedTaskHandler, selectedTask } = useTasks();
 
   const { createTaskHandler, getAllTasksHandler } = useTasks();
+
+  const closeHandler = () => {
+    setSelectedTaskHandler(null);
+    onClose();
+  };
 
   const onSubmit = (values: any) => {
     const { taskName, description } = values;
@@ -28,7 +34,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     getAllTasksHandler();
 
     reset();
-    onClose();
+    closeHandler();
   };
 
   return (
@@ -48,6 +54,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
                 <input
                   type="text"
                   placeholder="ex. First task.."
+                  defaultValue={selectedTask ? selectedTask?.taskName : ""}
                   {...register("taskName", {
                     required: "Task name is required",
                     minLength: 3,
@@ -65,6 +72,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
                 <input
                   type="text"
                   placeholder="ex. First task.."
+                  defaultValue={selectedTask ? selectedTask?.description : ""}
                   {...register("description", {
                     required: "Task description is required",
                     minLength: 10,
@@ -98,7 +106,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
                   : false
               }
             >
-              Submit
+              {selectedTask ? "Save" : "Add"}
             </button>
           </form>
         </div>
