@@ -37,8 +37,10 @@ const TaskModal: React.FC<Props> = ({ onClose, open }) => {
               fontWeight: 900,
               padding: '1.2rem 1rem',
               position: 'relative',
-              left: '80%',
-              background: selectedTask?.status === TASK_SATUS.COMPLETED ? '#080'
+              left: '70%',
+              mb: 2,
+              color: selectedTask?.status === TASK_SATUS.COMPLETED ? "#fff" : '',
+              background: selectedTask?.status === TASK_SATUS.COMPLETED ? '#6ab04c'
                 : selectedTask?.status === TASK_SATUS.IN_PROGRESS ? '#00f' : ''
             }} />
           <Typography

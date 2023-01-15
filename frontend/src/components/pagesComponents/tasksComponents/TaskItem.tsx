@@ -49,7 +49,7 @@ const TaskItem: React.FC<Props> = ({
       style={{
         color: "#fff",
         background:
-          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "#2c3e50",
+          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "rgb(45, 159, 217)",
       }}
       onClick={onClickTaskItem}
     >
@@ -63,7 +63,9 @@ const TaskItem: React.FC<Props> = ({
 
       <Grid
         container
-        flex={0.15}
+        xs={2}
+        md={3}
+        lg={2}
         justifyContent="space-between"
         alignItems="center"
       >
@@ -73,7 +75,7 @@ const TaskItem: React.FC<Props> = ({
         />
 
         <Delete
-          sx={{ color: "#c0392b", fontSize: "1.2rem" }}
+          sx={{ color: "rgb(239, 96, 80)", fontSize: "1.2rem" }}
           onClick={onClickDeleteBtn}
         />
       </Grid>

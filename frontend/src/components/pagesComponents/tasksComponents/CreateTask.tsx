@@ -15,7 +15,6 @@ import {
   Button,
   Select,
   MenuItem,
-  SelectChangeEvent,
   TextField,
   FormControl,
 } from "@mui/material";
@@ -33,7 +32,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     reset,
   } = useForm();
 
-  const { createTaskHandler, getAllTasksHandler } = useTasks();
+  const { createTaskHandler, getAllTasksHandler, updatTaskHandler } = useTasks();
 
   const { selectedTask } = useSelector((state: RootState) => state.tasks);
 
@@ -44,12 +43,13 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     onClose()
   }
 
-  const onSubmit = (values: any) => {
-    const { taskName, description } = values;
+  const onSubmit = async (values: any) => {
+    const { taskName, description, status } = values;
     console.log(values)
-    createTaskHandler(taskName, description, TASK_SATUS.TODO);
 
-    getAllTasksHandler();
+    selectedTask ? await updatTaskHandler(values, selectedTask?._id) : await createTaskHandler(taskName, description, status);
+
+    await getAllTasksHandler();
     dispatch(setSelectedTask(null));
 
     closeHandler();

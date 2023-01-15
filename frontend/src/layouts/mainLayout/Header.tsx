@@ -13,7 +13,9 @@ const MainHeader = () => {
 
   return (
     <header>
-      <h2>LOGO</h2>
+      <div className="logo">
+        <img src="../../src/assets/images/logo3.jpg" alt="Logo" />
+      </div>
       <nav>
         <ul>
           <li>

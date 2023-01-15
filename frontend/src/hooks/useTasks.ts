@@ -49,8 +49,9 @@ export const useTasks = () => {
     status: Task["status"]
   ) => dispatch(createTask(authToken, taskName, description, status));
 
-  const updatTaskHandler = (task: Task, taskId: Task["_id"]) =>
+  const updatTaskHandler = (task: Task, taskId: Task["_id"]) => {
     dispatch(updateTask(authToken, task, taskId));
+  };
 
   const deleteTaskHandler = async (taskId: Task["_id"]) => {
     await dispatch(deleteTask(authToken, taskId));
