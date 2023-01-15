@@ -22,13 +22,12 @@ const TaskItem: React.FC<Props> = ({
 }) => {
   const dispatch: AppDispatch = useDispatch();
 
-  // const { selectedTask } = useSelector((state: RootState) => state.tasks);
+  const { selectedTask } = useSelector((state: RootState) => state.tasks);
 
   const onClickEditBtn = (e: any) => {
     e.stopPropagation();
     console.log({ task });
     dispatch(setSelectedTask(task));
-    // console.log("SELECTED", selectedTask);
     onOpenCreateTaskModal();
   };
 

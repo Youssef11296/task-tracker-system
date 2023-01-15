@@ -4,7 +4,7 @@ import { useTasks } from "../../../hooks/useTasks";
 import TaskItem from "./TaskItem";
 import CreateTask from "./CreateTask";
 import SelectedTask from "./TaskModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskModal from "./TaskModal";
 import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
 import { Button } from "@mui/material";
@@ -21,9 +21,18 @@ const TasksComponent = () => {
     onOpenConfirmModal,
     onCloseConfirmModal,
     onCloseCreateTaskModal,
+    loading,
+    getAllTasksHandler
   } = useTasks();
+
+  useEffect(() => {
+    getAllTasksHandler();
+  }, []);
+
   return (
     <div className="tasks-component">
+      {loading ? <span className="loading">LOADING ...</span> : null}
+
       {!tasks || tasks.length === 0 ? (
         <p>You do not have any tasks yet!</p>
       ) : null}
@@ -32,7 +41,6 @@ const TasksComponent = () => {
         variant="outlined"
         sx={{
           textTransform: "capitalize",
-          // margin: "auto",
           display: "block",
           mb: 4,
         }}

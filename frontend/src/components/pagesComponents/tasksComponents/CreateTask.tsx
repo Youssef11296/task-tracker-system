@@ -1,13 +1,24 @@
 // hooks & modules
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTasks } from "../../../hooks/useTasks";
 import { ErrorMessage } from "@hookform/error-message";
-// constants
-import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
-import { Modal, Box, Button } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
+// constants
+import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
+// mui
+import {
+  Modal,
+  Box,
+  Button,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
+  TextField,
+  FormControl,
+} from "@mui/material";
 
 interface Props {
   open: boolean;
@@ -28,22 +39,28 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
 
   const dispatch: AppDispatch = useDispatch();
 
+  const closeHandler = () => {
+    reset()
+    onClose()
+  }
+
   const onSubmit = (values: any) => {
     const { taskName, description } = values;
+    console.log(values)
     createTaskHandler(taskName, description, TASK_SATUS.TODO);
 
     getAllTasksHandler();
     dispatch(setSelectedTask(null));
 
-    reset();
-    onClose();
+    closeHandler();
   };
+
 
   return (
     <Modal
       sx={{ background: "rgba(0,0,0,.75)" }}
       open={open}
-      onClose={onClose}
+      onClose={closeHandler}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -54,10 +71,10 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
             <div className="input-container">
               <div className="input-field flex-column flex-column">
                 <label htmlFor="taskName">Task Name</label>
-                <input
+                <TextField
                   type="text"
                   placeholder="ex. First task.."
-                  defaultValue={selectedTask ? selectedTask?.taskName : ""}
+                  defaultValue={selectedTask ? selectedTask?.taskName : ''}
                   {...register("taskName", {
                     required: "Task name is required",
                     minLength: 3,
@@ -72,10 +89,10 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
             <div className="input-container">
               <div className="input-field flex-column">
                 <label htmlFor="description">Description</label>
-                <input
+                <TextField
                   type="text"
                   placeholder="ex. First task.."
-                  defaultValue={selectedTask ? selectedTask?.description : ""}
+                  defaultValue={selectedTask ? selectedTask?.description : ''}
                   {...register("description", {
                     required: "Task description is required",
                     minLength: 10,
@@ -90,12 +107,37 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
             <div className="input-container">
               <div className="input-field flex-column">
                 <label htmlFor="taskName">Status</label>
-                <input
-                  type="text"
-                  placeholder="TODO"
-                  {...register("status")}
-                  disabled={true}
-                />
+                <Box>
+                  <FormControl>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      label={null}
+                      sx={{ fontSize: ".8rem", minWidth: "200px" }}
+                      defaultValue={TASK_SATUS.TODO}
+                      {...register('status')}
+                    >
+                      <MenuItem
+                        sx={{ fontSize: ".8rem" }}
+                        value={TASK_SATUS.TODO}
+                      >
+                        {TASK_SATUS.TODO}
+                      </MenuItem>
+                      <MenuItem
+                        sx={{ fontSize: ".8rem" }}
+                        value={TASK_SATUS.IN_PROGRESS}
+                      >
+                        {TASK_SATUS.IN_PROGRESS}
+                      </MenuItem>
+                      <MenuItem
+                        sx={{ fontSize: ".8rem" }}
+                        value={TASK_SATUS.COMPLETED}
+                      >
+                        {TASK_SATUS.COMPLETED}
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
+                </Box>
               </div>
               <span className="error">
                 <ErrorMessage errors={errors} name="status" />
@@ -108,6 +150,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
                 margin: "auto",
                 display: "block",
                 width: "150px",
+                mt: 4,
               }}
               type="submit"
               disabled={

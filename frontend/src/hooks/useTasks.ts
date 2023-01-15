@@ -1,7 +1,8 @@
 // hooks & modules
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../context";
+import { useState } from "react";
 import Cookies from "universal-cookie";
+import { AppDispatch, RootState } from "../context";
+import { useDispatch, useSelector } from "react-redux";
 // constants
 import { VAR_NAME } from "../utils/constants";
 // redux
@@ -12,7 +13,6 @@ import {
   setSelectedTask,
   updateTask,
 } from "../context/actions/tasksActions";
-import { useEffect, useState } from "react";
 
 export const useTasks = () => {
   const cookies = new Cookies();
@@ -37,6 +37,8 @@ export const useTasks = () => {
   const onOpenConfirmModal = () => setOpenConfirmModal(true);
   const onCloseConfirmModal = () => setOpenConfirmModal(false);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const dispatch: AppDispatch = useDispatch();
 
   // api actions
@@ -55,11 +57,9 @@ export const useTasks = () => {
     await dispatch(getAllTasks(authToken));
   };
 
-  const getAllTasksHandler = () => dispatch(getAllTasks(authToken));
-
-  useEffect(() => {
-    getAllTasksHandler();
-  }, []);
+  const getAllTasksHandler = () => {
+    dispatch(getAllTasks(authToken));
+  };
 
   return {
     getAllTasksHandler,
@@ -77,5 +77,6 @@ export const useTasks = () => {
     onOpenConfirmModal,
     onCloseConfirmModal,
     deleteTaskHandler,
+    loading,
   };
 };

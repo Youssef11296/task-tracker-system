@@ -1,9 +1,10 @@
 // hooks & modules
-import { Modal, Box, Typography } from "@mui/material";
-import { MODAL_STYLE } from "../../../utils/constants";
+import { Modal, Box, Typography, Chip } from "@mui/material";
+import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
+import { Label } from "@mui/icons-material";
 
 interface Props {
   open: boolean;
@@ -31,6 +32,15 @@ const TaskModal: React.FC<Props> = ({ onClose, open }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={MODAL_STYLE}>
+          <Chip label={selectedTask?.status}
+            sx={{
+              fontWeight: 900,
+              padding: '1.2rem 1rem',
+              position: 'relative',
+              left: '80%',
+              background: selectedTask?.status === TASK_SATUS.COMPLETED ? '#080'
+                : selectedTask?.status === TASK_SATUS.IN_PROGRESS ? '#00f' : ''
+            }} />
           <Typography
             sx={{ textAlign: "center", mb: 2 }}
             id="modal-modal-title"
