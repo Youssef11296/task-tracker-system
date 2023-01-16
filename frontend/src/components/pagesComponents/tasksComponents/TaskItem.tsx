@@ -44,9 +44,10 @@ const TaskItem: React.FC<Props> = ({
     <div
       className="task-item"
       style={{
-        color: "#fff",
+        color: task?.status === TASK_SATUS.TODO ? "#000" : "#fff",
+        boxShadow: task?.status === TASK_SATUS.TODO ? "0 1px 1px rgba(0,0,0,.4)" : '',
         background:
-          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : "rgb(45, 159, 217)",
+          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : task?.status === TASK_SATUS.TODO ? "#fff" : 'rgb(45, 159, 217)',
       }}
       onClick={onClickTaskItem}
     >
@@ -66,13 +67,15 @@ const TaskItem: React.FC<Props> = ({
         justifyContent="space-between"
         alignItems="center"
       >
-        <Edit
-          sx={{ color: "#fff", fontSize: "1.2rem" }}
-          onClick={onClickEditBtn}
-        />
+        {
+          task?.status === TASK_SATUS.TODO ? <Edit
+            sx={{ color: "#000", fontSize: "1.2rem" }}
+            onClick={onClickEditBtn}
+          /> : null
+        }
 
         <Delete
-          sx={{ color: "rgb(239, 96, 80)", fontSize: "1.2rem" }}
+          sx={{ color: "rgb(239, 96, 80)", fontSize: "1.2rem", marginLeft: 'auto' }}
           onClick={onClickDeleteBtn}
         />
       </Grid>
