@@ -18,6 +18,19 @@ const userSchema = new Schema (
       type: String,
       required: true,
     },
+    verifications: {
+      nationalIdNum: {
+        type: String,
+        minlength: 14,
+      },
+      nationalIdImg: {
+        type: Buffer,
+      },
+    },
+    verified: {
+      type: Boolean,
+      default: false,
+    },
     token: String,
   },
   {timestamps: true}

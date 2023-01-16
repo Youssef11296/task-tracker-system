@@ -17,6 +17,11 @@ export const authAPI = {
     axios.get(`${baseUrlv1}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
+
+  uploadFile: (token: User["token"], files: File | File[]) =>
+    axios.post(`${baseUrlv1}/upload`, files, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
 };
 
 export const tasksAPI = {

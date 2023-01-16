@@ -8,6 +8,10 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const GET_ME = "GET_ME";
 
+export const UPLOAD_FILE = "UPLOAD_FILE";
+export const UPLOAD_FILE_SUCCESS = "UPLOAD_FILE_SUCCESS";
+export const UPLOAD_FILE_FAIL = "UPLOAD_FILE_FAIL";
+
 export const SET_SELECTED_TASK = "SET_SELECTED_TASK";
 
 export const GET_ALL_TASKS = "GET_ALL_TASKS";

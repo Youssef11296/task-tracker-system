@@ -1,11 +1,23 @@
-import React from "react";
+// hooks & modules
+import { useAuth } from '../../../hooks/useAuth';
+import { Container, Typography } from '@mui/material';
+// components
+import NotVerifiedComponent from './NotVerifiedComponent';
 
 const HomeComponent = () => {
-  return (
-    <div>
-      <h2>HomeComponent</h2>
-    </div>
-  );
-};
+    const { user }: { user: User | null } = useAuth();
 
-export default HomeComponent;
+    if (!user?.verified) return (
+        <Container>
+            <NotVerifiedComponent />
+        </Container>
+    )
+
+    return (
+        <Container>
+            <Typography>Welcome, {user?.username}</Typography>
+        </Container>
+    )
+}
+
+export default HomeComponent

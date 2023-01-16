@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 import { VAR_NAME } from "../utils/constants";
 
 export const useAuth = () => {
-  const { isAuthenticated, user } = useSelector(
+  const { isAuthenticated, user }: { isAuthenticated: boolean, user: User | null } = useSelector(
     (state: RootState) => state.auth
   );
 

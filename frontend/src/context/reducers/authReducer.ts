@@ -7,7 +7,11 @@ import { VAR_NAME } from "../../utils/constants";
 
 const cookies = new Cookies();
 
-const initialState = {
+const initialState: {
+  user: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+} = {
   user: null,
   isAuthenticated:
     cookies.get(VAR_NAME.AUTH_TOKEN) &&
@@ -26,7 +30,7 @@ const authReducer = (state = initialState, action: any) => {
       };
 
     case actionTypes.NOT_AUTH:
-      useToast("success", action.payload.message);
+      useToast("error", action.payload.message);
       return {
         ...state,
         isAuthenticated: false,
@@ -87,6 +91,12 @@ const authReducer = (state = initialState, action: any) => {
         user: null,
       };
     }
+    case actionTypes.UPLOAD_FILE_SUCCESS:
+      console.log({ verify: action.payload.data });
+      return {
+        ...state,
+        user: { ...state.user, verifications: action.payload.data },
+      };
     default:
       return { ...state };
   }

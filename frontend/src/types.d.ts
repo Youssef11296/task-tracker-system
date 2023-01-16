@@ -3,6 +3,11 @@ interface User {
   username?: string;
   email: string;
   password: string;
+  verifications: {
+    nationalId: number;
+    nationalIdImg: File;
+  };
+  verified: boolean;
   token?: string;
 }
 
