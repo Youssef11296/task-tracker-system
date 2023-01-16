@@ -26,7 +26,7 @@ export const useTasks = () => {
     setOpenCreateTaskModal(false);
   };
 
-  const { tasks } = useSelector((state: RootState) => state.tasks);
+  const tasks = useSelector((state: RootState) => state.tasks?.tasks);
 
   // states
   const [openTaskModal, setOpenTaskModal] = useState(false);

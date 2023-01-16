@@ -34,7 +34,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
 
   const { createTaskHandler, getAllTasksHandler, updatTaskHandler } = useTasks();
 
-  const { selectedTask } = useSelector((state: RootState) => state.tasks);
+  const selectedTask = useSelector((state: RootState) => state.tasks?.selectedTask);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -47,7 +47,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
     const { taskName, description, status } = values;
     console.log(values)
 
-    selectedTask ? await updatTaskHandler(values, selectedTask?._id) : await createTaskHandler(taskName, description, status);
+    selectedTask ? await updatTaskHandler({ ...values }, selectedTask?._id) : await createTaskHandler(taskName, description, status);
 
     await getAllTasksHandler();
     dispatch(setSelectedTask(null));

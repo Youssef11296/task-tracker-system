@@ -22,8 +22,6 @@ const TaskItem: React.FC<Props> = ({
 }) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const { selectedTask } = useSelector((state: RootState) => state.tasks);
-
   const onClickEditBtn = (e: any) => {
     e.stopPropagation();
     console.log({ task });
@@ -39,7 +37,6 @@ const TaskItem: React.FC<Props> = ({
   const onClickDeleteBtn = (e: any) => {
     e.stopPropagation();
     dispatch(setSelectedTask(task));
-    // console.log(selectedTask);
     onOpenConfirmModal();
   };
 

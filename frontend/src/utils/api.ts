@@ -42,7 +42,7 @@ export const tasksAPI = {
   updateTask: (token: User["token"], task: Task, taskId: Task["_id"]) =>
     axios.patch(
       `${baseUrlv1}/tasks/${taskId}`,
-      { task },
+      { ...task },
       {
         headers: { Authorization: `Bearer ${token}` },
       }
