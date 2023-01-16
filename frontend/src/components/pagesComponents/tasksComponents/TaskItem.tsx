@@ -47,7 +47,8 @@ const TaskItem: React.FC<Props> = ({
         color: task?.status === TASK_SATUS.TODO ? "#000" : "#fff",
         boxShadow: task?.status === TASK_SATUS.TODO ? "0 1px 1px rgba(0,0,0,.4)" : '',
         background:
-          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" : task?.status === TASK_SATUS.TODO ? "#fff" : 'rgb(45, 159, 217)',
+          task?.status === TASK_SATUS.COMPLETED ? "#6ab04c" :
+            task?.status === TASK_SATUS.TODO ? "#fff" : 'rgb(45, 159, 217)',
       }}
       onClick={onClickTaskItem}
     >
@@ -62,9 +63,7 @@ const TaskItem: React.FC<Props> = ({
       <Grid
         container
         xs={2}
-        md={3}
-        lg={2}
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
       >
         {

@@ -89,7 +89,7 @@ const updateTask = asyncHandler (async (req, res) => {
       userId: user._id,
       taskName: req.body.taskName,
     });
-    if (isExistedTask)
+    if (isExistedTask._id.toString () !== taskId)
       return res
         .status (400)
         .json ({success: false, message: 'You already added this task!'});
