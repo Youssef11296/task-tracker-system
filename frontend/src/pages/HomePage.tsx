@@ -13,7 +13,7 @@ const HomePage = () => {
   console.log(user, isAuthenticated)
 
   useEffect(() => {
-    !isAuthenticated && !user && getMeHandler();
+    isAuthenticated && !user && getMeHandler();
   }, [isAuthenticated, user]);
 
   if (!isAuthenticated || !user)

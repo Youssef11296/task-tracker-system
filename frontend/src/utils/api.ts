@@ -18,7 +18,7 @@ export const authAPI = {
       headers: { Authorization: `Bearer ${token}` },
     }),
 
-  uploadFile: (token: User["token"], files: File | File[]) =>
+  uploadFile: (token: User["token"], files: File) =>
     axios.post(`${baseUrlv1}/upload`, files, {
       headers: { Authorization: `Bearer ${token}` },
     }),

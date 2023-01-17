@@ -62,6 +62,10 @@ const LoginComponent: React.FC<Props> = ({ open, onClose }) => {
                   placeholder="Ex. youraccountpassword"
                   {...register("password", {
                     required: "Password is required.",
+                    minLength: {
+                      value: 6,
+                      message: "Password must contain 6 letters at least."
+                    }
                   })}
                 />
               </div>

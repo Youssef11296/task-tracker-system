@@ -48,8 +48,14 @@ const RegisterComponent: React.FC<Props> = ({ open, onClose }) => {
                   placeholder="Ex. John Doe"
                   {...register("username", {
                     required: "Username is required.",
-                    minLength: 3,
-                    maxLength: 30,
+                    minLength: {
+                      value: 3,
+                      message: "Username must contain 3 letters at least."
+                    },
+                    maxLength: {
+                      value: 30,
+                      message: "Username can not contain more than 30 letters."
+                    }
                   })}
                 />
               </div>
@@ -78,6 +84,10 @@ const RegisterComponent: React.FC<Props> = ({ open, onClose }) => {
                   placeholder="Ex. youraccountpassword"
                   {...register("password", {
                     required: "Password is required.",
+                    minLength: {
+                      value: 6,
+                      message: "Password must contain 6 letters at least."
+                    }
                   })}
                 />
               </div>

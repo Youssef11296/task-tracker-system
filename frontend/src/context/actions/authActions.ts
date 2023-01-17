@@ -86,7 +86,7 @@ export const getMe = (token: User["token"]) => async (dispatch: any) => {
 };
 
 export const uploadFile =
-  (token: User["token"], files: File | File[]) => async (dispatch: any) => {
+  (token: User["token"], files: File) => async (dispatch: any) => {
     try {
       const data = await api.authAPI.uploadFile(token, files);
       dispatch({
