@@ -4,7 +4,6 @@ import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
-import { Label } from "@mui/icons-material";
 
 interface Props {
   open: boolean;
@@ -39,9 +38,9 @@ const TaskModal: React.FC<Props> = ({ onClose, open }) => {
               position: 'relative',
               left: '70%',
               mb: 2,
-              color: selectedTask?.status === TASK_SATUS.COMPLETED ? "#fff" : '',
+              color: selectedTask?.status === TASK_SATUS.TODO ? "#000" : '#fff',
               background: selectedTask?.status === TASK_SATUS.COMPLETED ? '#6ab04c'
-                : selectedTask?.status === TASK_SATUS.IN_PROGRESS ? '#00f' : ''
+                : selectedTask?.status === TASK_SATUS.IN_PROGRESS ? 'rgb(45, 159, 217)' : ''
             }} />
           <Typography
             sx={{ textAlign: "center", mb: 2 }}

@@ -1,4 +1,5 @@
 import {Schema, model} from 'mongoose';
+import {USER_VERIFICATION_STATUS} from '../utils/contants.js';
 
 const userSchema = new Schema (
   {
@@ -26,6 +27,10 @@ const userSchema = new Schema (
       nationalIdImg: {
         type: Buffer,
       },
+    },
+    verificationRequestStatus: {
+      type: String,
+      default: USER_VERIFICATION_STATUS.NONE,
     },
     verified: {
       type: Boolean,

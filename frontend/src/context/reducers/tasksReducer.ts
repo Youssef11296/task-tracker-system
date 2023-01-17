@@ -1,7 +1,10 @@
 import { useToast } from "../../hooks/useToast";
 import * as actionTypes from "../actions/actionTypes";
 
-const initialState = {
+const initialState: {
+  tasks: Task[];
+  selectedTask: Task | null;
+} = {
   tasks: [],
   selectedTask: null,
 };

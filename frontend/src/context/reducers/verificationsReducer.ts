@@ -19,6 +19,8 @@ const verificationsReducer = (state = initialState, action: any) => {
           action.payload.data,
         ],
       };
+    case actionTypes.VERIFICATION_REQUEST_ERROR:
+      useToast("error", action.payload.message);
     default:
       return { ...state };
   }

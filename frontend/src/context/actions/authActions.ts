@@ -72,15 +72,21 @@ export const getMe = (token: User["token"]) => async (dispatch: any) => {
   try {
     const { data } = await api.authAPI.getMe(token);
     dispatch({
-      type: actionTypes.GET_ME,
-      payload: {
-        user: data.data,
-      },
+      type: actionTypes.AUTHENTICATING_USER,
     });
+
+    if (data) {
+      dispatch({
+        type: actionTypes.GET_ME,
+        payload: {
+          user: data.data,
+        },
+      });
+    }
   } catch (error) {
     dispatch({
       type: actionTypes.NOT_AUTH,
-      message: "NO TOKEN",
+      message: "Sorry, you're not authenticated, try login or register.",
     });
   }
 };

@@ -7,6 +7,7 @@ interface User {
     nationalId: number;
     nationalIdImg: File;
   };
+  verificationSent: boolean;
   verified: boolean;
   token?: string;
 }

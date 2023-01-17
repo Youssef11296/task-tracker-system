@@ -17,10 +17,12 @@ export const sendVerificationRequest =
           data: data.data,
         },
       });
-    } catch (error) {
+    } catch (error: any) {
       dispatch({
-        type: actionTypes.SOME_ERROR_OCCURED,
-        message: "Some error occured while sending the request.",
+        type: actionTypes.VERIFICATION_REQUEST_ERROR,
+        payload: {
+          message: error?.response?.data?.message,
+        },
       });
     }
   };

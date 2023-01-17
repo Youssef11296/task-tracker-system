@@ -18,14 +18,20 @@ const initialState: {
     cookies.get(VAR_NAME.AUTH_TOKEN) !== "undefined"
       ? true
       : false,
-  loading: false,
+  loading: true,
 };
 
 const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case actionTypes.AUTHENTICATING_USER:
+      return {
+        ...state,
+        loading: true,
+      };
     case actionTypes.GET_ME:
       return {
         ...state,
+        loading: false,
         user: action.payload.user,
       };
 
