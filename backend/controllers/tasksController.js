@@ -85,20 +85,23 @@ const updateTask = asyncHandler (async (req, res) => {
     if (task.userId.toString () !== user._id.toString ())
       throw new Error ("You're not authorized to manage this content.");
 
-    const checkId = id => (id.toString () === taskId ? true : false);
-
-    const isExistedTask = await Task.findOne ({
+    // getting list of tasks that have the same name of updated task
+    const sameNameTasks = await Task.find ({
       userId: user._id,
       taskName: req.body.taskName,
     });
-
-    if (isExistedTask) {
-      if (checkId (!isExistedTask._id))
-        return res
-          .status (400)
-          .json ({success: false, message: 'You already added this task!'});
+    const isSameId = id => (id === taskId ? true : false);
+    // check if there is a task with same updated task name
+    if (sameNameTasks.length > 0) {
+      sameNameTasks.find (task => {
+        if (!isSameId (task._id))
+          return res
+            .status (400)
+            .json ({success: false, message: 'You already added this task!'});
+      });
     }
 
+    // if no tasks has same updated task name =>> updating the task
     const updatedTask = await Task.findByIdAndUpdate (taskId, req.body, {
       new: true,
     });

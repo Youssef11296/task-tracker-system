@@ -69,7 +69,9 @@ const getMe = asyncHandler (async (req, res) => {
         _id: user._id,
         username: userData.username,
         email: userData.email,
-        tasks: userData.tasks,
+        verified: userData.verified,
+        verifications: userData.verifications,
+        verificationRequestStatus: userData.verificationRequestStatus,
       },
     });
   } catch (error) {}

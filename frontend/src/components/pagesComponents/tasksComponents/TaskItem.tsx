@@ -1,10 +1,9 @@
-// constants
-import { Delete, Edit } from "@mui/icons-material";
-import { useTasks } from "../../../hooks/useTasks";
+// mui
+import { DeleteOutline, Edit } from "@mui/icons-material";
 import { TASK_SATUS } from "../../../utils/constants";
-import { Grid, IconButton } from "@mui/material";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../context";
+import { Grid } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
 
 interface Props {
@@ -67,14 +66,14 @@ const TaskItem: React.FC<Props> = ({
         alignItems="center"
       >
         {
-          task?.status === TASK_SATUS.TODO ? <Edit
-            sx={{ color: "#000", fontSize: "1.2rem" }}
+          task?.status !== TASK_SATUS.COMPLETED ? <Edit
+            sx={{ color: task?.status === TASK_SATUS.TODO ? "rgb(45, 159, 217)" : "#fff", fontSize: "1.2rem" }}
             onClick={onClickEditBtn}
           /> : null
         }
 
-        <Delete
-          sx={{ color: "rgb(239, 96, 80)", fontSize: "1.2rem", marginLeft: 'auto' }}
+        <DeleteOutline
+          sx={{ color: task?.status === TASK_SATUS.TODO ? "rgb(239, 96, 80)" : "#fff", fontSize: "1.2rem", marginLeft: 'auto' }}
           onClick={onClickDeleteBtn}
         />
       </Grid>

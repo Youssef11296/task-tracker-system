@@ -1,15 +1,15 @@
 // hooks & modules
 import { Routes, Route } from "react-router-dom";
-// pages & components
-import HomePage from "./pages/HomePage";
-import TasksPage from "./pages/TasksPage";
-import AboutPage from "./pages/AboutPage";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
+import { Box } from "@mui/material";
+// components
+import NotAuthComponent from "./components/sharedComponents/NotAuthComponent";
+// redux
 import { useSelector } from "react-redux";
 import { RootState } from "./context";
-import { Box } from "@mui/material";
-import NotAuthComponent from "./components/sharedComponents/NotAuthComponent";
+// configs
+import { ROUTES } from "./configs/routesConfig";
 
 const App = () => {
   const { isAuthenticated, getMeHandler, user } = useAuth();
@@ -39,9 +39,11 @@ const App = () => {
   return (
     <div className="app">
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/my-tasks" element={<TasksPage />} />
-        <Route path="/about" element={<AboutPage />} />
+        {
+          ROUTES.map(({ path, Page }) => (
+            <Route path={path} element={<Page />} />
+          ))
+        }
       </Routes>
     </div>
   );

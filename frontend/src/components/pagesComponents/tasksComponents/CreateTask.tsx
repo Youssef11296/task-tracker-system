@@ -114,7 +114,7 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
                       id="demo-simple-select"
                       label={null}
                       sx={{ fontSize: ".8rem", minWidth: "200px" }}
-                      defaultValue={TASK_SATUS.TODO}
+                      defaultValue={selectedTask ? selectedTask?.status : TASK_SATUS.TODO}
                       {...register('status')}
                     >
                       <MenuItem
