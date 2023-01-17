@@ -1,6 +1,5 @@
-import User from '../models/userModel';
-import VerificationDocs from '../models/verificationDocsMode';
-import VerificationRequest from '../models/verificationRequestModel';
+import User from '../models/userModel.js';
+import VerificationRequest from '../models/verificationRequestModel.js';
 import asyncHandler from 'express-async-handler';
 
 //* For Admin Only

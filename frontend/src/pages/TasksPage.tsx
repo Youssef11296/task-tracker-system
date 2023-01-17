@@ -7,9 +7,9 @@ import NotAuthComponent from "../components/sharedComponents/NotAuthComponent";
 import "../styles/tasks.scss";
 
 const TasksPage = () => {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
-  if (!isAuthenticated || !user)
+  if (!isAuthenticated)
     return (
       <div className="tasks-page page container">
         <NotAuthComponent />

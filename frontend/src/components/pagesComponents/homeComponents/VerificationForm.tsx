@@ -4,9 +4,10 @@ import { MODAL_STYLE } from '../../../utils/constants';
 import { useForm } from 'react-hook-form'
 import { AppDispatch } from '../../../context';
 import { useDispatch } from 'react-redux';
-import { uploadFile } from '../../../context/actions/authActions';
 import { useAuth } from '../../../hooks/useAuth';
 import { ErrorMessage } from '@hookform/error-message';
+import { sendVerificationRequest } from '../../../context/actions/verificationsActions';
+import { useVerifications } from '../../../hooks/useVerifications';
 
 interface Props {
     open: boolean;
@@ -14,14 +15,15 @@ interface Props {
 }
 
 const VerificationForm: React.FC<Props> = ({ open, onClose }) => {
-    const { formState: { errors }, register, handleSubmit } = useForm()
-    const { user } = useAuth()
+    const { formState: { errors }, register, handleSubmit, reset } = useForm()
+    const { sendVerificationRequestHandler } = useVerifications()
 
     const dispatch: AppDispatch = useDispatch()
 
     const onSubmit = (values: any) => {
-        dispatch(uploadFile(user?.token, values.nationalIdImg))
-        console.log(values)
+        sendVerificationRequestHandler(values.nationalIdNum, values.nationalIdImg)
+
+        reset()
     }
 
     return (

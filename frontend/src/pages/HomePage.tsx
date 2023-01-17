@@ -16,7 +16,7 @@ const HomePage = () => {
     isAuthenticated && !user && getMeHandler();
   }, [isAuthenticated, user]);
 
-  if (!isAuthenticated || !user)
+  if (!isAuthenticated)
     return (
       <div className="home-page page container">
         <NotAuthComponent />

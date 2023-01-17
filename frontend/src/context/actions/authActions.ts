@@ -84,22 +84,3 @@ export const getMe = (token: User["token"]) => async (dispatch: any) => {
     });
   }
 };
-
-export const uploadFile =
-  (token: User["token"], files: File) => async (dispatch: any) => {
-    try {
-      const data = await api.authAPI.uploadFile(token, files);
-      dispatch({
-        type: actionTypes.UPLOAD_FILE_SUCCESS,
-        payload: {
-          message: data.data.message,
-          data: data.data,
-        },
-      });
-    } catch (error) {
-      dispatch({
-        type: actionTypes.UPLOAD_FILE_FAIL,
-        message: "Failed on uploading documents.",
-      });
-    }
-  };

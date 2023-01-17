@@ -91,12 +91,6 @@ const authReducer = (state = initialState, action: any) => {
         user: null,
       };
     }
-    case actionTypes.UPLOAD_FILE_SUCCESS:
-      console.log({ verify: action.payload.data });
-      return {
-        ...state,
-        user: { ...state.user, verifications: action.payload.data },
-      };
     default:
       return { ...state };
   }

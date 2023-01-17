@@ -8,12 +8,12 @@ const verificationRequestSchema = new Schema (
       required: true,
     },
     nationalIdNum: {
-      type: String,
+      type: Number,
       minlength: 14,
       required: true,
     },
     nationalIdImg: {
-      type: Buffer,
+      type: Object,
       required: true,
     },
   },

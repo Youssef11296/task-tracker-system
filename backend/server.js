@@ -8,7 +8,7 @@ import {connectDb} from './configs/dbConfig.js';
 // routes
 import authRoute from './routes/authRoute.js';
 import tasksRoute from './routes/tasksRoute.js';
-import adminRoute from './routes/adminRoute.js';
+import verificationsRoute from './routes/verificationsRoute.js';
 
 // using dotenv config
 config ();
@@ -27,7 +27,7 @@ app.use (upload ());
 // app routes
 app.use ('/api/v1/auth', authRoute);
 app.use ('/api/v1/tasks', tasksRoute);
-app.use ('/api/v1/admin', adminRoute);
+app.use ('/api/v1/verifications', verificationsRoute);
 
 // listening port
 const port = process.env.PORT || 5000;

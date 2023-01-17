@@ -6,7 +6,7 @@ import {
 
 const router = Router ();
 
-router.get ('/verifications', reviewVerification);
-router.post ('/verifications', verifyUser);
+router.get ('/verifications/:verificationRequestId', reviewVerification);
+router.post ('/verifications/:verificationRequestId', verifyUser);
 
 export default router;

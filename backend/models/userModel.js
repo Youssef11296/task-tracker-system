@@ -26,7 +26,6 @@ const userSchema = new Schema (
       nationalIdImg: {
         type: Buffer,
       },
-      default: null,
     },
     verified: {
       type: Boolean,

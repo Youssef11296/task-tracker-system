@@ -18,10 +18,18 @@ export const authAPI = {
       headers: { Authorization: `Bearer ${token}` },
     }),
 
-  uploadFile: (token: User["token"], files: File) =>
-    axios.post(`${baseUrlv1}/upload`, files, {
-      headers: { Authorization: `Bearer ${token}` },
-    }),
+  sendVerificationRequest: (
+    token: User["token"],
+    nationalIdNum: number,
+    nationalIdImg: File
+  ) =>
+    axios.post(
+      `${baseUrlv1}/verifications`,
+      { nationalIdNum, nationalIdImg },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    ),
 };
 
 export const tasksAPI = {

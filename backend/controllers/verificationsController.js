@@ -1,6 +1,4 @@
-import User from '../models/userModel';
-import VerificationDocs from '../models/verificationDocsMode';
-import VerificationRequest from '../models/verificationRequestModel';
+import VerificationRequest from '../models/verificationRequestModel.js';
 import asyncHandler from 'express-async-handler';
 
 // controllers
@@ -15,6 +13,7 @@ const sendVerificationRequest = asyncHandler (async (req, res) => {
     });
     res.status (201).json ({
       success: true,
+      data: verificationRequest,
       message: 'Successfully sent verification request, some Admin will review and confirm it asap.',
     });
   } catch (error) {

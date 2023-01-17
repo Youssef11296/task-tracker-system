@@ -18,3 +18,10 @@ interface Task {
   status?: string;
   userId?: User["_id"];
 }
+
+interface VerificationRequest {
+  _id?: string;
+  userId: string;
+  nationalIdNum: number;
+  nationalIdImg: File;
+}
