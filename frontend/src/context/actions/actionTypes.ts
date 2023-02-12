@@ -20,3 +20,6 @@ export const GET_ALL_TASKS = "GET_ALL_TASKS";
 export const CREATE_TASK = "CREATE_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
 export const DELETE_TASK = "DELETE_TASK";
+
+// UI ACTION TYPES
+export const TOGGLE_CUSTOM_MODAL = "TOGGLE_CUSTOM_MODAL";

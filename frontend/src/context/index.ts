@@ -4,11 +4,13 @@ import thunk from "redux-thunk";
 import authReducer from "./reducers/authReducer";
 import tasksReducer from "./reducers/tasksReducer";
 import verificationsReducer from "./reducers/verificationsReducer";
+import uiReducer from "./reducers/uiReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   tasks: tasksReducer,
   verifications: verificationsReducer,
+  ui: uiReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(compose(thunk)));

@@ -15,7 +15,7 @@ const TasksTable = () => {
     const { tasks, onOpenTaskModal, onOpenCreateTaskModal, onOpenConfirmModal } = useTasks()
 
     return (
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} sx={{ overflowX: 'visible' }}>
             <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
