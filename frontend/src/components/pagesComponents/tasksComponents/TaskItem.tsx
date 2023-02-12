@@ -1,18 +1,19 @@
 // modules
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../context";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
 import { MoreVert } from '@mui/icons-material';
 // mui
 import { IconButton, Modal, Typography } from "@mui/material";
 import { StyledTableCell, StyledTableRow } from "../../uiComponents/muiComponents/TableComponents";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TaskActionsModal from "./TaskActionsModal";
 import { toggleCustomModal } from "../../../context/actions/uiActions";
 
 
 interface Props {
   task: Task;
+  taskNumber: number;
   onOpenTaskModal: () => void;
   onOpenCreateTaskModal: () => void;
   onOpenConfirmModal: () => void;
@@ -20,34 +21,26 @@ interface Props {
 
 const TaskItem: React.FC<Props> = ({
   task,
+  taskNumber,
   onOpenTaskModal,
   onOpenConfirmModal,
   onOpenCreateTaskModal,
 }) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const onClickEditBtn = (e: any) => {
-    e.stopPropagation();
-    console.log({ task });
-    dispatch(setSelectedTask(task));
-    onOpenCreateTaskModal();
-  };
-
-  const onClickTaskItem = () => {
-    dispatch(setSelectedTask(task));
-    onOpenTaskModal();
-  };
+  const { openCustomModalState } = useSelector((state: RootState) => state.ui)
 
   const [openActionsModal, setOpenActionsModal] = useState<Boolean>(false)
 
   const openActionsModalHandler = (e: any) => {
-    e.stopPropagation()
+    !openCustomModalState && e.stopPropagation()
     dispatch(toggleCustomModal(true))
     setOpenActionsModal(true)
   }
 
   return (
     <StyledTableRow key={task?._id}>
+      <StyledTableCell align='left'>{taskNumber}.</StyledTableCell>
       <StyledTableCell component="th" scope="row">
         {task?.taskName}
       </StyledTableCell>

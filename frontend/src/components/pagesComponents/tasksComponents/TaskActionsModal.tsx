@@ -12,7 +12,7 @@ interface Props {
 }
 
 const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
-    const { onOpenConfirmModal } = useTasks()
+    const { onOpenConfirmModal, onOpenCreateTaskModal, onOpenTaskModal } = useTasks()
 
     const { openCustomModalState } = useSelector((state: RootState) => state.ui)
     console.log({ openCustomModalState })
@@ -20,10 +20,22 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
     // dispatcher
     const dispatch: AppDispatch = useDispatch()
 
+    const onClickEditBtn = (e: any) => {
+        e.stopPropagation();
+        console.log({ task });
+        dispatch(setSelectedTask(task));
+        onOpenCreateTaskModal();
+    };
+
     const onClickDeleteBtn = (e: any) => {
         e.stopPropagation();
         dispatch(setSelectedTask(task));
         onOpenConfirmModal();
+    };
+
+    const onClickViewBtn = () => {
+        dispatch(setSelectedTask(task));
+        onOpenTaskModal();
     };
 
     useEffect(() => {
@@ -45,7 +57,7 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
                 boxShadow: '0 1px 1px rgba(0,0,0,.2)'
             }}
             display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center">
-            <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text">
+            <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text" onClick={onClickEditBtn}>
                 <Typography textAlign="left" id="modal-modal-title">
                     Edit
                 </Typography>
@@ -53,6 +65,11 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
             <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text" onClick={onClickDeleteBtn}>
                 <Typography id="modal-modal-description">
                     Delete
+                </Typography>
+            </Button>
+            <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text" onClick={onClickViewBtn}>
+                <Typography id="modal-modal-description">
+                    View
                 </Typography>
             </Button>
         </Box>
