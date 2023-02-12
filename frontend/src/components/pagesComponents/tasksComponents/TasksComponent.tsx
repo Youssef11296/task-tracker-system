@@ -7,7 +7,9 @@ import SelectedTask from "./TaskModal";
 import { useEffect, useState } from "react";
 import TaskModal from "./TaskModal";
 import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
-import { Button } from "@mui/material";
+import { Button, Table } from "@mui/material";
+import { TableBar } from "@mui/icons-material";
+import TasksTable from "./TasksTable";
 
 const TasksComponent = () => {
   const {
@@ -53,15 +55,8 @@ const TasksComponent = () => {
 
       <div className="tasks-container">
         <div className="tasks-list flex-column">
-          {tasks?.map((task: Task) => (
-            <TaskItem
-              key={task?._id}
-              task={task}
-              onOpenTaskModal={onOpenTaskModal}
-              onOpenCreateTaskModal={onOpenCreateTaskModal}
-              onOpenConfirmModal={onOpenConfirmModal}
-            />
-          ))}
+          <TasksTable />
+
         </div>
 
         <TaskModal

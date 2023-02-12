@@ -18,6 +18,7 @@ interface Task {
   description: string;
   status?: string;
   userId?: User["_id"];
+  createdAt?: string;
 }
 
 interface VerificationRequest {

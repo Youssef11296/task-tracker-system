@@ -18,7 +18,7 @@ const initialState: {
     cookies.get(VAR_NAME.AUTH_TOKEN) !== "undefined"
       ? true
       : false,
-  loading: true,
+  loading: false,
 };
 
 const authReducer = (state = initialState, action: any) => {
