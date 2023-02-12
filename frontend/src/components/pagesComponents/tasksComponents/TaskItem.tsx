@@ -1,34 +1,12 @@
-// mui
-import { TASK_SATUS } from "../../../utils/constants";
+// modules
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
 import { MoreVert } from '@mui/icons-material';
+// mui
+import { IconButton } from "@mui/material";
+import { StyledTableCell, StyledTableRow } from "../../uiComponents/muiComponents/TableComponents";
 
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import { styled } from '@mui/material/styles';
-import { IconButton, TableRow } from "@mui/material";
-
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
 
 interface Props {
   task: Task;

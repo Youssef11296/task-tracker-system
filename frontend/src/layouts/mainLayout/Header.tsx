@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import ConfirmComponent from "../../components/sharedComponents/ConfirmComponent";
+import ConfirmComponent from "../../components/uiComponents/sharedComponents/ConfirmComponent";
 import { useState } from "react";
 import { Button } from "@mui/material";
 

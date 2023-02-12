@@ -1,14 +1,11 @@
 // hooks & modules
 import { useTasks } from "../../../hooks/useTasks";
 // components
-import TaskItem from "./TaskItem";
 import CreateTask from "./CreateTask";
-import SelectedTask from "./TaskModal";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import TaskModal from "./TaskModal";
-import ConfirmComponent from "../../sharedComponents/ConfirmComponent";
-import { Button, Table } from "@mui/material";
-import { TableBar } from "@mui/icons-material";
+import ConfirmComponent from "../../uiComponents/sharedComponents/ConfirmComponent";
+import { Button } from "@mui/material";
 import TasksTable from "./TasksTable";
 
 const TasksComponent = () => {

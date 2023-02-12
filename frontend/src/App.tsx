@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
 import { Box } from "@mui/material";
 // components
-import NotAuthComponent from "./components/sharedComponents/NotAuthComponent";
+import NotAuthComponent from "./components/uiComponents/sharedComponents/NotAuthComponent";
 // redux
 import { useSelector } from "react-redux";
 import { RootState } from "./context";

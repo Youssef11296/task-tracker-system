@@ -1,12 +1,12 @@
 // hooks & modules
-import { useAuth } from "../../hooks/useAuth";
-import { useTasks } from "../../hooks/useTasks";
-import { useToast } from "../../hooks/useToast";
+import { useAuth } from "../../../hooks/useAuth";
+import { useTasks } from "../../../hooks/useTasks";
+import { useToast } from "../../../hooks/useToast";
 // mui & styles
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import { MODAL_STYLE } from "../../utils/constants";
+import { MODAL_STYLE } from "../../../utils/constants";
 import { useSelector } from "react-redux";
-import { RootState } from "../../context";
+import { RootState } from "../../../context";
 
 interface Props {
   open: boolean;

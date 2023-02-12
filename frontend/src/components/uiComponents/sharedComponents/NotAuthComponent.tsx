@@ -1,8 +1,8 @@
 import {
   LoginComponent,
   RegisterComponent,
-} from "../pagesComponents/authComponents";
-import { useAuth } from "../../hooks/useAuth";
+} from "../../pagesComponents/authComponents";
+import { useAuth } from "../../../hooks/useAuth";
 import { Button, Grid, Typography } from "@mui/material";
 
 const NotAuthComponent = () => {
