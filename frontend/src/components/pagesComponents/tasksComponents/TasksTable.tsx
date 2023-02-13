@@ -40,7 +40,14 @@ const TasksTable = () => {
                     </TableHead>
                     <TableBody>
                         {tasks?.map((task: Task, index: number) => (
-                            <TaskItem task={task} taskNumber={index + 1} key={task?._id} onOpenTaskModal={onOpenTaskModal} onOpenConfirmModal={onOpenConfirmModal} onOpenCreateTaskModal={onOpenCreateTaskModal} />
+                            <TaskItem
+                                task={task}
+                                taskNumber={index + 1}
+                                key={task?._id}
+                                onOpenTaskModal={onOpenTaskModal}
+                                onOpenConfirmModal={onOpenConfirmModal}
+                                onOpenCreateTaskModal={onOpenCreateTaskModal}
+                            />
                         ))}
                     </TableBody>
                 </Table>

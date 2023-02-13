@@ -55,9 +55,14 @@ const TaskItem: React.FC<Props> = ({
         <IconButton onClick={openActionsModalHandler}>
           <MoreVert />
         </IconButton>
-        <TaskActionsModal open={openActionsModal} handleClose={() => setOpenActionsModal(false)} task={task} key={task?._id} />
+        <TaskActionsModal
+          open={openActionsModal}
+          handleClose={() => setOpenActionsModal(false)}
+          task={task}
+          key={task?._id}
+        />
       </StyledTableCell>
-    </StyledTableRow>
+    </StyledTableRow >
   );
 };
 
