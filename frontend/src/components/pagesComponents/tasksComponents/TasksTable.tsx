@@ -1,5 +1,7 @@
 // components
 import TaskItem from './TaskItem';
+// components
+import { ConfirmComponent } from '../../uiComponents/sharedComponents';
 // hooks
 import { useTasks } from '../../../hooks/useTasks';
 // mui
@@ -10,7 +12,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { StyledTableCell } from '../../uiComponents/muiComponents/TableComponents';
-import { ConfirmComponent } from '../../uiComponents/sharedComponents';
 import { Grid, Typography } from '@mui/material';
 
 const TasksTable = () => {
@@ -44,7 +45,7 @@ const TasksTable = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            <ConfirmComponent />
+            {/* <ConfirmComponent /> */}
         </>
     );
 }

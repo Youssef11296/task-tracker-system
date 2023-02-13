@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../context';
 import { setSelectedTask } from '../../../context/actions/tasksActions';
 import { useTasks } from '../../../hooks/useTasks';
+import { Delete, Edit, ViewAgenda, ViewCarousel } from '@mui/icons-material';
 
 interface Props {
     open: Boolean;
@@ -33,7 +34,8 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
         onOpenConfirmModal();
     };
 
-    const onClickViewBtn = () => {
+    const onClickViewBtn = (e: any) => {
+        e.stopPropagation()
         dispatch(setSelectedTask(task));
         onOpenTaskModal();
     };
@@ -46,29 +48,57 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
         <Box
             sx={{
                 position: 'absolute',
-                top: '2.5rem',
+                top: '2rem',
                 zIndex: 2,
                 display: openCustomModalState && open ? 'block' : 'none',
-                right: '-6rem',
+                right: '-8rem',
                 background: '#fff',
                 padding: '.25rem 1rem',
-                borderRadius: 5,
+                borderRadius: '2px',
                 width: 150,
                 boxShadow: '0 1px 1px rgba(0,0,0,.2)'
             }}
-            display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center">
-            <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text" onClick={onClickEditBtn}>
-                <Typography textAlign="left" id="modal-modal-title">
+            display="flex"
+            flexDirection="column"
+            justifyContent="flex-start"
+            alignItems="center"
+        >
+            <Button
+                variant="text"
+                onClick={onClickEditBtn}
+                startIcon={<Edit />}
+            >
+                <Typography variant="button"
+                    textAlign="left"
+                    id="modal-modal-title"
+                    sx={{ textTransform: 'capitalize', color: "#000" }}
+                >
                     Edit
                 </Typography>
             </Button>
-            <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text" onClick={onClickDeleteBtn}>
-                <Typography id="modal-modal-description">
+            <Button
+                variant="text"
+                onClick={onClickDeleteBtn}
+                startIcon={<Delete />}
+            >
+                <Typography
+                    variant="button"
+                    id="modal-modal-description"
+                    sx={{ textTransform: 'capitalize', color: "#000" }}
+                >
                     Delete
                 </Typography>
             </Button>
-            <Button sx={{ textTransform: 'capitalize', color: "#000" }} variant="text" onClick={onClickViewBtn}>
-                <Typography id="modal-modal-description">
+            <Button
+                variant="text"
+                onClick={onClickViewBtn}
+                startIcon={<ViewAgenda />}
+            >
+                <Typography
+                    variant="button"
+                    id="modal-modal-description"
+                    sx={{ textTransform: 'capitalize', color: "#000" }}
+                >
                     View
                 </Typography>
             </Button>

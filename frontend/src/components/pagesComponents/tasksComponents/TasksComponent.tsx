@@ -10,14 +10,12 @@ import TasksTable from "./TasksTable";
 
 const TasksComponent = () => {
   const {
-    tasks,
     openCreateTaskModal,
     onOpenCreateTaskModal,
     openTaskModal,
     onOpenTaskModal,
     onCloseTaskModal,
     openConfirmModal,
-    onOpenConfirmModal,
     onCloseConfirmModal,
     onCloseCreateTaskModal,
     loading,
