@@ -11,9 +11,17 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { StyledTableCell } from '../../uiComponents/muiComponents/TableComponents';
 import { ConfirmComponent } from '../../uiComponents/sharedComponents';
+import { Grid, Typography } from '@mui/material';
 
 const TasksTable = () => {
     const { tasks, onOpenTaskModal, onOpenCreateTaskModal, onOpenConfirmModal } = useTasks()
+
+    if (tasks?.length === 0) return (
+        <Grid className="no-tasks" textAlign="center">
+            <Typography variant="h4">You have no tasks yet!</Typography>
+            <Typography variant="body1">Kindly, click the Add Task button above to add a new task.</Typography>
+        </Grid>
+    )
 
     return (
         <>

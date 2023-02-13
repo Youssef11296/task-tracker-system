@@ -32,10 +32,6 @@ const TasksComponent = () => {
     <div className="tasks-component">
       {loading ? <span className="loading">LOADING ...</span> : null}
 
-      {!tasks || tasks.length === 0 ? (
-        <p>You do not have any tasks yet!</p>
-      ) : null}
-
       <Button
         variant="outlined"
         sx={{
@@ -53,7 +49,6 @@ const TasksComponent = () => {
       <div className="tasks-container">
         <div className="tasks-list flex-column">
           <TasksTable />
-
         </div>
 
         <TaskModal

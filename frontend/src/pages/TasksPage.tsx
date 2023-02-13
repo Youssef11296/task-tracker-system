@@ -1,8 +1,5 @@
-// hooks & modules
-import { useAuth } from "../hooks/useAuth";
 // components
 import { TasksComponent } from "../components/pagesComponents/tasksComponents";
-import NotAuthComponent from "../components/uiComponents/sharedComponents/NotAuthComponent";
 // styles
 import "../styles/tasks.scss";
 
