@@ -8,11 +8,11 @@ import { setSelectedTask } from "../../../context/actions/tasksActions";
 interface Props {
   open: boolean;
   onClose: () => void;
-  onOpen: () => void;
+  onOpen?: () => void;
 }
 
 const TaskModal: React.FC<Props> = ({ onClose, open }) => {
-  const { selectedTask } = useSelector((state: RootState) => state.tasks);
+  const tasksState = useSelector((state: RootState) => state.tasks);
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -31,16 +31,16 @@ const TaskModal: React.FC<Props> = ({ onClose, open }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={MODAL_STYLE}>
-          <Chip label={selectedTask?.status}
+          <Chip label={tasksState?.selectedTask?.status}
             sx={{
               fontWeight: 900,
               padding: '1.2rem 1rem',
               position: 'relative',
               left: '70%',
               mb: 2,
-              color: selectedTask?.status === TASK_SATUS.TODO ? "#000" : '#fff',
-              background: selectedTask?.status === TASK_SATUS.COMPLETED ? '#6ab04c'
-                : selectedTask?.status === TASK_SATUS.IN_PROGRESS ? 'rgb(45, 159, 217)' : ''
+              color: tasksState?.selectedTask?.status === TASK_SATUS.TODO ? "#000" : '#fff',
+              background: tasksState?.selectedTask?.status === TASK_SATUS.COMPLETED ? '#6ab04c'
+                : tasksState?.selectedTask?.status === TASK_SATUS.IN_PROGRESS ? 'rgb(45, 159, 217)' : ''
             }} />
           <Typography
             sx={{ textAlign: "center", mb: 2 }}
@@ -48,14 +48,14 @@ const TaskModal: React.FC<Props> = ({ onClose, open }) => {
             variant="h6"
             component="h2"
           >
-            {selectedTask?.taskName}
+            {tasksState?.selectedTask?.taskName}
           </Typography>
           <Typography
             variant="caption"
             id="modal-modal-description"
             sx={{ mt: 2, textAlign: "center", display: "block" }}
           >
-            {selectedTask?.description}
+            {tasksState?.selectedTask?.description}
           </Typography>
         </Box>
       </Modal>

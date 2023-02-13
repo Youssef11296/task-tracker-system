@@ -27,3 +27,5 @@ interface VerificationRequest {
   nationalIdNum: number;
   nationalIdImg: File;
 }
+
+type CONFIRMATION_PURPOSE = "DELETE_TASK" | "LOGOUT";

@@ -1,10 +1,13 @@
 import { Box, Button, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../context';
 import { setSelectedTask } from '../../../context/actions/tasksActions';
 import { useTasks } from '../../../hooks/useTasks';
 import { Delete, Edit, ViewAgenda, ViewCarousel } from '@mui/icons-material';
+import { ConfirmComponent } from '../../uiComponents/sharedComponents';
+import CreateTask from './CreateTask';
+import TaskModal from './TaskModal';
 
 interface Props {
     open: Boolean;
@@ -13,29 +16,45 @@ interface Props {
 }
 
 const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
-    const { onOpenConfirmModal, onOpenCreateTaskModal, onOpenTaskModal } = useTasks()
+    const {
+        onOpenConfirmModal,
+        onOpenCreateTaskModal,
+        onOpenTaskModal,
+        openConfirmModal,
+        onCloseConfirmModal,
+        openCreateTaskModal,
+        onCloseCreateTaskModal,
+        openTaskModal,
+        onCloseTaskModal
+    } = useTasks()
 
     const { openCustomModalState } = useSelector((state: RootState) => state.ui)
     console.log({ openCustomModalState })
+
+    // local states
+    const [confirmationPurpose, setConfirmationPurpose] = useState<CONFIRMATION_PURPOSE>("DELETE_TASK")
+    const [confirmationQuestion, setConfirmationQuestion] = useState<string>("")
 
     // dispatcher
     const dispatch: AppDispatch = useDispatch()
 
     const onClickEditBtn = (e: any) => {
-        e.stopPropagation();
+        !openCustomModalState && e.stopPropagation();
         console.log({ task });
         dispatch(setSelectedTask(task));
         onOpenCreateTaskModal();
     };
 
     const onClickDeleteBtn = (e: any) => {
-        e.stopPropagation();
+        !openCustomModalState && e.stopPropagation();
         dispatch(setSelectedTask(task));
+        setConfirmationPurpose("DELETE_TASK")
+        setConfirmationQuestion("Are you sure, you want to delete this task?")
         onOpenConfirmModal();
     };
 
     const onClickViewBtn = (e: any) => {
-        e.stopPropagation()
+        !openCustomModalState && e.stopPropagation()
         dispatch(setSelectedTask(task));
         onOpenTaskModal();
     };
@@ -44,65 +63,74 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
         if (openCustomModalState === false) handleClose()
     }, [openCustomModalState, task])
 
+
     return (
-        <Box
-            sx={{
-                position: 'absolute',
-                top: '2rem',
-                zIndex: 2,
-                display: openCustomModalState && open ? 'block' : 'none',
-                right: '-8rem',
-                background: '#fff',
-                padding: '.25rem 1rem',
-                borderRadius: '2px',
-                width: 150,
-                boxShadow: '0 1px 1px rgba(0,0,0,.2)'
-            }}
-            display="flex"
-            flexDirection="column"
-            justifyContent="flex-start"
-            alignItems="center"
-        >
-            <Button
-                variant="text"
-                onClick={onClickEditBtn}
-                startIcon={<Edit />}
+        <>
+            <Box
+                sx={{
+                    position: 'absolute',
+                    top: '2rem',
+                    zIndex: 2,
+                    display: openCustomModalState && open ? 'block' : 'none',
+                    right: '-8rem',
+                    background: '#fff',
+                    padding: '.25rem 1rem',
+                    borderRadius: '2px',
+                    width: 150,
+                    boxShadow: '0 1px 1px rgba(0,0,0,.2)'
+                }}
+                display="flex"
+                flexDirection="column"
+                justifyContent="flex-start"
+                alignItems="center"
             >
-                <Typography variant="button"
-                    textAlign="left"
-                    id="modal-modal-title"
-                    sx={{ textTransform: 'capitalize', color: "#000" }}
+                <Button
+                    variant="text"
+                    fullWidth
+                    onClick={onClickEditBtn}
+                    startIcon={<Edit />}
+                    sx={{ textTransform: 'capitalize', fontWeight: 'bold', alignItems: 'center', justifyContent: 'space-around' }}
                 >
                     Edit
-                </Typography>
-            </Button>
-            <Button
-                variant="text"
-                onClick={onClickDeleteBtn}
-                startIcon={<Delete />}
-            >
-                <Typography
-                    variant="button"
-                    id="modal-modal-description"
-                    sx={{ textTransform: 'capitalize', color: "#000" }}
+                </Button>
+                <Button
+                    variant="text"
+                    fullWidth
+                    onClick={onClickDeleteBtn}
+                    startIcon={<Delete />}
+                    sx={{ textTransform: 'capitalize', fontWeight: 'bold', alignItems: 'center', justifyContent: 'space-around' }}
                 >
                     Delete
-                </Typography>
-            </Button>
-            <Button
-                variant="text"
-                onClick={onClickViewBtn}
-                startIcon={<ViewAgenda />}
-            >
-                <Typography
-                    variant="button"
-                    id="modal-modal-description"
-                    sx={{ textTransform: 'capitalize', color: "#000" }}
+                </Button>
+                <Button
+                    variant="text"
+                    fullWidth
+                    onClick={onClickViewBtn}
+                    startIcon={<ViewAgenda />}
+                    sx={{ textTransform: 'capitalize', fontWeight: 'bold', alignItems: 'center', justifyContent: 'space-around' }}
                 >
                     View
-                </Typography>
-            </Button>
-        </Box>
+                </Button>
+            </Box>
+
+            <ConfirmComponent
+                open={openConfirmModal}
+                onClose={onCloseConfirmModal}
+                question={confirmationQuestion}
+                purpose={confirmationPurpose}
+            />
+
+            <CreateTask
+                open={openCreateTaskModal}
+                onClose={onCloseCreateTaskModal}
+            />
+
+            <TaskModal
+                open={openTaskModal}
+                onClose={onCloseTaskModal}
+            />
+        </>
+
     )
 }
 

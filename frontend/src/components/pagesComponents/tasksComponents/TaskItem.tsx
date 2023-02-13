@@ -45,7 +45,7 @@ const TaskItem: React.FC<Props> = ({
         {task?.description?.slice(0, 18)}
         {task?.description?.length > 18 ? <span>...</span> : null}
       </StyledTableCell>
-      <StyledTableCell component="th" scope="row">
+      <StyledTableCell component="th" scope="row" align="center">
         {task?.status}
       </StyledTableCell>
       <StyledTableCell>

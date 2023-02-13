@@ -45,7 +45,6 @@ const TasksTable = () => {
                     </TableBody>
                 </Table>
             </TableContainer>
-            {/* <ConfirmComponent /> */}
         </>
     );
 }

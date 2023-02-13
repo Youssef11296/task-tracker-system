@@ -16,18 +16,18 @@ const MainHeader = () => {
       <div className="logo">
         <img src="../../src/assets/images/logo3.jpg" alt="Logo" />
       </div>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/my-tasks">My Tasks</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          {isAuthenticated ? (
+      {
+        isAuthenticated ? <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/my-tasks">My Tasks</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
             <li>
               <Button
                 variant="outlined"
@@ -37,9 +37,9 @@ const MainHeader = () => {
                 Logout
               </Button>
             </li>
-          ) : null}
-        </ul>
-      </nav>
+          </ul>
+        </nav> : null
+      }
 
       <ConfirmComponent
         purpose="LOGOUT"

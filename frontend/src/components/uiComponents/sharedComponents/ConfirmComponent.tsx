@@ -12,7 +12,7 @@ interface Props {
   open: boolean;
   onClose: () => void;
   question: string;
-  purpose: "DELETE_TASK" | "LOGOUT";
+  purpose: CONFIRMATION_PURPOSE
 }
 
 const ConfirmComponent: React.FC<Props> = ({
@@ -24,14 +24,13 @@ const ConfirmComponent: React.FC<Props> = ({
   const { logoutHandler } = useAuth();
   const { deleteTaskHandler } = useTasks();
 
-  const { selectedTask } = useSelector((state: RootState) => state.tasks);
-  console.log(selectedTask);
+  const tasksState = useSelector((state: RootState) => state.tasks);
 
   const onClickYes = () => {
     switch (purpose) {
       case "DELETE_TASK":
-        selectedTask
-          ? deleteTaskHandler(selectedTask?._id)
+        tasksState?.selectedTask
+          ? deleteTaskHandler(tasksState?.selectedTask?._id)
           : useToast("error", "Task ID is required.");
         break;
       case "LOGOUT":

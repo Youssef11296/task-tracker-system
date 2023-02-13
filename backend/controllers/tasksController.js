@@ -105,6 +105,8 @@ const updateTask = asyncHandler (async (req, res) => {
     const updatedTask = await Task.findByIdAndUpdate (taskId, req.body, {
       new: true,
     });
+    await updatedTask.save ();
+
     res.status (201).json ({
       success: true,
       message: 'Successfully updated.',
