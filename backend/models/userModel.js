@@ -19,6 +19,16 @@ const userSchema = new Schema (
       type: String,
       required: true,
     },
+    roleId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Role',
+      // required: true,
+    },
+    planId: {
+      type: Schema.Types.ObjectId,
+      ref: 'PLan',
+      // required: true,
+    },
     verifications: {
       nationalIdNum: {
         type: String,

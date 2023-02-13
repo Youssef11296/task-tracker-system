@@ -8,13 +8,15 @@ import {generateToken} from '../utils/helpers.js';
 // controller
 const registerUser = asyncHandler (async (req, res) => {
   try {
-    const {username, email, password} = req.body;
+    const {username, email, password, roleId, planId} = req.body;
 
     const hashedPassword = await bcrypt.hash (password, 10);
 
     const newUser = await User.create ({
       username,
       email,
+      roleId,
+      planId,
       password: hashedPassword,
     });
 
@@ -48,7 +50,9 @@ const loginUser = asyncHandler (async (req, res) => {
       message: 'Successfully logged in.',
       data: {
         _id: user._id,
-        email,
+        email: user.email,
+        roleId: user.roleId,
+        planId: user.planId,
         username: user.username,
         tasks: user.tasks,
         token: generateToken (user._id),
@@ -69,12 +73,16 @@ const getMe = asyncHandler (async (req, res) => {
         _id: user._id,
         username: userData.username,
         email: userData.email,
+        roleId: user.roleId,
+        planId: user.planId,
         verified: userData.verified,
         verifications: userData.verifications,
         verificationRequestStatus: userData.verificationRequestStatus,
       },
     });
-  } catch (error) {}
+  } catch (error) {
+    res.status (400).json ({success: false, message: error.message});
+  }
 });
 
 export {registerUser, loginUser, getMe};
