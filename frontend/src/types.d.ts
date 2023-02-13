@@ -28,4 +28,15 @@ interface VerificationRequest {
   nationalIdImg: File;
 }
 
+type RegisterFormValues = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
+
 type CONFIRMATION_PURPOSE = "DELETE_TASK" | "LOGOUT";

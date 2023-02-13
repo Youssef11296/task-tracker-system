@@ -10,7 +10,7 @@ const HomeComponent = () => {
     return (
         <Container>
             <Typography variant="h4" textAlign="center" mb={2}>Welcome, {user?.username}</Typography>
-            {!user.verified ? <NotVerifiedComponent /> : null}
+            {!user?.verified ? <NotVerifiedComponent /> : null}
         </Container>
     )
 }

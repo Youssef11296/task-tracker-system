@@ -6,6 +6,7 @@ import { AppDispatch } from "../../../context";
 import { ErrorMessage } from "@hookform/error-message";
 import { Box, Button, Modal } from "@mui/material";
 import { MODAL_STYLE } from "../../../utils/constants";
+import { useAuthForms } from "../../../hooks/useAuthForms";
 
 interface Props {
   open: boolean;
@@ -13,16 +14,18 @@ interface Props {
 }
 
 const RegisterComponent: React.FC<Props> = ({ open, onClose }) => {
+  const { registerFormResolver } = useAuthForms()
+
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm();
+  } = useForm<RegisterFormValues>({ resolver: registerFormResolver });
 
   const dispatch: AppDispatch = useDispatch();
 
   const onSubmit = (values: any) => {
-    console.log(values);
+    console.log(values, errors);
 
     const { username, email, password } = values;
     dispatch(registerUser(username, email, password));
@@ -46,21 +49,12 @@ const RegisterComponent: React.FC<Props> = ({ open, onClose }) => {
                 <input
                   type="text"
                   placeholder="Ex. John Doe"
-                  {...register("username", {
-                    required: "Username is required.",
-                    minLength: {
-                      value: 3,
-                      message: "Username must contain 3 letters at least."
-                    },
-                    maxLength: {
-                      value: 30,
-                      message: "Username can not contain more than 30 letters."
-                    }
-                  })}
+                  {...register("username")}
                 />
               </div>
               <span className="error">
-                <ErrorMessage errors={errors} name="username" />
+                {/* <ErrorMessage errors={errors} name="username" /> */}
+                {errors?.username ? <p>{errors?.username?.message}</p> : null}
               </span>
             </div>
             <div className="input-container">

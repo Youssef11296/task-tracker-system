@@ -4,6 +4,8 @@ import { AppDispatch, RootState } from "../context";
 import { getMe, logoutUser } from "../context/actions/authActions";
 import Cookies from "universal-cookie";
 import { VAR_NAME } from "../utils/constants";
+import { Resolver } from "react-hook-form";
+import { USERDATA_REGEX } from "../utils/regex";
 
 export const useAuth = () => {
   const { isAuthenticated, user }: { isAuthenticated: boolean, user: User | null } = useSelector(

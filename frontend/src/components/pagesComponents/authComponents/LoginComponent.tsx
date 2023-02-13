@@ -7,6 +7,7 @@ import { loginUser } from "../../../context/actions/authActions";
 import { ErrorMessage } from "@hookform/error-message";
 import { Box, Button, Modal } from "@mui/material";
 import { MODAL_STYLE } from "../../../utils/constants";
+import { useAuthForms } from "../../../hooks/useAuthForms";
 
 interface Props {
   open: boolean;
@@ -14,11 +15,13 @@ interface Props {
 }
 
 const LoginComponent: React.FC<Props> = ({ open, onClose }) => {
+  const { loginFormResolver } = useAuthForms()
+
   const {
     formState: { errors },
     register,
     handleSubmit,
-  } = useForm();
+  } = useForm<LoginFormValues>({ resolver: loginFormResolver });
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -47,7 +50,7 @@ const LoginComponent: React.FC<Props> = ({ open, onClose }) => {
                 <input
                   type="text"
                   placeholder="Ex. john@domain.com"
-                  {...register("email", { required: "Email is required." })}
+                  {...register("email")}
                 />
               </div>
               <span className="error">
@@ -60,13 +63,7 @@ const LoginComponent: React.FC<Props> = ({ open, onClose }) => {
                 <input
                   type="password"
                   placeholder="Ex. youraccountpassword"
-                  {...register("password", {
-                    required: "Password is required.",
-                    minLength: {
-                      value: 6,
-                      message: "Password must contain 6 letters at least."
-                    }
-                  })}
+                  {...register("password")}
                 />
               </div>
               <span className="error">
