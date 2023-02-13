@@ -13,7 +13,7 @@ const NotVerifiedComponent = () => {
   return (
     <Stack>
       <Grid container flexDirection='column' justifyContent="center" alignItems="center" margin="auto">
-        <Typography variant="h4">
+        <Typography variant="h5">
           You're account is not verified yet!
         </Typography>
         <Button variant="contained" onClick={onOpenVerificationForm} sx={{ width: 'fit-content', mt: 3, textTransform: 'capitalize' }}>Verify Me</Button>

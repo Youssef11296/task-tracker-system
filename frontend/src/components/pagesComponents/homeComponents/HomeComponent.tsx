@@ -7,15 +7,10 @@ import NotVerifiedComponent from './NotVerifiedComponent';
 const HomeComponent = () => {
     const { user }: { user: User | null } = useAuth();
 
-    if (!user?.verified) return (
-        <Container>
-            <NotVerifiedComponent />
-        </Container>
-    )
-
     return (
         <Container>
-            <Typography>Welcome, {user?.username}</Typography>
+            <Typography variant="h4" textAlign="center" mb={2}>Welcome, {user?.username}</Typography>
+            {!user.verified ? <NotVerifiedComponent /> : null}
         </Container>
     )
 }
