@@ -1,14 +1,14 @@
 // modules
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../context";
-import { setSelectedTask } from "../../../context/actions/tasksActions";
-import { MoreVert } from '@mui/icons-material';
-// mui
-import { IconButton, Modal, Typography } from "@mui/material";
-import { StyledTableCell, StyledTableRow } from "../../uiComponents/muiComponents/TableComponents";
-import { useEffect, useState } from "react";
+// components
 import TaskActionsModal from "./TaskActionsModal";
+// mui
+import { IconButton } from "@mui/material";
+import { MoreVert } from '@mui/icons-material';
 import { toggleCustomModal } from "../../../context/actions/uiActions";
+import { StyledTableCell, StyledTableRow } from "../../uiComponents/muiComponents/TableComponents";
 
 
 interface Props {
@@ -22,9 +22,6 @@ interface Props {
 const TaskItem: React.FC<Props> = ({
   task,
   taskNumber,
-  onOpenTaskModal,
-  onOpenConfirmModal,
-  onOpenCreateTaskModal,
 }) => {
   const dispatch: AppDispatch = useDispatch();
 
