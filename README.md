@@ -1,4 +1,4 @@
-# System overview:
+# SYSTEM OVERVIEW:
 
 This is a system that allow the user to create and track his own tasks.
 
@@ -7,7 +7,7 @@ Create, Read, Update, adn Delete his own tasks.
 
 It's built with many technologies and Javascript frameworks mainly using ReactJS, Typescript, and Node.js.
 
-## Main Functionalities:
+## MAIN FUNCTIONALITIES:
 
 ### Create Task (End to End)
 
@@ -29,11 +29,11 @@ User can edit any task that belongs to him.
 
 User can view the full task details in a modal by clicking on the task.
 
-# System top used dependencies
+# MAIN DEPENDENCIES:
 
 The system has many dependencies in both side the frontend and the backend.
 
-## Frontend Dependencies:
+## FRONTEND DEPENDENCIES:
 
 - ReactJS
 
@@ -49,7 +49,7 @@ The system has many dependencies in both side the frontend and the backend.
 
 - Material UI
 
-## Backend Dependencies
+## BACKEND DEPENDENCIES
 
 - Node.js
 
@@ -63,21 +63,36 @@ The system has many dependencies in both side the frontend and the backend.
 
 - Json Web Token
 
-## Database
+## DATABASE:
 
 - Mongo DB
 
-## Dev dependecies:
+## DEV DEPENDENCIES:
 
 - Nodemon
 
 - Concurrently
 
-# Run Scripts
+# MAIN COMMANDS & SCRIPTS
+
+## INSTALLATION COMMANDS
+
+To run this app,
+you can clone it and install the dependencies by openning your terminal and running this commands in order.
 
 ### npm i
 
-To run this app, you can clone it and install the depencies by openning your terminal and running this command.
+### cd frontend && npm i
+
+### cd .. && cd frontend && npm i
+
+#### NOTE!:
+
+Before runnig the app locally, you have to create your own .env file in the backend root directory.
+Basically you can open the .env-keep text file and create same variables on it in your new .env file
+and each env varaible should be assigned to your preffered values.
+
+## RUNNING SCRIPTS
 
 ### npm run start:dev
 
