@@ -2,7 +2,7 @@ import {Router} from 'express';
 import {
   reviewVerification,
   verifyUser,
-} from '../controllers/adminController.js';
+} from '../../controllers/admin/plansController.js';
 
 const router = Router ();
 
