@@ -1,8 +1,9 @@
 import {Router} from 'express';
-import {getAllPlans} from '../controllers/plansController.js';
+import {choosePlan, getAllPlans} from '../controllers/plansController.js';
 
 const router = Router ();
 
 router.get ('/', getAllPlans);
+router.patch ('/update', choosePlan);
 
 export default router;

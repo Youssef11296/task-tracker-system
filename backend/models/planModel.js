@@ -18,6 +18,10 @@ const planSchema = new Schema (
       type: Number,
       required: true,
     },
+    isOnSale: {
+      type: Boolean,
+      default: false,
+    },
   },
   {timestamps: true}
 );
