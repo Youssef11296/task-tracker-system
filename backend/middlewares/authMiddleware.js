@@ -19,7 +19,8 @@ const isAuth = async (req, res, next) => {
 
     if (!token) {
       res.status (401);
-      res.send ('Not aithorized, no token.');
+      res.send ('Not authorized, no token.');
+      return;
     }
 
     next ();

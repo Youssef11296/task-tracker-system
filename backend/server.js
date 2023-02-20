@@ -29,7 +29,7 @@ app.use (upload ());
 // app routes
 app.use ('/api/v1/auth', authRoute);
 app.use ('/api/v1/tasks', tasksRoute);
-app.use ('/api/v1/plans', plansRoute);
+app.use ('/api/v1/settings/plans', plansRoute);
 app.use ('/api/v1/admin/verifications', adminVerificationsRoute);
 app.use ('/api/v1/admin/plans', adminPlansRoute);
 

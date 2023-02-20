@@ -15,6 +15,14 @@ const userSchema = new Schema (
       required: true,
       unique: true,
     },
+    planId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Plan',
+    },
+    roleId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Role',
+    },
     password: {
       type: String,
       required: true,
