@@ -3,9 +3,9 @@ import {
   createPlan,
   deletePlan,
   updatePlan,
-} from '../../controllers/admin/plansController';
-import {isAdmin} from '../../middlewares/adminMiddleware';
-import {isAuth} from '../../middlewares/authMiddleware';
+} from '../../controllers/admin/adminPlansController.js';
+import {isAdmin} from '../../middlewares/adminMiddleware.js';
+import {isAuth} from '../../middlewares/authMiddleware.js';
 
 const router = Router ();
 

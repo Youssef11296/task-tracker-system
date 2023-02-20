@@ -1,8 +1,10 @@
 // models
-import User from '../models/userModel.js';
-import VerificationRequest from '../models/verificationRequestModel.js';
+import User from '../../models/userModel.js';
+import VerificationRequest from '../../models/verificationRequestModel.js';
+// mudules
+import asyncHandler from 'express-async-handler';
 
-//* VERIFICATIONS CONTROLLER
+//* REVIEW VERIFICATION
 const reviewVerification = asyncHandler (async (req, res) => {
   try {
     const {verificationRequestId} = req.params;
@@ -27,6 +29,7 @@ const reviewVerification = asyncHandler (async (req, res) => {
   }
 });
 
+//* VERIFY USER
 const verifyUser = asyncHandler (async (req, res) => {
   try {
     const {verificationRequestId} = req.params;
@@ -62,4 +65,5 @@ const verifyUser = asyncHandler (async (req, res) => {
   }
 });
 
+//* EXPORTS
 export {reviewVerification, verifyUser};

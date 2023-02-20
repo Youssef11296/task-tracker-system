@@ -1,5 +1,5 @@
 // models
-import Plan from '../models/planModel';
+import Plan from '../models/planModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 

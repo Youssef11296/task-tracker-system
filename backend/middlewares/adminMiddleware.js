@@ -1,5 +1,5 @@
 // models
-import Role from '../models/roleModel';
+import Role from '../models/roleModel.js';
 
 const isAdmin = async (req, res, next) => {
   try {

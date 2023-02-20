@@ -4,7 +4,7 @@ import Role from '../../models/roleModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 
-//* PLANS CONTROLLERS
+//* CREATE PLAN
 const createPlan = asyncHandler (async (req, res) => {
   try {
     const {user, body: {planName, planDescription, planPrice}} = req;
@@ -36,7 +36,7 @@ const createPlan = asyncHandler (async (req, res) => {
   }
 });
 
-// update plan
+//* UPDATE PLAN
 const updatePlan = asyncHandler (async (req, res) => {
   try {
     const {planId} = req.params;
@@ -56,7 +56,7 @@ const updatePlan = asyncHandler (async (req, res) => {
   }
 });
 
-// delete plan
+//* DELETE PLAN
 const deletePlan = asyncHandler (async (req, res) => {
   try {
     const {planId} = req.params;
@@ -72,4 +72,5 @@ const deletePlan = asyncHandler (async (req, res) => {
   }
 });
 
+//* EXPORTS
 export {createPlan, deletePlan, updatePlan};

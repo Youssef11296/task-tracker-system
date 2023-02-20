@@ -8,7 +8,7 @@ import {connectDb} from './configs/dbConfig.js';
 // routes
 import authRoute from './routes/authRoute.js';
 import tasksRoute from './routes/tasksRoute.js';
-import adminVerificationsRoute from './routes/adminVerificationsRoute.js';
+import adminVerificationsRoute from './routes/admin/adminVerificationsRoute.js';
 import adminPlansRoute from './routes/admin/adminPlansRoute.js';
 import plansRoute from './routes/plansRoute.js';
 
