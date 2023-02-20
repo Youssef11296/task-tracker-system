@@ -1,20 +1,15 @@
 // models
 import Plan from '../../models/planModel.js';
-import Role from '../../models/roleModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 
 //* CREATE PLAN
 const createPlan = asyncHandler (async (req, res) => {
   try {
-    const {user, body: {planName, planDescription, planPrice}} = req;
-    // checking if the user is an admin
-    const userRole = await Role.findOne ({_id: user.roleId});
-    const isAdmin = userRole.roleName === 'ADMIN';
-    if (!isAdmin)
-      throw new Error (
-        "Sorry, you're not as admin, you can not process with this operation."
-      );
+    const {planName, planDescription, planPrice} = req.body;
+    // basic validation
+    if (!planName || !planDescription || !planPrice.toString ())
+      throw new Error ('PLease, input all fields.');
     // checking if the plan already exists
     const isExistedPlan = await Plan.findOne ({planName});
     if (isExistedPlan)
@@ -22,7 +17,7 @@ const createPlan = asyncHandler (async (req, res) => {
         'Plan with the same name already exist. Please, try with another plan name.'
       );
     // creating new plan
-    const newPlan = await PLan.create ({
+    const newPlan = await Plan.create ({
       planName,
       planDescription,
       planPrice,

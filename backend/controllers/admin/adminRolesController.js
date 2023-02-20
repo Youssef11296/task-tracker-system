@@ -1,20 +1,16 @@
 // models
 import Role from '../../models/roleModel.js';
-import Role from '../../models/roleModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 
 //* CREATE ROLE
 const createRole = asyncHandler (async (req, res) => {
   try {
-    const {user, body: {roleName, roleDescription}} = req;
-    // checking if the user is an admin
-    const userRole = await Role.findOne ({_id: user.roleId});
-    const isAdmin = userRole.roleName === 'ADMIN';
-    if (!isAdmin)
-      throw new Error (
-        "Sorry, you're not as admin, you can not process with this operation."
-      );
+    const {roleName, roleDescription} = req.body;
+    // basic validation
+    if (!roleName || !roleDescription) {
+      throw new Error ('Both role name and role description are required.');
+    }
     // checking if the role already exists
     const isExistedRole = await Role.findOne ({roleName});
     if (isExistedRole)
@@ -22,7 +18,7 @@ const createRole = asyncHandler (async (req, res) => {
         'Role with the same name already exist. Please, try with another role name.'
       );
     // creating new role
-    const newRole = await PLan.create ({
+    const newRole = await Role.create ({
       roleName,
       roleDescription,
     });

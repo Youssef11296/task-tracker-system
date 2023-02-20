@@ -4,11 +4,15 @@ import bcrypt from 'bcryptjs';
 // models
 import User from '../models/userModel.js';
 import {generateToken} from '../utils/helpers.js';
+import Plan from '../models/planModel.js';
 
 // controller
 const registerUser = asyncHandler (async (req, res) => {
   try {
-    const {username, email, password} = req.body;
+    const {username, email, password, roleId} = req.body;
+
+    const basicPlan = await Plan.findOne ({planName: 'BASIC'});
+    const planId = basicPlan._id.toString ();
 
     const hashedPassword = await bcrypt.hash (password, 10);
 
@@ -16,6 +20,8 @@ const registerUser = asyncHandler (async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      roleId,
+      planId,
     });
 
     newUser.token = generateToken (newUser._id);

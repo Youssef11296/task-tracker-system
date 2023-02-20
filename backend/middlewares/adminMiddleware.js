@@ -11,6 +11,7 @@ const isAdmin = async (req, res, next) => {
       throw new Error (
         "Sorry, you're not allowed to procees with this operation, you're not an admin."
       );
+
     next ();
   } catch (error) {
     res.status (403).json ({success: false, message: error.message});

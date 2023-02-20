@@ -3,12 +3,14 @@ import {
   createRole,
   deleteRole,
   updateRole,
-} from '../../controllers/admin/adminRolesController';
+} from '../../controllers/admin/adminRolesController.js';
+import {isAuth} from '../../middlewares/authMiddleware.js';
+import {isAdmin} from '../../middlewares/adminMiddleware.js';
 
 const router = Router ();
 
-router.post ('/', createRole);
-router.patch ('/:roleId', updateRole);
-router.delete ('/:roleId', deleteRole);
+router.post ('/', isAuth, isAdmin, createRole);
+router.patch ('/:roleId', isAuth, isAdmin, updateRole);
+router.delete ('/:roleId', isAuth, isAdmin, deleteRole);
 
 export default router;
