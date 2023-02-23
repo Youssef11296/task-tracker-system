@@ -2,7 +2,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth } from "./hooks/useAuth";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 // components
 import NotAuthComponent from "./components/uiComponents/sharedComponents/NotAuthComponent";
 // redux
@@ -15,11 +15,10 @@ const App = () => {
   const { isAuthenticated, getMeHandler, user } = useAuth();
 
   useEffect(() => {
-    isAuthenticated && !user && getMeHandler();
-  }, [isAuthenticated, user]);
+    isAuthenticated && getMeHandler();
+  }, [isAuthenticated]);
 
-  const { loading } = useSelector((state: RootState) => state.auth)
-
+  const { loading } = useSelector((state: RootState) => state.ui)
 
   if (loading) return (
     <div className="home-page page container">

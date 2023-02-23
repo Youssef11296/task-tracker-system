@@ -30,7 +30,7 @@ app.use (upload ());
 // public routes
 app.use ('/api/v1/auth', authRoute);
 app.use ('/api/v1/tasks', tasksRoute);
-app.use ('/api/v1/settings/plans', plansRoute);
+app.use ('/api/v1/plans', plansRoute);
 // admin routes
 app.use ('/api/v1/admin/plans', adminPlansRoute);
 app.use ('/api/v1/admin/roles', adminRolesRoute);

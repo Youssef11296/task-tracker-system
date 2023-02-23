@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../../utils/api";
+import { setLoading } from "./uiActions";
 
 export const registerUser =
   (
@@ -17,6 +18,9 @@ export const registerUser =
       dispatch({
         type: actionTypes.REGISTER_USER,
       });
+
+      dispatch(setLoading(true));
+
       dispatch({
         type: actionTypes.REGISTER_SUCCESS,
         payload: {
@@ -24,6 +28,8 @@ export const registerUser =
           user: data.data,
         },
       });
+
+      dispatch(setLoading(false));
     } catch (error: any) {
       dispatch({
         type: actionTypes.REGISTER_FAIL,
@@ -42,6 +48,9 @@ export const loginUser =
       dispatch({
         type: actionTypes.LOGIN_USER,
       });
+
+      dispatch(setLoading(true));
+
       dispatch({
         type: actionTypes.LOGIN_SUCCESS,
         payload: {
@@ -49,6 +58,8 @@ export const loginUser =
           user: data.data,
         },
       });
+
+      dispatch(setLoading(false));
     } catch (error: any) {
       dispatch({
         type: actionTypes.LOGIN_FAIL,
@@ -75,6 +86,8 @@ export const getMe = (token: User["token"]) => async (dispatch: any) => {
       type: actionTypes.AUTHENTICATING_USER,
     });
 
+    dispatch(setLoading(true));
+
     if (data) {
       dispatch({
         type: actionTypes.GET_ME,
@@ -83,6 +96,8 @@ export const getMe = (token: User["token"]) => async (dispatch: any) => {
         },
       });
     }
+
+    dispatch(setLoading(false));
   } catch (error) {
     dispatch({
       type: actionTypes.NOT_AUTH,

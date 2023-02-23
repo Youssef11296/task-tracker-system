@@ -9,7 +9,7 @@ const isAdmin = async (req, res, next) => {
 
     if (userRole.roleName !== 'ADMIN')
       throw new Error (
-        "Sorry, you're not allowed to procees with this operation, you're not an admin."
+        "Sorry, you're not allowed to proceed with this operation, you're not an admin."
       );
 
     next ();

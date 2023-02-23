@@ -1,17 +1,22 @@
 import * as actionTypes from "./actionTypes";
 import * as api from "../../utils/api";
 import { useToast } from "../../hooks/useToast";
+import { setLoading } from "./uiActions";
 
 // Tasks actions
 export const getAllTasks = (token: User["token"]) => async (dispatch: any) => {
   try {
     const { data } = await api.tasksAPI.getAllTasks(token);
+    dispatch(setLoading(true));
+
     dispatch({
       type: actionTypes.GET_ALL_TASKS,
       payload: {
         tasks: data.data,
       },
     });
+
+    dispatch(setLoading(false));
   } catch (error) {
     useToast("error", error as string);
   }

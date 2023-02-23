@@ -8,8 +8,10 @@ const createPlan = asyncHandler (async (req, res) => {
   try {
     const {planName, planDescription, planPrice} = req.body;
     // basic validation
-    if (!planName || !planDescription || !planPrice.toString ())
+    if (!planName || !planDescription)
       throw new Error ('PLease, input all fields.');
+      if(planPrice < 0)
+      throw new Error("PLan price must be a valid number and can not be less than 0.")
     // checking if the plan already exists
     const isExistedPlan = await Plan.findOne ({planName});
     if (isExistedPlan)
@@ -39,7 +41,9 @@ const updatePlan = asyncHandler (async (req, res) => {
     const plan = await Plan.findOne ({_id: planId});
     if (!plan) throw new Error ('Plan does not exist.');
     // updating the plan
-    const updatedPlan = await plan.update (req.body, {new: true});
+    const updatedPlan = await Plan.findByIdAndUpdate (planId, req.body, {
+      new: true,
+    });
     // response
     res.status (201).json ({
       success: true,

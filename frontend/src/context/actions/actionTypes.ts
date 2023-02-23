@@ -21,5 +21,7 @@ export const CREATE_TASK = "CREATE_TASK";
 export const UPDATE_TASK = "UPDATE_TASK";
 export const DELETE_TASK = "DELETE_TASK";
 
+export const SET_LOADING = "SET_LOADING";
+
 // UI ACTION TYPES
 export const TOGGLE_CUSTOM_MODAL = "TOGGLE_CUSTOM_MODAL";

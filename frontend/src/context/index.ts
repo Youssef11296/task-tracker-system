@@ -13,7 +13,12 @@ const rootReducer = combineReducers({
   ui: uiReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(compose(thunk)));
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(
+  rootReducer,
+  /* preloadedState, */ composeEnhancers(applyMiddleware(thunk))
+);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;

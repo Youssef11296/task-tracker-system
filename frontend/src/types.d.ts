@@ -3,6 +3,8 @@ interface User {
   username?: string;
   email: string;
   password: string;
+  roleId: String;
+  planId: String;
   verifications: {
     nationalId: number;
     nationalIdImg: File;

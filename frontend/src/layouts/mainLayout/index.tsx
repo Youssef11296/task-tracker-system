@@ -1,15 +1,17 @@
 import MainHeader from "./Header";
 import MainFooter from "./MainFooter";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleCustomModal } from "../../context/actions/uiActions";
+import { RootState } from "../../context";
 
 const MainLayout = (props: any) => {
+  const { openCustomModalState } = useSelector((state: RootState) => state.ui)
   // dispatcher
   const dispatch = useDispatch()
 
   const closeAllCustomModals = (e: any) => {
     e.stopPropagation()
-    dispatch(toggleCustomModal(false))
+    openCustomModalState && dispatch(toggleCustomModal(false))
   }
 
   return (
