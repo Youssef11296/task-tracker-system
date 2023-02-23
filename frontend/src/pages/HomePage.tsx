@@ -6,9 +6,9 @@ import "../styles/home.scss";
 
 const HomePage = () => {
   return (
-    <div className="home-page page container">
+    <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
       <HomeComponent />
-    </div>
+    </section>
   );
 };
 

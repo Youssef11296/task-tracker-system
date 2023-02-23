@@ -21,18 +21,18 @@ const App = () => {
   const { loading } = useSelector((state: RootState) => state.ui)
 
   if (loading) return (
-    <div className="home-page page container">
+    <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
       <Box sx={{ margin: 'auto', width: 'fit-content' }}>
         <img src="../src/assets/images/spinner.gif" alt="loading" />
       </Box>
-    </div>
+    </section>
   )
 
   if (!isAuthenticated || !user)
     return (
-      <div className="home-page page container">
+      <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
         <NotAuthComponent />
-      </div>
+      </section>
     );
 
   return (

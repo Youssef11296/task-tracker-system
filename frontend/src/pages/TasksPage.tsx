@@ -5,9 +5,9 @@ import "../styles/tasks.scss";
 
 const TasksPage = () => {
   return (
-    <div className="tasks-page page container">
+    <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
       <TasksComponent />
-    </div>
+    </section>
   );
 };
 

@@ -35,13 +35,16 @@ const MainHeader = () => {
       {
         isAuthenticated ? <nav>
           <ul>
-            <li>
+            <li style={{ marginRight: '1rem' }}>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/my-tasks">My Tasks</Link>
+            <li style={{ marginRight: '1rem' }}>
+              <Link to="/my-tasks">Tasks</Link>
             </li>
-            <li>
+            <li style={{ marginRight: '1rem' }}>
+              <Link to="/packages">Packages</Link>
+            </li>
+            <li style={{ marginRight: '1rem' }}>
               <Link to="/about">About</Link>
             </li>
             <li>
