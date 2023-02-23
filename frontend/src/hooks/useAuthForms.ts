@@ -101,7 +101,28 @@ const useAuthForms = () => {
     };
   };
 
-  return { loginFormResolver, registerFormResolver };
+  const userSettingsFormResolver: Resolver<UserSettingsValues> = (values) => {
+    return {
+      values: !values.username || !values.email ? {} : values,
+      errors: !values.username
+        ? {
+            username: {
+              type: "required",
+              message: "Username is required.",
+            },
+          }
+        : !values.email
+        ? {
+            email: {
+              type: "required",
+              message: "Email is required.",
+            },
+          }
+        : {},
+    };
+  };
+
+  return { loginFormResolver, registerFormResolver, userSettingsFormResolver };
 };
 
 export { useAuthForms };

@@ -41,4 +41,9 @@ type LoginFormValues = {
   password: string;
 };
 
+type UserSettingsValues = {
+  username: string;
+  email: string;
+};
+
 type CONFIRMATION_PURPOSE = "DELETE_TASK" | "LOGOUT";
