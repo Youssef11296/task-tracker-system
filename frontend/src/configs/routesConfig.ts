@@ -2,6 +2,7 @@
 import AboutPage from "../pages/AboutPage";
 import HomePage from "../pages/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
+import SettingsPage from "../pages/SettingsPage";
 import TasksPage from "../pages/TasksPage";
 
 export const ROUTES = [
@@ -16,6 +17,10 @@ export const ROUTES = [
   {
     path: "/about",
     Page: AboutPage,
+  },
+  {
+    path: "/user/settings",
+    Page: SettingsPage,
   },
   {
     path: "*",

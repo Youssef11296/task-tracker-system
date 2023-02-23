@@ -2,14 +2,30 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import ConfirmComponent from "../../components/uiComponents/sharedComponents/ConfirmComponent";
 import { useState } from "react";
-import { Button } from "@mui/material";
+import { Avatar, Button, IconButton, Popover, Typography } from "@mui/material";
 
 const MainHeader = () => {
   const { isAuthenticated } = useAuth();
 
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
-  const onOpenConfirmModal = () => setOpenConfirmModal(true);
+  const onOpenConfirmModal = () => {
+    setOpenConfirmModal(true)
+    handleClose()
+  };
   const onCloseConfirmModal = () => setOpenConfirmModal(false);
+
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   return (
     <header>
@@ -29,13 +45,34 @@ const MainHeader = () => {
               <Link to="/about">About</Link>
             </li>
             <li>
-              <Button
-                variant="outlined"
-                onClick={onOpenConfirmModal}
-                sx={{ textTransform: "capitalize" }}
+              <IconButton onClick={handleClick}>
+                <Avatar />
+              </IconButton>
+              <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                sx={{
+                  padding: '2rem',
+                  width: '300px'
+                }}
               >
-                Logout
-              </Button>
+                <Link to="/user/settings" onClick={handleClose}>
+                  <Button sx={{ textTransform: "capitalize" }}>Settings</Button>
+                </Link>
+                <Button
+                  variant="text"
+                  sx={{ textTransform: "capitalize" }}
+                  onClick={onOpenConfirmModal}
+                >
+                  Logout
+                </Button>
+              </Popover>
             </li>
           </ul>
         </nav> : null
