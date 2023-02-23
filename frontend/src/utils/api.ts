@@ -66,3 +66,7 @@ export const tasksAPI = {
       headers: { Authorization: `Bearer ${token}` },
     }),
 };
+
+export const packagesAPI = {
+  getAllPackages: () => axios.get(`${baseUrlv1}/packages`),
+};
