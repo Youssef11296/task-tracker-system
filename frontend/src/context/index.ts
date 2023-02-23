@@ -5,10 +5,12 @@ import authReducer from "./reducers/authReducer";
 import tasksReducer from "./reducers/tasksReducer";
 import verificationsReducer from "./reducers/verificationsReducer";
 import uiReducer from "./reducers/uiReducer";
+import packagesReducer from "./reducers/packagesReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   tasks: tasksReducer,
+  packages: packagesReducer,
   verifications: verificationsReducer,
   ui: uiReducer,
 });

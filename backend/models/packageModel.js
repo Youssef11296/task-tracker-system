@@ -1,20 +1,20 @@
 import {Schema, model} from 'mongoose';
 
-const planSchema = new Schema (
+const packageSchema = new Schema (
   {
-    planName: {
+    packageName: {
       type: String,
       minlength: 3,
       maxlength: 30,
       required: true,
     },
-    planDescription: {
+    packageDescription: {
       type: String,
       minlength: 10,
       maxlength: 300,
       required: true,
     },
-    planPrice: {
+    packagePrice: {
       type: Number,
       required: true,
     },
@@ -26,4 +26,4 @@ const planSchema = new Schema (
   {timestamps: true}
 );
 
-export default model ('Plan', planSchema);
+export default model ('Package', packageSchema);

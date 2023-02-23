@@ -1,4 +1,5 @@
 // action types
+import { useToast } from "../../hooks/useToast";
 import * as actionTypes from "../actions/actionTypes";
 
 const initialState: {
@@ -21,6 +22,9 @@ const uiReducer = (state = initialState, action: any) => {
         ...state,
         openCustomModalState: action.payload,
       };
+    case actionTypes.SOME_ERROR_OCCURED:
+      useToast("error", action.message as string);
+      break;
     default:
       return {
         ...state,

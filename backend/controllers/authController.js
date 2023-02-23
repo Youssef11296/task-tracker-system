@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import {generateToken} from '../utils/helpers.js';
 // models
 import User from '../models/userModel.js';
-import Plan from '../models/planModel.js';
+import Plan from '../models/packageModel.js';
 import Role from '../models/roleModel.js';
 
 //* REGISTER USER

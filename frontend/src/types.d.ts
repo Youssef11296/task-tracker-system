@@ -23,6 +23,12 @@ interface Task {
   createdAt?: string;
 }
 
+interface Package{
+  packagesName: string;
+  packageDescription: string;
+  packagesPrice: number
+}
+
 interface VerificationRequest {
   _id?: string;
   userId: string;

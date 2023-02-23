@@ -10,18 +10,20 @@ export const getAllPackages = () => async (dispatch: any) => {
   try {
     const { data } = await api.packagesAPI.getAllPackages;
 
-    dispatch(setLoading(true));
+    console.log({ data });
+
+    // dispatch(setLoading(true));
 
     dispatch({
       type: actionTypes.GET_ALL_PACKAGES,
       payload: data.data,
     });
 
-    dispatch(setLoading(false));
+    // dispatch(setLoading(false));
   } catch (error) {
     dispatch({
       type: actionTypes.SOME_ERROR_OCCURED,
-      message: "Some error occured!",
+      message: error,
     });
   }
 };

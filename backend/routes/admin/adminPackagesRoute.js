@@ -3,7 +3,7 @@ import {
   createPlan,
   deletePlan,
   updatePlan,
-} from '../../controllers/admin/adminPlansController.js';
+} from '../../controllers/admin/adminPackagesController.js';
 import {isAdmin} from '../../middlewares/adminMiddleware.js';
 import {isAuth} from '../../middlewares/authMiddleware.js';
 

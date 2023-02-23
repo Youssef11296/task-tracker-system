@@ -1,5 +1,5 @@
 // models
-import Plan from '../../models/planModel.js';
+import Plan from '../../models/packageModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 
@@ -10,8 +10,10 @@ const createPlan = asyncHandler (async (req, res) => {
     // basic validation
     if (!planName || !planDescription)
       throw new Error ('PLease, input all fields.');
-      if(planPrice < 0)
-      throw new Error("PLan price must be a valid number and can not be less than 0.")
+    if (planPrice < 0)
+      throw new Error (
+        'PLan price must be a valid number and can not be less than 0.'
+      );
     // checking if the plan already exists
     const isExistedPlan = await Plan.findOne ({planName});
     if (isExistedPlan)

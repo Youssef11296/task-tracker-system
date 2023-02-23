@@ -8,9 +8,9 @@ import {connectDb} from './configs/dbConfig.js';
 // routes
 import authRoute from './routes/authRoute.js';
 import tasksRoute from './routes/tasksRoute.js';
-import plansRoute from './routes/plansRoute.js';
+import plansRoute from './routes/packagesRoute.js';
 import adminVerificationsRoute from './routes/admin/adminVerificationsRoute.js';
-import adminPlansRoute from './routes/admin/adminPlansRoute.js';
+import adminPlansRoute from './routes/admin/adminPackagesRoute.js';
 import adminRolesRoute from './routes/admin/adminRolesRoute.js';
 
 // using dotenv config
