@@ -34,6 +34,7 @@ export const useAuth = () => {
   const logoutHandler = () => dispatch(logoutUser());
 
   return {
+    authToken,
     openLogin,
     openRegister,
     onOpenLoginForm,

@@ -22,6 +22,7 @@ const choosePackage = asyncHandler (async (req, res) => {
     if (!packageData) throw new Error ('Package does not exist.');
     // updating user package
     const updatedUser = await user.$set ('packageId', packageId);
+    await updatedUser.save ();
     // response
     res.status (201).json ({
       success: true,

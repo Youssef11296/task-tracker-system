@@ -26,6 +26,7 @@ export const SET_SELECTED_TASK = "SET_SELECTED_TASK";
 
 //* Packages Action Types
 export const GET_ALL_PACKAGES = "GET_ALL_PACKAGES";
+export const CHOOSE_PACKAGE = "CHOOSE_PACKAGE";
 
 //* UI Action Types
 export const SET_LOADING = "SET_LOADING";

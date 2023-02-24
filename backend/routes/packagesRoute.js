@@ -8,6 +8,6 @@ import {isAuth} from '../middlewares/authMiddleware.js';
 const router = Router ();
 
 router.get ('/', getAllPackages);
-router.patch ('/update', isAuth, choosePackage);
+router.patch ('/choose', isAuth, choosePackage);
 
 export default router;

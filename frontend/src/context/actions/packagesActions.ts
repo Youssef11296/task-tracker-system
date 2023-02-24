@@ -3,6 +3,7 @@ import * as actionTypes from "./actionTypes";
 // api
 import * as api from "../../utils/api";
 import { setLoading } from "./uiActions";
+import { useToast } from "../../hooks/useToast";
 
 //* Packages Actions
 
@@ -25,3 +26,25 @@ export const getAllPackages = () => async (dispatch: any) => {
     });
   }
 };
+
+export const choosePackage =
+  (token: User["token"], packageId: Package["_id"]) =>
+  async (dispatch: any) => {
+    try {
+      const { data } = await api.packagesAPI.choosePackage(token, packageId);
+
+      // dispatch(setLoading(true));
+
+      dispatch({
+        type: actionTypes.CHOOSE_PACKAGE,
+        payload: {
+          data: data?.data,
+          message: data?.message,
+        },
+      });
+
+      // dispatch(setLoading(false));
+    } catch (error) {
+      useToast("error", error as string);
+    }
+  };

@@ -6,7 +6,7 @@ import { Container, Typography } from '@mui/material'
 import PackagesList from '../components/pagesComponents/packagesComponents/PackagesList'
 
 const PackagesPage = () => {
-    const { packagesList, getAllPackagesHandler } = usePackages()
+    const { packagesList, getAllPackagesHandler, choosePackageHandler } = usePackages()
 
     useEffect(() => {
         getAllPackagesHandler()
@@ -22,7 +22,7 @@ const PackagesPage = () => {
                         width: '200px',
                         margin: '1rem auto 2rem'
                     }}>Our Packages</Typography>
-                <PackagesList packagesList={packagesList} />
+                <PackagesList packagesList={packagesList} choosePackageHandler={choosePackageHandler} />
             </Container>
         </section>
     )

@@ -1,4 +1,5 @@
 // action types
+import { useToast } from "../../hooks/useToast";
 import * as actionTypes from "../actions/actionTypes";
 
 // initial state
@@ -16,6 +17,9 @@ const packagesReducer = (state = initialState, action: any) => {
         ...state,
         packagesList: action.payload,
       };
+    case actionTypes.CHOOSE_PACKAGE:
+      useToast("success", action.payload.message);
+      return { ...state };
     default:
       return {
         ...state,

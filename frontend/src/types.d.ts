@@ -3,8 +3,14 @@ interface User {
   username?: string;
   email: string;
   password: string;
-  roleId: String;
-  planId: String;
+  role: {
+    roleId: string;
+    roleName: string;
+  };
+  package: {
+    packageId: string;
+    packageName: string;
+  };
   verifications: {
     nationalId: number;
     nationalIdImg: File;
@@ -24,6 +30,7 @@ interface Task {
 }
 
 interface Package {
+  _id?: string;
   packageName: string;
   packageDescription: string;
   packagePrice: number;

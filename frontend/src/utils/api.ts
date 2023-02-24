@@ -69,4 +69,15 @@ export const tasksAPI = {
 
 export const packagesAPI = {
   getAllPackages: () => axios.get(`${baseUrlv1}/packages`),
+  choosePackage: (token: User["token"], packageId: Package["_id"]) => {
+    axios.patch(
+      `${baseUrlv1}/packages/choose`,
+      {
+        packageId,
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+  },
 };
