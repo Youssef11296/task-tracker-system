@@ -1,56 +1,63 @@
 // models
-import Plan from '../../models/packageModel.js';
+import Package from '../../models/packageModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 
 //* CREATE PLAN
-const createPlan = asyncHandler (async (req, res) => {
+const createPackage = asyncHandler (async (req, res) => {
   try {
-    const {planName, planDescription, planPrice} = req.body;
+    const {packageName, packageDescription, packagePrice} = req.body;
     // basic validation
-    if (!planName || !planDescription)
+    if (!packageName || !packageDescription)
       throw new Error ('PLease, input all fields.');
-    if (planPrice < 0)
+    if (packagePrice < 0)
       throw new Error (
         'PLan price must be a valid number and can not be less than 0.'
       );
-    // checking if the plan already exists
-    const isExistedPlan = await Plan.findOne ({planName});
-    if (isExistedPlan)
+    // checking if the package already exists
+    const isExistedPackage = await Package.findOne ({packageName});
+    if (isExistedPackage)
       throw new Error (
-        'Plan with the same name already exist. Please, try with another plan name.'
+        'Package with the same name already exist. Please, try with another package name.'
       );
-    // creating new plan
-    const newPlan = await Plan.create ({
-      planName,
-      planDescription,
-      planPrice,
+    // creating new package
+    const newPackage = await Package.create ({
+      packageName,
+      packageDescription,
+      packagePrice,
     });
     // response
-    res
-      .status (201)
-      .json ({success: true, message: 'Successfully created.', data: newPlan});
+    res.status (201).json ({
+      success: true,
+      message: 'Successfully created.',
+      data: newPackage,
+    });
   } catch (error) {
     res.status (400).json ({success: false, message: error.message});
   }
 });
 
 //* UPDATE PLAN
-const updatePlan = asyncHandler (async (req, res) => {
+const updatePackage = asyncHandler (async (req, res) => {
   try {
-    const {planId} = req.params;
-    // getting the plan
-    const plan = await Plan.findOne ({_id: planId});
-    if (!plan) throw new Error ('Plan does not exist.');
-    // updating the plan
-    const updatedPlan = await Plan.findByIdAndUpdate (planId, req.body, {
-      new: true,
-    });
+    const {packageId} = req.params;
+    // getting the package
+    const packageData = await Package.findOne ({_id: packageId});
+    console.log ({packageData, packageId});
+    if (!packageData) throw new Error ('Package does not exist.');
+    // updating the package
+    const updatedPackage = await Package.findByIdAndUpdate (
+      packageId,
+      req.body,
+      {
+        new: true,
+      }
+    );
     // response
     res.status (201).json ({
       success: true,
       message: 'Successfully updated.',
-      data: updatedPlan,
+      data: updatedPackage,
     });
   } catch (error) {
     res.status (400).json ({success: false, message: error.message});
@@ -58,14 +65,14 @@ const updatePlan = asyncHandler (async (req, res) => {
 });
 
 //* DELETE PLAN
-const deletePlan = asyncHandler (async (req, res) => {
+const deletePackage = asyncHandler (async (req, res) => {
   try {
-    const {planId} = req.params;
-    // checking if the plan exist
-    const plan = await Plan.findOne ({_id: planId});
-    if (!plan) throw new Error ('PLan not exists. It may be deleted');
-    // deleteing the plan
-    await plan.delete ();
+    const {packageId} = req.params;
+    // checking if the package exist
+    const packageData = await Package.findOne ({_id: packageId});
+    if (!packageData) throw new Error ('PLan not exists. It may be deleted');
+    // deleteing the package
+    await packageData.delete ();
     // response
     res.status (201).json ({success: true, message: 'Successfully deleted!'});
   } catch (error) {
@@ -74,4 +81,4 @@ const deletePlan = asyncHandler (async (req, res) => {
 });
 
 //* EXPORTS
-export {createPlan, deletePlan, updatePlan};
+export {createPackage, deletePackage, updatePackage};

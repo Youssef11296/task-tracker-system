@@ -16,7 +16,7 @@ const isValidUser = async (req, res, next) => {
       throw new Error ('Email is required and must be valid.');
     }
     if (!password) throw new Error ('Password is required.');
-    if (!roleId) throw new Error ('Role is required.');
+    // if (!roleId) throw new Error ('Role is required.');
     // if (!planId) throw new Error ('Plan is required.');
 
     const isExistedUser =

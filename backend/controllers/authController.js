@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 import {generateToken} from '../utils/helpers.js';
 // models
 import User from '../models/userModel.js';
-import Plan from '../models/packageModel.js';
+import Package from '../models/packageModel.js';
 import Role from '../models/roleModel.js';
 
 //* REGISTER USER
@@ -12,29 +12,24 @@ const registerUser = asyncHandler (async (req, res) => {
   try {
     const {username, email, password, roleId} = req.body;
 
-    const basicPlan = await Plan.findOne ({planName: 'BASIC'});
-    const planId = basicPlan._id.toString ();
+    const basicPackage = await Package.findOne ({packageName: 'BASIC'});
+    const packageId = basicPackage._id.toString ();
 
     const hashedPassword = await bcrypt.hash (password, 10);
 
     const userRole = await Role.findOne ({_id: roleId});
-    const userPlan = await Plan.findOne ({_id: planId});
 
     const newUser = await User.create ({
       username,
       email,
       password: hashedPassword,
-      role: {
-        roleId: userRole.roleId,
-        roleName: userRole.roleName,
-      },
-      plan: {
-        planId: userPlan.planId,
-        planName: userPlan.planName,
-      },
+      roleId,
+      packageId,
     });
 
     newUser.token = generateToken (newUser._id);
+
+    await newUser.save ();
 
     res.status (201).json ({
       success: true,
@@ -61,7 +56,7 @@ const loginUser = asyncHandler (async (req, res) => {
       throw new Error ('Password is not correct.');
 
     const userRole = await Role.findOne ({_id: user.roleId});
-    const userPlan = await Plan.findOne ({_id: user.planId});
+    const userPackage = await Package.findOne ({_id: user.packageId});
 
     res.status (200).json ({
       success: true,
@@ -74,11 +69,11 @@ const loginUser = asyncHandler (async (req, res) => {
           roleId: user.roleId,
           roleName: userRole.roleName,
         },
-        plan: {
-          planId: user.planId,
-          planName: userPlan.planName,
+        package: {
+          packageId: user.packageId,
+          packageName: userPackage.packageName,
         },
-        tasks: user.tasks,
+        // tasks: user.tasks,
         token: generateToken (user._id),
       },
     });
@@ -94,7 +89,7 @@ const getMe = asyncHandler (async (req, res) => {
     const userData = await User.findOne ({email: user.email});
 
     const userRole = await Role.findOne ({_id: userData.roleId});
-    const userPlan = await Plan.findOne ({_id: userData.planId});
+    const userPackage = await Package.findOne ({_id: userData.packageId});
 
     res.status (200).json ({
       success: true,
@@ -106,9 +101,9 @@ const getMe = asyncHandler (async (req, res) => {
           roleId: userData.roleId,
           roleName: userRole.roleName,
         },
-        plan: {
-          planId: userData.planId,
-          planName: userPlan.planName,
+        package: {
+          packageId: userData.packageId,
+          packageName: userPackage.packageName,
         },
         verified: userData.verified,
         verifications: userData.verifications,

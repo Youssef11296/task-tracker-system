@@ -1,16 +1,16 @@
 import {Router} from 'express';
 import {
-  createPlan,
-  deletePlan,
-  updatePlan,
+  createPackage,
+  deletePackage,
+  updatePackage,
 } from '../../controllers/admin/adminPackagesController.js';
 import {isAdmin} from '../../middlewares/adminMiddleware.js';
 import {isAuth} from '../../middlewares/authMiddleware.js';
 
 const router = Router ();
 
-router.post ('/', isAuth, isAdmin, createPlan);
-router.patch ('/:planId', isAuth, isAdmin, updatePlan);
-router.delete ('/:planId', isAuth, isAdmin, deletePlan);
+router.post ('/', isAuth, isAdmin, createPackage);
+router.patch ('/:packageId', isAuth, isAdmin, updatePackage);
+router.delete ('/:packageId', isAuth, isAdmin, deletePackage);
 
 export default router;

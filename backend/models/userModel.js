@@ -15,7 +15,7 @@ const userSchema = new Schema (
       required: true,
       unique: true,
     },
-    planId: {
+    packageId: {
       type: Schema.Types.ObjectId,
       ref: 'Plan',
     },

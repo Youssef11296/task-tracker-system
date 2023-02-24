@@ -5,6 +5,7 @@ const isAdmin = async (req, res, next) => {
   try {
     const {user} = req;
 
+    console.log ({user});
     const userRole = await Role.findOne ({_id: user.roleId});
 
     if (userRole.roleName !== 'ADMIN')
