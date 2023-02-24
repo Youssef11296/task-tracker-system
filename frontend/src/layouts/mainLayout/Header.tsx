@@ -3,6 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import ConfirmComponent from "../../components/uiComponents/sharedComponents/ConfirmComponent";
 import { useState } from "react";
 import { Avatar, Button, IconButton, Popover, Typography } from "@mui/material";
+import { USER_ROLE } from "../../utils/constants";
 
 const MainHeader = () => {
   const { isAuthenticated, user } = useAuth();
@@ -45,7 +46,7 @@ const MainHeader = () => {
               <Link to="/packages">Packages</Link>
             </li>
             {
-              user?.role?.roleName === "ADMIN" ? <li style={{ marginRight: '1rem' }}>
+              user?.role?.roleName === USER_ROLE.ADMIN ? <li style={{ marginRight: '1rem' }}>
                 <Link to="/admin/users">Users</Link>
               </li> : null
             }

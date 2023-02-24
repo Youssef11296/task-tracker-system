@@ -11,12 +11,16 @@ import {
 import React from 'react'
 import { StyledTableCell } from '../../../uiComponents/muiComponents/TableComponents'
 import UserItem from './UserItem'
+import { useSelector } from 'react-redux'
+import { useAuth } from '../../../../hooks/useAuth'
 
 interface Props {
     usersList: User[]
 }
 
 const UsersList: React.FC<Props> = ({ usersList }) => {
+    const { user } = useAuth()
+
     return (
         <>
             <Container>
@@ -49,9 +53,10 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
                             }
 
                             {
-                                usersList?.map((user: User, index: number) => (
-                                    <UserItem user={user} userNumber={index + 1} key={user?._id} />
-                                ))
+                                usersList?.filter((userData) => userData?.username !== user?.username)
+                                    .map((userData: User, index: number) => (
+                                        <UserItem userData={userData} userNumber={index + 1} key={userData?._id} />
+                                    ))
                             }
                         </TableBody>
                     </Table>
