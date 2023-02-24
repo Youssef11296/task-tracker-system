@@ -1,9 +1,10 @@
 // models
 import Role from '../models/roleModel.js';
+import User from '../models/userModel.js';
 
 const isAdmin = async (req, res, next) => {
   try {
-    const {user} = req;
+    const user = await User.findOne ({_id: req.user._id});
 
     console.log ({user});
     const userRole = await Role.findOne ({_id: user.roleId});

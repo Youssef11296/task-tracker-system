@@ -8,6 +8,12 @@ export const TASK_SATUS = {
   COMPLETED: "COMPLETED",
 };
 
+export const USER_ROLE = {
+  ADMIN: "ADMIN",
+  USER: "USER",
+  TEAM: "TEAM",
+};
+
 // styles
 export const MODAL_STYLE = {
   position: "absolute" as "absolute",
