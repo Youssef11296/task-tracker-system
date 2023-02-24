@@ -1,26 +1,28 @@
-import { Container, Typography } from '@mui/material'
+// modules & hooks
 import { useEffect } from 'react'
-import { AppDispatch, RootState } from '../context'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllPackages } from '../context/actions/packagesActions'
+import usePackages from '../hooks/usePackages'
+// mui
+import { Container, Typography } from '@mui/material'
+import PackagesList from '../components/pagesComponents/packagesComponents/PackagesList'
 
 const PackagesPage = () => {
-    const { packagesList } = useSelector((state: RootState) => state.packages)
-
-    const dispatch: AppDispatch = useDispatch()
+    const { packagesList, getAllPackagesHandler } = usePackages()
 
     useEffect(() => {
-        dispatch(getAllPackages())
+        getAllPackagesHandler()
     }, [])
-
-    console.log({ packagesList })
 
     return (
         <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
             <Container>
-                <Typography>
-                    PackagesPage
-                </Typography>
+                <Typography variant="h5"
+                    sx={{
+                        textAlign: 'center', pb: 2,
+                        borderBottom: '2px solid #000',
+                        width: '200px',
+                        margin: '1rem auto 2rem'
+                    }}>Our Packages</Typography>
+                <PackagesList packagesList={packagesList} />
             </Container>
         </section>
     )

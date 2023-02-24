@@ -8,18 +8,16 @@ import { setLoading } from "./uiActions";
 
 export const getAllPackages = () => async (dispatch: any) => {
   try {
-    const { data } = await api.packagesAPI.getAllPackages;
+    const { data } = await api.packagesAPI.getAllPackages();
 
-    console.log({ data });
-
-    // dispatch(setLoading(true));
+    dispatch(setLoading(true));
 
     dispatch({
       type: actionTypes.GET_ALL_PACKAGES,
       payload: data.data,
     });
 
-    // dispatch(setLoading(false));
+    dispatch(setLoading(false));
   } catch (error) {
     dispatch({
       type: actionTypes.SOME_ERROR_OCCURED,

@@ -24,7 +24,7 @@ const uiReducer = (state = initialState, action: any) => {
       };
     case actionTypes.SOME_ERROR_OCCURED:
       useToast("error", action.message as string);
-      break;
+      return { ...state };
     default:
       return {
         ...state,

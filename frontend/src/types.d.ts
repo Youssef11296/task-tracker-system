@@ -23,10 +23,10 @@ interface Task {
   createdAt?: string;
 }
 
-interface Package{
-  packagesName: string;
+interface Package {
+  packageName: string;
   packageDescription: string;
-  packagesPrice: number
+  packagePrice: number;
 }
 
 interface VerificationRequest {
