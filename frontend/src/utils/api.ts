@@ -81,3 +81,10 @@ export const packagesAPI = {
     );
   },
 };
+
+export const adminAPI = {
+  getAllUsers: (token: User["token"]) =>
+    axios.get(`${baseUrlv1}/admin/users`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+};

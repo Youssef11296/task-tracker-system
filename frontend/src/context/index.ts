@@ -1,16 +1,20 @@
 import { combineReducers, createStore } from "redux";
 import { applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
-import authReducer from "./reducers/authReducer";
-import tasksReducer from "./reducers/tasksReducer";
-import verificationsReducer from "./reducers/verificationsReducer";
-import uiReducer from "./reducers/uiReducer";
-import packagesReducer from "./reducers/packagesReducer";
+import {
+  authReducer,
+  tasksReducer,
+  packagesReducer,
+  verificationsReducer,
+  uiReducer,
+  usersReducer,
+} from "./reducers";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   tasks: tasksReducer,
   packages: packagesReducer,
+  users: usersReducer,
   verifications: verificationsReducer,
   ui: uiReducer,
 });
