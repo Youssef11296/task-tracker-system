@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Avatar, Button, IconButton, Popover, Typography } from "@mui/material";
 
 const MainHeader = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   const [openConfirmModal, setOpenConfirmModal] = useState<boolean>(false);
   const onOpenConfirmModal = () => {
@@ -44,6 +44,11 @@ const MainHeader = () => {
             <li style={{ marginRight: '1rem' }}>
               <Link to="/packages">Packages</Link>
             </li>
+            {
+              user?.role?.roleName === "ADMIN" ? <li style={{ marginRight: '1rem' }}>
+                <Link to="/admin/users">Users</Link>
+              </li> : null
+            }
             <li style={{ marginRight: '1rem' }}>
               <Link to="/about">About</Link>
             </li>

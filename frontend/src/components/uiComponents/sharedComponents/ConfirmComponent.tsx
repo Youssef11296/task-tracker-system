@@ -2,6 +2,7 @@
 import { useAuth } from "../../../hooks/useAuth";
 import { useTasks } from "../../../hooks/useTasks";
 import { useToast } from "../../../hooks/useToast";
+import { useNavigate } from 'react-router-dom'
 // mui & styles
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import { MODAL_STYLE } from "../../../utils/constants";
@@ -24,6 +25,8 @@ const ConfirmComponent: React.FC<Props> = ({
   const { logoutHandler } = useAuth();
   const { deleteTaskHandler } = useTasks();
 
+  const navigate = useNavigate()
+
   const tasksState = useSelector((state: RootState) => state.tasks);
 
   const onClickYes = () => {
@@ -35,6 +38,7 @@ const ConfirmComponent: React.FC<Props> = ({
         break;
       case "LOGOUT":
         logoutHandler();
+        navigate('/')
         break;
       default:
         return 0;
