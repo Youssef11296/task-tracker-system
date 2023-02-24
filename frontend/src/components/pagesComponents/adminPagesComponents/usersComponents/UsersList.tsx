@@ -34,8 +34,8 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell>User No.</StyledTableCell>
-                                <StyledTableCell>Username</StyledTableCell>
+                                <StyledTableCell>No.</StyledTableCell>
+                                <StyledTableCell sx={{ textAlign: 'center' }}>Username</StyledTableCell>
                                 <StyledTableCell align="center">Email</StyledTableCell>
                                 <StyledTableCell align="center">Mobile</StyledTableCell>
                                 <StyledTableCell align="center">Role Name</StyledTableCell>

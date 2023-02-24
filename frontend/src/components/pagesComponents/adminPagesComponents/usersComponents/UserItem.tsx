@@ -9,8 +9,8 @@ interface Props {
 const UserItem: React.FC<Props> = ({ user, userNumber }) => {
     return (
         <StyledTableRow>
-            <StyledTableCell>{userNumber}.</StyledTableCell>
-            <StyledTableCell>{user?.username}</StyledTableCell>
+            <StyledTableCell sx={{ textAlign: 'left' }}>{userNumber}.</StyledTableCell>
+            <StyledTableCell sx={{ textAlign: 'center' }}>{user?.username}</StyledTableCell>
             <StyledTableCell sx={{ textAlign: 'center' }}>{user?.email}</StyledTableCell>
             <StyledTableCell sx={{ textAlign: 'center' }}>{user?.mobile ?? "--"}</StyledTableCell>
             <StyledTableCell sx={{ textAlign: 'center' }}>{user?.role?.roleName ?? "--"}</StyledTableCell>
