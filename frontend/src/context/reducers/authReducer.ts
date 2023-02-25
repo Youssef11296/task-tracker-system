@@ -3,7 +3,7 @@ import { useToast } from "../../hooks/useToast";
 import Cookies from "universal-cookie";
 import * as actionTypes from "../actions/actionTypes";
 // contants
-import { VAR_NAME } from "../../utils/constants";
+import { VAR_NAME } from "../../services/constants";
 
 const cookies = new Cookies();
 

@@ -1,9 +1,10 @@
 // action types
 import * as actionTypes from "../actionTypes";
 // api
-import * as api from "../../../utils/api";
+import * as api from "../../../services/api";
 import { setLoading } from "../uiActions";
 
+//* Admin Users Actions
 const getAllUsers = (token: User["token"]) => async (dispatch: any) => {
   try {
     const { data } = await api.adminAPI.getAllUsers(token);
@@ -26,4 +27,27 @@ const getAllUsers = (token: User["token"]) => async (dispatch: any) => {
   }
 };
 
-export { getAllUsers };
+//* Admin Roles Actions
+const getAllRoles = (token: User["token"]) => async (dispatch: any) => {
+  try {
+    const { data } = await api.adminAPI.getAllRoles(token);
+
+    dispatch(setLoading(true));
+
+    dispatch({
+      type: actionTypes.GET_ALL_ROLES,
+      payload: {
+        data: data.data,
+      },
+    });
+
+    dispatch(setLoading(false));
+  } catch (error) {
+    dispatch({
+      type: actionTypes.SOME_ERROR_OCCURED,
+      message: error,
+    });
+  }
+};
+
+export { getAllUsers, getAllRoles };

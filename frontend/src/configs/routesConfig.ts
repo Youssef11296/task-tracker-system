@@ -5,6 +5,7 @@ import NotFoundPage from "../pages/NotFoundPage";
 import PackagesPage from "../pages/PackagesPage";
 import SettingsPage from "../pages/SettingsPage";
 import TasksPage from "../pages/TasksPage";
+import RolesPage from "../pages/admin/RolesPage";
 import UsersPage from "../pages/admin/UsersPage";
 
 export const ROUTES = [
@@ -31,6 +32,10 @@ export const ROUTES = [
   {
     path: "/admin/users",
     Page: UsersPage,
+  },
+  {
+    path: "/admin/roles",
+    Page: RolesPage,
   },
   {
     path: "*",

@@ -5,7 +5,7 @@ import { useToast } from "../../../hooks/useToast";
 import { useNavigate } from 'react-router-dom'
 // mui & styles
 import { Box, Button, Grid, Modal, Typography } from "@mui/material";
-import { MODAL_STYLE } from "../../../utils/constants";
+import { MODAL_STYLE } from "../../../services/constants";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../context";
 

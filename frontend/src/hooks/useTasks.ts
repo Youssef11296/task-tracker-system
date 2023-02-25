@@ -4,7 +4,7 @@ import Cookies from "universal-cookie";
 import { AppDispatch, RootState } from "../context";
 import { useDispatch, useSelector } from "react-redux";
 // constants
-import { VAR_NAME } from "../utils/constants";
+import { VAR_NAME } from "../services/constants";
 // redux
 import {
   createTask,

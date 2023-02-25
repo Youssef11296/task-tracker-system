@@ -3,6 +3,16 @@ import Role from '../../models/roleModel.js';
 // modules
 import asyncHandler from 'express-async-handler';
 
+//* GET ALL ROLES
+const getAllRoles = asyncHandler (async (req, res) => {
+  try {
+    const roles = await Role.find ({});
+    res.status (200).json ({success: true, data: roles});
+  } catch (error) {
+    res.status (400).json ({success: false, message: error.message});
+  }
+});
+
 //* CREATE ROLE
 const createRole = asyncHandler (async (req, res) => {
   try {
@@ -68,4 +78,4 @@ const deleteRole = asyncHandler (async (req, res) => {
 });
 
 //* EXPORTS
-export {createRole, deleteRole, updateRole};
+export {getAllRoles, createRole, deleteRole, updateRole};

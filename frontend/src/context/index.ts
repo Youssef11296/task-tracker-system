@@ -9,12 +9,14 @@ import {
   uiReducer,
   usersReducer,
 } from "./reducers";
+import rolesReducer from "./reducers/adminReducer/rolesReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
   tasks: tasksReducer,
   packages: packagesReducer,
   users: usersReducer,
+  roles: rolesReducer,
   verifications: verificationsReducer,
   ui: uiReducer,
 });

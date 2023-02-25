@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../context";
 import { getMe, logoutUser } from "../context/actions/authActions";
 import Cookies from "universal-cookie";
-import { VAR_NAME } from "../utils/constants";
+import { VAR_NAME } from "../services/constants";
 
 export const useAuth = () => {
   const { isAuthenticated, user }: { isAuthenticated: boolean, user: User | null } = useSelector(

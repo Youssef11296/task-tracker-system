@@ -30,6 +30,7 @@ export const CHOOSE_PACKAGE = "CHOOSE_PACKAGE";
 
 //* Admin Actions
 export const GET_ALL_USERS = "GET_ALL_USERS";
+export const GET_ALL_ROLES = "GET_ALL_ROLES";
 
 //* UI Action Types
 export const SET_LOADING = "SET_LOADING";

@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 
 const baseUrl = "http://localhost:4000/api";
 const baseUrlv1 = `${baseUrl}/v1`;
+const adminBaseUrlV1 = `${baseUrlv1}/admin`;
 
 export const authAPI = {
   registerUser: (
@@ -84,7 +85,11 @@ export const packagesAPI = {
 
 export const adminAPI = {
   getAllUsers: (token: User["token"]) =>
-    axios.get(`${baseUrlv1}/admin/users`, {
+    axios.get(`${adminBaseUrlV1}/users`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
+  getAllRoles: (token: User["token"]) =>
+    axios.get(`${adminBaseUrlV1}/roles`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
 };

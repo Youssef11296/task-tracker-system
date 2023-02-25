@@ -10,17 +10,15 @@ import {
 } from '@mui/material'
 import React from 'react'
 import { StyledTableCell } from '../../../uiComponents/muiComponents/TableComponents'
-import UserItem from './UserItem'
+import RoleItem from './RoleItem'
 import { useSelector } from 'react-redux'
 import { useAuth } from '../../../../hooks/useAuth'
 
 interface Props {
-    usersList: User[]
+    rolesList: Role[]
 }
 
-const UsersList: React.FC<Props> = ({ usersList }) => {
-    const { user } = useAuth()
-
+const RolesList: React.FC<Props> = ({ rolesList }) => {
     return (
         <>
             <Container>
@@ -32,31 +30,26 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
                         margin: '1rem auto 2rem'
                     }}
                 >
-                    Our Users List
+                    Our Roles List
                 </Typography>
                 <TableContainer component={Paper} sx={{ overflowX: 'visible' }}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>No.</StyledTableCell>
-                                <StyledTableCell sx={{ textAlign: 'center' }}>Username</StyledTableCell>
-                                <StyledTableCell align="center">Email</StyledTableCell>
-                                <StyledTableCell align="center">Mobile</StyledTableCell>
-                                <StyledTableCell align="center">Role Name</StyledTableCell>
-                                <StyledTableCell align="center">Package Name</StyledTableCell>
-                                <StyledTableCell align="right">Verification</StyledTableCell>
+                                <StyledTableCell sx={{ textAlign: 'center' }}>Role Name</StyledTableCell>
+                                <StyledTableCell align="center">Role Desription</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {
-                                usersList?.length === 0 ? <Typography>No roles.</Typography> : null
+                                rolesList?.length === 0 ? <Typography>No roles.</Typography> : null
                             }
 
                             {
-                                usersList?.filter((userData) => userData?.username !== user?.username)
-                                    .map((userData: User, index: number) => (
-                                        <UserItem userData={userData} userNumber={index + 1} key={userData?._id} />
-                                    ))
+                                rolesList?.map((roleData: Role, index: number) => (
+                                    <RoleItem roleData={roleData} roleNumber={index + 1} key={roleData?._id} />
+                                ))
                             }
                         </TableBody>
                     </Table>
@@ -66,4 +59,4 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
     )
 }
 
-export default UsersList
+export default RolesList

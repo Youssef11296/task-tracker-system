@@ -5,7 +5,7 @@ import { registerUser } from "../../../context/actions/authActions";
 import { AppDispatch } from "../../../context";
 import { ErrorMessage } from "@hookform/error-message";
 import { Box, Button, Modal } from "@mui/material";
-import { MODAL_STYLE } from "../../../utils/constants";
+import { MODAL_STYLE } from "../../../services/constants";
 import { useAuthForms } from "../../../hooks/useAuthForms";
 
 interface Props {

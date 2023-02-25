@@ -1,6 +1,6 @@
 import { Box, Button, FormControl, Input, Modal, Typography } from '@mui/material'
 import React from 'react'
-import { MODAL_STYLE } from '../../../utils/constants';
+import { MODAL_STYLE } from '../../../services/constants';
 import { useForm } from 'react-hook-form'
 import { AppDispatch } from '../../../context';
 import { useDispatch } from 'react-redux';

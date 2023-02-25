@@ -3,7 +3,7 @@ import { AppDispatch, RootState } from "../../context";
 import { useAuth } from "../useAuth";
 import { getAllUsers } from "../../context/actions/adminActions/usersActions";
 
-const useUsers = () => {
+const useRoles = () => {
   const { usersList } = useSelector((state: RootState) => state.users);
 
   const { authToken } = useAuth();
@@ -18,4 +18,4 @@ const useUsers = () => {
   };
 };
 
-export default useUsers;
+export default useRoles;

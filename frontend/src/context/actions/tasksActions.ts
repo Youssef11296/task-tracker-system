@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import * as api from "../../utils/api";
+import * as api from "../../services/api";
 import { useToast } from "../../hooks/useToast";
 import { setLoading } from "./uiActions";
 

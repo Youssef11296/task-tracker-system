@@ -1,5 +1,5 @@
 import * as actionTypes from "./actionTypes";
-import * as api from "../../utils/api";
+import * as api from "../../services/api";
 
 export const sendVerificationRequest =
   (token: User["token"], nationalIdNum: number, nationalIdImg: File) =>

@@ -1,5 +1,5 @@
 import { Resolver } from "react-hook-form";
-import { USERDATA_REGEX } from "../utils/regex";
+import { USERDATA_REGEX } from "../services/regex";
 
 const useAuthForms = () => {
   const registerFormResolver: Resolver<RegisterFormValues> = async (values) => {

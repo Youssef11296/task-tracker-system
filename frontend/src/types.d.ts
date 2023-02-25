@@ -37,6 +37,12 @@ interface Package {
   packagePrice: number;
 }
 
+interface Role {
+  _id?: string;
+  roleName: string;
+  roleDescription: string;
+}
+
 interface VerificationRequest {
   _id?: string;
   userId: string;
