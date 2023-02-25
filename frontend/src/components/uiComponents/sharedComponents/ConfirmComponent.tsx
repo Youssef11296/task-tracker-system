@@ -8,6 +8,7 @@ import { Box, Button, Grid, Modal, Typography } from "@mui/material";
 import { MODAL_STYLE } from "../../../services/constants";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../context";
+import useRoles from "../../../hooks/adminHooks/useRoles";
 
 interface Props {
   open: boolean;
@@ -24,10 +25,12 @@ const ConfirmComponent: React.FC<Props> = ({
 }) => {
   const { logoutHandler } = useAuth();
   const { deleteTaskHandler } = useTasks();
+  const { deleteRoleHandler, selectRoleHandler } = useRoles()
 
   const navigate = useNavigate()
 
   const tasksState = useSelector((state: RootState) => state.tasks);
+  const { selectedRole } = useSelector((state: RootState) => state.roles)
 
   const onClickYes = () => {
     switch (purpose) {
@@ -35,6 +38,10 @@ const ConfirmComponent: React.FC<Props> = ({
         tasksState?.selectedTask
           ? deleteTaskHandler(tasksState?.selectedTask?._id)
           : useToast("error", "Task ID is required.");
+        break;
+      case "DELETE_ROLE":
+        deleteRoleHandler(selectedRole?._id)
+        selectRoleHandler(null)
         break;
       case "LOGOUT":
         logoutHandler();

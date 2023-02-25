@@ -49,7 +49,7 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
                         </TableHead>
                         <TableBody>
                             {
-                                usersList?.length === 0 ? <Typography>No roles.</Typography> : null
+                                usersList?.length === 0 ? <Typography>No users.</Typography> : null
                             }
 
                             {

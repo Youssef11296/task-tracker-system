@@ -66,4 +66,4 @@ type UserSettingsValues = {
   email: string;
 };
 
-type CONFIRMATION_PURPOSE = "DELETE_TASK" | "LOGOUT";
+type CONFIRMATION_PURPOSE = "DELETE_TASK" | "LOGOUT" | "DELETE_ROLE";

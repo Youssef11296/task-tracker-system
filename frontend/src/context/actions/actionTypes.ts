@@ -31,6 +31,9 @@ export const CHOOSE_PACKAGE = "CHOOSE_PACKAGE";
 //* Admin Actions
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_ALL_ROLES = "GET_ALL_ROLES";
+export const SELECT_ROLE = "SELECT_ROLE";
+export const EDIT_ROLE = "EDIT_ROLE";
+export const DELETE_ROLE = "DELETE _ROLE";
 
 //* UI Action Types
 export const SET_LOADING = "SET_LOADING";

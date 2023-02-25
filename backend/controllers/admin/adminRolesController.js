@@ -66,14 +66,11 @@ const deleteRole = asyncHandler (async (req, res) => {
   try {
     const {roleId} = req.params;
     // checking if the role exist
-    const role = await Role.findOne ({_id: roleId});
-    if (!role) throw new Error ('PLan not exists. It may be deleted');
-    // deleteing the role
-    await role.delete ();
+    await Role.findByIdAndDelete (roleId);
     // response
     res.status (201).json ({success: true, message: 'Successfully deleted!'});
   } catch (error) {
-    res.status (400).json ({success: false, messgage: error.message});
+    res.status (404).json ({success: false, messgage: 'Role does not exist.'});
   }
 });
 

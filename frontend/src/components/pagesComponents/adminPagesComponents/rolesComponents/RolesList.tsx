@@ -39,6 +39,7 @@ const RolesList: React.FC<Props> = ({ rolesList }) => {
                                 <StyledTableCell>No.</StyledTableCell>
                                 <StyledTableCell sx={{ textAlign: 'center' }}>Role Name</StyledTableCell>
                                 <StyledTableCell align="center">Role Desription</StyledTableCell>
+                                <StyledTableCell align="center">Actions</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
