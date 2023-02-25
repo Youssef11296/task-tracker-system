@@ -7,6 +7,7 @@ import {
   getAllRoles,
   selectRole,
 } from "../../context/actions/adminActions/rolesActions";
+import { useState } from "react";
 
 const useUsers = () => {
   const { rolesList } = useSelector((state: RootState) => state.roles);
@@ -28,12 +29,19 @@ const useUsers = () => {
   const selectRoleHandler = (role: Role | null) =>
     dispatch(selectRole(role as Role));
 
+  const [openCreateRoleForm, setOpenCreateRoleForm] = useState<boolean>(false);
+  const openCreateRoleFormHandler = () => setOpenCreateRoleForm(true);
+  const closeCreateRoleFormHandler = () => setOpenCreateRoleForm(false);
+
   return {
     rolesList,
     getAllRolesHandler,
     editRoleHandler,
     deleteRoleHandler,
     selectRoleHandler,
+    openCreateRoleForm,
+    openCreateRoleFormHandler,
+    closeCreateRoleFormHandler,
   };
 };
 

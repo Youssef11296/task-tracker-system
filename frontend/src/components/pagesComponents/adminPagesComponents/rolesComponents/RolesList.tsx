@@ -1,4 +1,5 @@
 import {
+    Button,
     Container,
     Paper,
     Table,
@@ -22,23 +23,13 @@ const RolesList: React.FC<Props> = ({ rolesList }) => {
     return (
         <>
             <Container>
-                <Typography variant="h5"
-                    sx={{
-                        textAlign: 'center', pb: 2,
-                        borderBottom: '2px solid #000',
-                        width: '200px',
-                        margin: '1rem auto 2rem'
-                    }}
-                >
-                    Our Roles List
-                </Typography>
                 <TableContainer component={Paper} sx={{ overflowX: 'visible' }}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
                             <TableRow>
                                 <StyledTableCell>No.</StyledTableCell>
                                 <StyledTableCell sx={{ textAlign: 'center' }}>Role Name</StyledTableCell>
-                                <StyledTableCell align="center">Role Desription</StyledTableCell>
+                                <StyledTableCell align="center">Role Description</StyledTableCell>
                                 <StyledTableCell align="center">Actions</StyledTableCell>
                             </TableRow>
                         </TableHead>

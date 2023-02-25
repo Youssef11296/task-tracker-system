@@ -56,6 +56,11 @@ type RegisterFormValues = {
   password: string;
 };
 
+type CreateRoleFormValues = {
+  roleName: string;
+  roleDescription: string;
+};
+
 type LoginFormValues = {
   email: string;
   password: string;
