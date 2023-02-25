@@ -40,7 +40,7 @@ const App = () => {
       <Routes>
         {
           ROUTES.map(({ path, Page }) => (
-            <Route path={path} element={<Page />} />
+            <Route key={path} path={path} element={<Page />} />
           ))
         }
       </Routes>

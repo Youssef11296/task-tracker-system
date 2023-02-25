@@ -46,7 +46,6 @@ export const createTask =
         },
       });
     } catch (error: any) {
-      console.log({ error });
       useToast("warning", error?.response?.data?.message);
     }
   };

@@ -45,9 +45,10 @@ const CreateTask: React.FC<Props> = ({ open, onClose }) => {
 
   const onSubmit = async (values: any) => {
     const { taskName, description, status } = values;
-    console.log(values)
 
-    selectedTask ? await updatTaskHandler({ ...values }, selectedTask?._id) : await createTaskHandler(taskName, description, status);
+    selectedTask ?
+      await updatTaskHandler({ ...values }, selectedTask?._id)
+      : await createTaskHandler(taskName, description, status);
 
     await getAllTasksHandler();
     dispatch(setSelectedTask(null));

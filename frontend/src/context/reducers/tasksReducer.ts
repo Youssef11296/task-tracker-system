@@ -12,7 +12,6 @@ const initialState: {
 const tasksReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.CREATE_TASK:
-      console.log(action.payload);
       useToast("success", action?.payload?.message);
 
       return {

@@ -11,7 +11,8 @@ export const TASK_SATUS = {
 export const USER_ROLE = {
   ADMIN: "ADMIN",
   USER: "USER",
-  TEAM: "TEAM",
+  TEAM_LEADER: "TEAM_LEADER",
+  TEAM_MEMBER: "TEAM_MEMBER",
 };
 
 // styles

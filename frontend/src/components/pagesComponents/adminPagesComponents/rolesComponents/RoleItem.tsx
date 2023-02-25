@@ -11,9 +11,10 @@ import { ConfirmComponent } from '../../../uiComponents/sharedComponents'
 interface Props {
     roleData: Role
     roleNumber: number
+    openCreateRoleFormHandler: () => void
 }
 
-const RoleItem: React.FC<Props> = ({ roleData, roleNumber }) => {
+const RoleItem: React.FC<Props> = ({ roleData, roleNumber, openCreateRoleFormHandler }) => {
     // const { editRoleHandler } = useRoles()
 
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
@@ -42,6 +43,12 @@ const RoleItem: React.FC<Props> = ({ roleData, roleNumber }) => {
         handleClose()
     }
 
+    const onClickEditBtn = () => {
+        selectRoleHandler(roleData)
+        openCreateRoleFormHandler()
+        handleClose()
+    }
+
     return (
         <StyledTableRow>
             <StyledTableCell sx={{ textAlign: 'left' }}>{roleNumber}.</StyledTableCell>
@@ -66,7 +73,7 @@ const RoleItem: React.FC<Props> = ({ roleData, roleNumber }) => {
                     }}
                 >
                     <Button
-                        onClick={handleClose}
+                        onClick={onClickEditBtn}
                         sx={{
                             p: 2, display: 'block',
                             textTransform: 'capitalize',

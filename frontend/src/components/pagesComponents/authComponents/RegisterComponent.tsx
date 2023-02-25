@@ -25,8 +25,6 @@ const RegisterComponent: React.FC<Props> = ({ open, onClose }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const onSubmit = (values: any) => {
-    console.log(values, errors);
-
     const { username, email, password } = values;
     dispatch(registerUser(username, email, password));
   };

@@ -12,14 +12,13 @@ import {
 import React from 'react'
 import { StyledTableCell } from '../../../uiComponents/muiComponents/TableComponents'
 import RoleItem from './RoleItem'
-import { useSelector } from 'react-redux'
-import { useAuth } from '../../../../hooks/useAuth'
 
 interface Props {
-    rolesList: Role[]
+    rolesList: Role[];
+    openCreateRoleFormHandler: () => void
 }
 
-const RolesList: React.FC<Props> = ({ rolesList }) => {
+const RolesList: React.FC<Props> = ({ rolesList, openCreateRoleFormHandler }) => {
     return (
         <>
             <Container>
@@ -40,7 +39,12 @@ const RolesList: React.FC<Props> = ({ rolesList }) => {
 
                             {
                                 rolesList?.map((roleData: Role, index: number) => (
-                                    <RoleItem roleData={roleData} roleNumber={index + 1} key={roleData?._id} />
+                                    <RoleItem
+                                        roleData={roleData}
+                                        roleNumber={index + 1}
+                                        key={roleData?._id}
+                                        openCreateRoleFormHandler={openCreateRoleFormHandler}
+                                    />
                                 ))
                             }
                         </TableBody>

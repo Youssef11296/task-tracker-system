@@ -43,7 +43,10 @@ const UsersPage = () => {
                 Our Roles List
             </Typography>
 
-            <RolesList rolesList={rolesList} />
+            {
+                rolesList?.length === 0 ? <Typography>No roles.</Typography>
+                    : <RolesList rolesList={rolesList} openCreateRoleFormHandler={openCreateRoleFormHandler} />
+            }
 
             <CreateRole open={openCreateRoleForm} onClose={closeCreateRoleFormHandler} />
         </section>

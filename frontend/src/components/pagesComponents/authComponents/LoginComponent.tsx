@@ -26,8 +26,6 @@ const LoginComponent: React.FC<Props> = ({ open, onClose }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const onSubmit = (values: any) => {
-    console.log(values);
-
     const { email, password } = values;
     dispatch(loginUser(email, password));
   };

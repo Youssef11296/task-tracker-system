@@ -3,10 +3,8 @@ import { UsersList } from '../../components/pagesComponents/adminPagesComponents
 import { useAuth } from '../../hooks/useAuth'
 import { USER_ROLE } from '../../services/constants'
 import NotFoundPage from '../NotFoundPage'
-import { useDispatch } from 'react-redux'
-import { AppDispatch } from '../../context'
-import { getAllUsers } from '../../context/actions/adminActions/usersActions'
 import useUsers from '../../hooks/adminHooks/useUsers'
+import { Typography } from '@mui/material'
 
 const UsersPage = () => {
     const { usersList, getAllUsersHandler } = useUsers()
@@ -20,7 +18,20 @@ const UsersPage = () => {
 
     else return (
         <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
-            <UsersList usersList={usersList} />
+            <Typography variant="h5"
+                sx={{
+                    textAlign: 'center', pb: 2,
+                    borderBottom: '2px solid #000',
+                    width: '200px',
+                    margin: '1rem auto 2rem'
+                }}
+            >
+                Our Users List
+            </Typography>
+            {
+                usersList?.length === 0 ? <Typography>No users.</Typography>
+                    : <UsersList usersList={usersList} />
+            }
         </section>
     )
 }

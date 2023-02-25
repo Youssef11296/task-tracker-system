@@ -12,7 +12,11 @@ const PackagesList: React.FC<Props> = ({ packagesList, choosePackageHandler }) =
         <Container>
             <Grid spacing={3} container flexDirection="row">
                 {packagesList?.map((packageItem: Package, index: number) => (
-                    <PackageItem packageItem={packageItem} choosePackageHandler={choosePackageHandler} />
+                    <PackageItem
+                        key={packageItem?._id}
+                        packageItem={packageItem}
+                        choosePackageHandler={choosePackageHandler}
+                    />
                 ))}
             </Grid>
         </Container>

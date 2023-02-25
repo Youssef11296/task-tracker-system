@@ -29,7 +29,6 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
     } = useTasks()
 
     const { openCustomModalState } = useSelector((state: RootState) => state.ui)
-    console.log({ openCustomModalState })
 
     // local states
     const [confirmationPurpose, setConfirmationPurpose] = useState<CONFIRMATION_PURPOSE>("DELETE_TASK")
@@ -40,7 +39,6 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
 
     const onClickEditBtn = (e: any) => {
         !openCustomModalState && e.stopPropagation();
-        console.log({ task });
         dispatch(setSelectedTask(task));
         onOpenCreateTaskModal();
     };

@@ -24,16 +24,6 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
     return (
         <>
             <Container>
-                <Typography variant="h5"
-                    sx={{
-                        textAlign: 'center', pb: 2,
-                        borderBottom: '2px solid #000',
-                        width: '200px',
-                        margin: '1rem auto 2rem'
-                    }}
-                >
-                    Our Users List
-                </Typography>
                 <TableContainer component={Paper} sx={{ overflowX: 'visible' }}>
                     <Table sx={{ minWidth: 700 }} aria-label="customized table">
                         <TableHead>
@@ -48,10 +38,6 @@ const UsersList: React.FC<Props> = ({ usersList }) => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {
-                                usersList?.length === 0 ? <Typography>No users.</Typography> : null
-                            }
-
                             {
                                 usersList?.filter((userData) => userData?.username !== user?.username)
                                     .map((userData: User, index: number) => (

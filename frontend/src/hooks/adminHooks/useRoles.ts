@@ -37,7 +37,11 @@ const useUsers = () => {
 
   const [openCreateRoleForm, setOpenCreateRoleForm] = useState<boolean>(false);
   const openCreateRoleFormHandler = () => setOpenCreateRoleForm(true);
-  const closeCreateRoleFormHandler = () => setOpenCreateRoleForm(false);
+
+  const closeCreateRoleFormHandler = () => {
+    selectRoleHandler(null);
+    setOpenCreateRoleForm(false);
+  };
 
   return {
     rolesList,
