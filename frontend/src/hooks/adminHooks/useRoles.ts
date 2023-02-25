@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../context";
 import { useAuth } from "../useAuth";
 import {
+  createRole,
   deleteRole,
   editRole,
   getAllRoles,
@@ -17,6 +18,11 @@ const useUsers = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const getAllRolesHandler = () => dispatch(getAllRoles(authToken));
+
+  const createRoleHandler = (role: Role) => {
+    dispatch(createRole(authToken, role));
+    getAllRolesHandler();
+  };
 
   const editRoleHandler = (roleId: Role["_id"], role: Role) =>
     dispatch(editRole(authToken, roleId, role));
@@ -36,6 +42,7 @@ const useUsers = () => {
   return {
     rolesList,
     getAllRolesHandler,
+    createRoleHandler,
     editRoleHandler,
     deleteRoleHandler,
     selectRoleHandler,

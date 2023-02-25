@@ -92,6 +92,14 @@ export const adminAPI = {
     axios.get(`${adminBaseUrlV1}/roles`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
+  createRole: (token: User["token"], role: Role) =>
+    axios.post(
+      `${adminBaseUrlV1}/roles`,
+      { ...role },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    ),
   editRole: (token: User["token"], roleId: Role["_id"], role: Role) =>
     axios.patch(
       `${adminBaseUrlV1}/roles/${roleId}`,

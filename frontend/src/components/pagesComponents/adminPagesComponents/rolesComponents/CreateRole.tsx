@@ -4,6 +4,7 @@ import useAdminForms from '../../../../hooks/adminHooks/useAdminForms'
 import { Box, Modal } from '@mui/material'
 import { ErrorMessage } from '@hookform/error-message';
 import { MODAL_STYLE } from '../../../../services/constants';
+import useRoles from '../../../../hooks/adminHooks/useRoles';
 
 interface Props {
     open: boolean;
@@ -11,11 +12,15 @@ interface Props {
 }
 
 const CreateRole: React.FC<Props> = ({ open, onClose }) => {
+    const { createRoleHandler } = useRoles()
+
     const { createRoleFormResolver } = useAdminForms()
 
     const { handleSubmit, register, formState: { errors } } = useForm<CreateRoleFormValues>({ resolver: createRoleFormResolver })
 
-    const onSubmit = (values: CreateRoleFormValues) => console.log({ values })
+    const onSubmit = (values: CreateRoleFormValues) => {
+        createRoleHandler(values)
+    }
 
     return (
         <Modal

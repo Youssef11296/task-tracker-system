@@ -36,6 +36,31 @@ const selectRole = (role: Role) => {
   };
 };
 
+//* Create Role
+const createRole =
+  (token: User["token"], role: Role) => async (dispatch: any) => {
+    try {
+      const { data } = await api.adminAPI.createRole(token, role);
+
+      dispatch(setLoading(true));
+
+      dispatch({
+        type: actionTypes.CREATE_ROLE,
+        payload: {
+          message: data.message,
+          data: data.data,
+        },
+      });
+
+      dispatch(setLoading(false));
+    } catch (error) {
+      dispatch({
+        type: actionTypes.SOME_ERROR_OCCURED,
+        message: error,
+      });
+    }
+  };
+
 //* Edit Role
 const editRole =
   (token: User["token"], roleId: Role["_id"], role: Role) =>
@@ -85,4 +110,4 @@ const deleteRole =
       });
     }
   };
-export { getAllRoles, selectRole, editRole, deleteRole };
+export { getAllRoles, selectRole, createRole, editRole, deleteRole };

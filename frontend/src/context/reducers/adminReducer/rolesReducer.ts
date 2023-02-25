@@ -18,6 +18,11 @@ const rolesReducer = (state = initialState, action: any) => {
         ...state,
         rolesList: action.payload.data,
       };
+    case actionTypes.CREATE_ROLE:
+      return {
+        ...state,
+        rolesList: [...state.rolesList, action.payload.data],
+      };
     case actionTypes.SELECT_ROLE:
       return {
         ...state,
