@@ -10,6 +10,7 @@ import {
   usersReducer,
 } from "./reducers";
 import rolesReducer from "./reducers/adminReducer/rolesReducer";
+import adminPackagesReducer from "./reducers/adminReducer/adminPackagesReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   packages: packagesReducer,
   users: usersReducer,
   roles: rolesReducer,
+  adminPackages: adminPackagesReducer,
   verifications: verificationsReducer,
   ui: uiReducer,
 });

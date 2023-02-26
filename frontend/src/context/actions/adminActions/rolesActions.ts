@@ -8,17 +8,14 @@ import { setLoading } from "../uiActions";
 //* Get All Roles
 const getAllRoles = (token: User["token"]) => async (dispatch: any) => {
   try {
+    // dispatch(setLoading(true));
     const { data } = await api.adminAPI.getAllRoles(token);
-
-    dispatch(setLoading(true));
-
     dispatch({
       type: actionTypes.GET_ALL_ROLES,
       payload: {
         data: data.data,
       },
     });
-
     dispatch(setLoading(false));
   } catch (error) {
     dispatch({
@@ -40,10 +37,8 @@ const selectRole = (role: Role) => {
 const createRole =
   (token: User["token"], role: Role) => async (dispatch: any) => {
     try {
-      const { data } = await api.adminAPI.createRole(token, role);
-
       dispatch(setLoading(true));
-
+      const { data } = await api.adminAPI.createRole(token, role);
       dispatch({
         type: actionTypes.CREATE_ROLE,
         payload: {
@@ -51,7 +46,6 @@ const createRole =
           data: data.data,
         },
       });
-
       dispatch(setLoading(false));
     } catch (error) {
       dispatch({
@@ -66,10 +60,8 @@ const editRole =
   (token: User["token"], roleId: Role["_id"], role: Role) =>
   async (dispatch: any) => {
     try {
-      const { data } = await api.adminAPI.editRole(token, roleId, role);
-
       dispatch(setLoading(true));
-
+      const { data } = await api.adminAPI.editRole(token, roleId, role);
       dispatch({
         type: actionTypes.EDIT_ROLE,
         payload: {
@@ -77,7 +69,6 @@ const editRole =
           data: data.data,
         },
       });
-
       dispatch(setLoading(false));
     } catch (error) {
       dispatch({
@@ -91,17 +82,14 @@ const editRole =
 const deleteRole =
   (token: User["token"], roleId: Role["_id"]) => async (dispatch: any) => {
     try {
-      const { data } = await api.adminAPI.deleteRole(token, roleId);
-
       dispatch(setLoading(true));
-
+      const { data } = await api.adminAPI.deleteRole(token, roleId);
       dispatch({
         type: actionTypes.DELETE_ROLE,
         payload: {
           message: data.message,
         },
       });
-
       dispatch(setLoading(false));
     } catch (error) {
       dispatch({

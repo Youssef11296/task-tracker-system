@@ -9,6 +9,8 @@ import { MODAL_STYLE } from "../../../utils/constants";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../context";
 import useRoles from "../../../hooks/adminHooks/useRoles";
+import useAdminForms from "../../../hooks/adminHooks/useAdminForms";
+import useAdminPackages from "../../../hooks/adminHooks/useAdminPackages";
 
 interface Props {
   open: boolean;
@@ -26,11 +28,13 @@ const ConfirmComponent: React.FC<Props> = ({
   const { logoutHandler } = useAuth();
   const { deleteTaskHandler } = useTasks();
   const { deleteRoleHandler, selectRoleHandler } = useRoles()
+  const { deletePackageHandler, selectPackageHandler } = useAdminPackages()
 
   const navigate = useNavigate()
 
   const tasksState = useSelector((state: RootState) => state.tasks);
   const { selectedRole } = useSelector((state: RootState) => state.roles)
+  const { selectedPackage } = useSelector((state: RootState) => state.adminPackages)
 
   const onClickYes = () => {
     switch (purpose) {
@@ -42,6 +46,10 @@ const ConfirmComponent: React.FC<Props> = ({
       case "DELETE_ROLE":
         deleteRoleHandler(selectedRole?._id)
         selectRoleHandler(null)
+        break;
+      case "DELETE_PACKAGE":
+        deletePackageHandler(selectedPackage?._id)
+        selectPackageHandler(null)
         break;
       case "LOGOUT":
         logoutHandler();

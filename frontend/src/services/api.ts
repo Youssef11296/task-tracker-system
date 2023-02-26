@@ -112,4 +112,16 @@ export const adminAPI = {
     axios.delete(`${adminBaseUrlV1}/roles/${roleId}`, {
       headers: { Authorization: `Bearer ${token}` },
     }),
+  createPackage: (token: User["token"], newPackageData: Package) =>
+    axios.post(
+      `${adminBaseUrlV1}/packages`,
+      { ...newPackageData },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    ),
+  deletePackage: (token: User["token"], packageId: Package["_id"]) =>
+    axios.delete(`${adminBaseUrlV1}/packages/${packageId}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    }),
 };

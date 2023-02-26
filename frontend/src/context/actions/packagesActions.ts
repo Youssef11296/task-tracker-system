@@ -6,18 +6,14 @@ import { setLoading } from "./uiActions";
 import { useToast } from "../../hooks/useToast";
 
 //* Packages Actions
-
-export const getAllPackages = () => async (dispatch: any) => {
+const getAllPackages = () => async (dispatch: any) => {
   try {
+    // dispatch(setLoading(true));
     const { data } = await api.packagesAPI.getAllPackages();
-
-    dispatch(setLoading(true));
-
     dispatch({
       type: actionTypes.GET_ALL_PACKAGES,
       payload: data.data,
     });
-
     dispatch(setLoading(false));
   } catch (error) {
     dispatch({
@@ -27,14 +23,12 @@ export const getAllPackages = () => async (dispatch: any) => {
   }
 };
 
-export const choosePackage =
+const choosePackage =
   (token: User["token"], packageId: Package["_id"]) =>
   async (dispatch: any) => {
     try {
+      dispatch(setLoading(true));
       const { data } = await api.packagesAPI.choosePackage(token, packageId);
-
-      // dispatch(setLoading(true));
-
       dispatch({
         type: actionTypes.CHOOSE_PACKAGE,
         payload: {
@@ -42,9 +36,10 @@ export const choosePackage =
           message: data?.message,
         },
       });
-
-      // dispatch(setLoading(false));
+      dispatch(setLoading(false));
     } catch (error) {
       useToast("error", error as string);
     }
   };
+
+export { getAllPackages, choosePackage };

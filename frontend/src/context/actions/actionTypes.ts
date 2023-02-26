@@ -35,6 +35,10 @@ export const SELECT_ROLE = "SELECT_ROLE";
 export const CREATE_ROLE = "CREATE_ROLE";
 export const EDIT_ROLE = "EDIT_ROLE";
 export const DELETE_ROLE = "DELETE _ROLE";
+export const CREATE_PACKAGE = "CREATE_PACKAGE";
+export const SELECT_PACKAGE = "SELECT_PACKAGE";
+export const EDIT_PACKAGE = "EDIT_PACKAGE";
+export const DELETE_PACKAGE = "DELETE_PACKAGE";
 
 //* UI Action Types
 export const SET_LOADING = "SET_LOADING";

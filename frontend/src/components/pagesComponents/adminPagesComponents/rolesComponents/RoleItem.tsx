@@ -17,6 +17,7 @@ interface Props {
 const RoleItem: React.FC<Props> = ({ roleData, roleNumber, openCreateRoleFormHandler }) => {
     const { getRoleNumOfUsers } = useRoles()
 
+    // popover funcs
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
     const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
