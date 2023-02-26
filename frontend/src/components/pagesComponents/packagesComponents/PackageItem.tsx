@@ -13,10 +13,10 @@ const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler }) => 
 
     return (
         <Grid item lg={4} md={4} xs={12} sm={12}>
-            <Card sx={{ width: '100%' }} style={{ background: '#000', color: '#fff' }}>
+            <Card sx={{ width: '100%' }} style={{ background: '#ddd', color: '#000' }}>
                 <CardContent>
                     {user?.package?.packageId === packageItem?._id ?
-                        <Chip label="Current" variant='outlined' sx={{ color: "#fff" }} /> : null
+                        <Chip label="Current" variant='filled' sx={{ color: "#000" }} /> : null
                     }
                     <Typography sx={{ textAlign: 'center', mb: 3 }}>{packageItem?.packageName}</Typography>
                     <Typography sx={{ textAlign: 'center' }}>{packageItem?.packageDescription}</Typography>
@@ -29,6 +29,7 @@ const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler }) => 
                             margin: 'auto', display: 'block', textTransform: 'capitalize', mt: 4
                         }}
                         onClick={() => choosePackageHandler(packageItem?._id)}
+                        disabled={user?.package?.packageId === packageItem?._id}
                     >
                         Choose Package
                     </Button>

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const RoleItem: React.FC<Props> = ({ roleData, roleNumber, openCreateRoleFormHandler }) => {
-    // const { editRoleHandler } = useRoles()
+    const { getRoleNumOfUsers } = useRoles()
 
     const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -54,6 +54,7 @@ const RoleItem: React.FC<Props> = ({ roleData, roleNumber, openCreateRoleFormHan
             <StyledTableCell sx={{ textAlign: 'left' }}>{roleNumber}.</StyledTableCell>
             <StyledTableCell sx={{ textAlign: 'center' }}>{roleData?.roleName}</StyledTableCell>
             <StyledTableCell sx={{ textAlign: 'center' }}>{roleData?.roleDescription}</StyledTableCell>
+            <StyledTableCell sx={{ textAlign: 'center' }}>{getRoleNumOfUsers(roleData?.roleName)}</StyledTableCell>
             <StyledTableCell sx={{ textAlign: 'center' }}>
                 <IconButton onClick={handleClick}>
                     <MoreVert />

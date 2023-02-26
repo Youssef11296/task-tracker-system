@@ -10,14 +10,20 @@ import {
 } from "../../context/actions/adminActions/rolesActions";
 import { useState } from "react";
 
-const useUsers = () => {
+const useRoles = () => {
   const { rolesList } = useSelector((state: RootState) => state.roles);
+  const { usersList } = useSelector((state: RootState) => state.users);
 
   const { authToken } = useAuth();
 
   const dispatch: AppDispatch = useDispatch();
 
   const getAllRolesHandler = () => dispatch(getAllRoles(authToken));
+
+  const getRoleNumOfUsers = (roleName: Role["roleName"]) => {
+    return usersList?.filter((user: User) => user?.role?.roleName === roleName)
+      .length;
+  };
 
   const createRoleHandler = (role: Role) => {
     dispatch(createRole(authToken, role));
@@ -48,6 +54,7 @@ const useUsers = () => {
   return {
     rolesList,
     getAllRolesHandler,
+    getRoleNumOfUsers,
     createRoleHandler,
     editRoleHandler,
     deleteRoleHandler,
@@ -58,4 +65,4 @@ const useUsers = () => {
   };
 };
 
-export default useUsers;
+export default useRoles;
