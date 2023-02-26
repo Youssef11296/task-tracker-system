@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";
 // constants
-import { MODAL_STYLE, TASK_SATUS } from "../../../services/constants";
+import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
 // mui
 import {
   Modal,

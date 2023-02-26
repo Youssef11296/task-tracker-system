@@ -1,6 +1,6 @@
 // hooks & modules
 import { Modal, Box, Typography, Chip } from "@mui/material";
-import { MODAL_STYLE, TASK_SATUS } from "../../../services/constants";
+import { MODAL_STYLE, TASK_SATUS } from "../../../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../context";
 import { setSelectedTask } from "../../../context/actions/tasksActions";

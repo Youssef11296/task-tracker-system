@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { UsersList } from '../../components/pagesComponents/adminPagesComponents/usersComponents'
 import { useAuth } from '../../hooks/useAuth'
-import { USER_ROLE } from '../../services/constants'
+import { USER_ROLE } from '../../utils/constants'
 import NotFoundPage from '../NotFoundPage'
 import useUsers from '../../hooks/adminHooks/useUsers'
 import { Typography } from '@mui/material'

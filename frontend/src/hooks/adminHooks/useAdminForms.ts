@@ -34,14 +34,14 @@ const useAdminForms = () => {
           }
         : values?.roleDescription?.length < 10
         ? {
-            roleName: {
+            roleDescription: {
               type: "minLength",
               message: "Role description must contain 10 letters at least.",
             },
           }
         : values?.roleDescription?.length > 300
         ? {
-            roleName: {
+            roleDescription: {
               type: "maxLength",
               message:
                 "Role description can not contain more than 300 letters.",

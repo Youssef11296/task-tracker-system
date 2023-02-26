@@ -24,8 +24,10 @@ const useUsers = () => {
     getAllRolesHandler();
   };
 
-  const editRoleHandler = (roleId: Role["_id"], role: Role) =>
-    dispatch(editRole(authToken, roleId, role));
+  const editRoleHandler = async (roleId: Role["_id"], role: Role) => {
+    await dispatch(editRole(authToken, roleId, role));
+    await getAllRolesHandler();
+  };
 
   const deleteRoleHandler = (roleId: Role["_id"]) => {
     dispatch(deleteRole(authToken, roleId));

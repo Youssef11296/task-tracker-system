@@ -3,7 +3,7 @@ import { useAuth } from "../../hooks/useAuth";
 import ConfirmComponent from "../../components/uiComponents/sharedComponents/ConfirmComponent";
 import { useState } from "react";
 import { Avatar, Button, IconButton, Popover, Typography } from "@mui/material";
-import { USER_ROLE } from "../../services/constants";
+import { USER_ROLE } from "../../utils/constants";
 
 const MainHeader = () => {
   const { isAuthenticated, user } = useAuth();

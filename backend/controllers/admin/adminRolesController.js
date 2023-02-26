@@ -45,16 +45,20 @@ const createRole = asyncHandler (async (req, res) => {
 const updateRole = asyncHandler (async (req, res) => {
   try {
     const {roleId} = req.params;
+    const {roleName, roleDescription} = req.body;
     // getting the role
     const role = await Role.findOne ({_id: roleId});
     if (!role) throw new Error ('Role does not exist.');
     // updating the role
-    const updatedRole = await role.update (req.body, {new: true});
+    roleName && role.$set ('roleName', roleName);
+    roleDescription && role.$set ('roleDescription', roleDescription);
+    // saving the updates
+    await role.save ();
     // response
     res.status (201).json ({
       success: true,
       message: 'Successfully updated.',
-      data: updatedRole,
+      data: role,
     });
   } catch (error) {
     res.status (400).json ({success: false, message: error.message});

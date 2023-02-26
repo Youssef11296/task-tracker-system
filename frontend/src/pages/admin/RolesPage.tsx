@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useAuth } from '../../hooks/useAuth'
-import { USER_ROLE } from '../../services/constants'
+import { USER_ROLE } from '../../utils/constants'
 import NotFoundPage from '../NotFoundPage'
 import useRoles from '../../hooks/adminHooks/useRoles'
 import RolesList from '../../components/pagesComponents/adminPagesComponents/rolesComponents/RolesList'

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import useAdminForms from '../../../../hooks/adminHooks/useAdminForms'
 import { Box, Button, Grid, Modal, Typography } from '@mui/material'
 import { ErrorMessage } from '@hookform/error-message';
-import { MODAL_STYLE } from '../../../../services/constants';
+import { MODAL_STYLE } from '../../../../utils/constants';
 import useRoles from '../../../../hooks/adminHooks/useRoles';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../context';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 const CreateRole: React.FC<Props> = ({ open, onClose }) => {
-    const { createRoleHandler } = useRoles()
+    const { createRoleHandler, editRoleHandler } = useRoles()
 
     const selectedRole = useSelector((state: RootState) => state?.roles?.selectedRole)
 
@@ -30,7 +30,7 @@ const CreateRole: React.FC<Props> = ({ open, onClose }) => {
         })
 
     const onSubmit = (values: CreateRoleFormValues) => {
-        selectedRole ? console.log("EDIT ROLE!") : createRoleHandler(values)
+        selectedRole ? editRoleHandler(selectedRole?._id, values) : createRoleHandler(values)
         reset()
         onClose()
     }
