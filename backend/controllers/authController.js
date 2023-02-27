@@ -50,7 +50,6 @@ const loginUser = asyncHandler (async (req, res) => {
       throw new Error ('Both email and password are required.');
 
     const user = await User.findOne ({email});
-    console.log ({user});
     if (!user) throw new Error ('User does not exist.');
 
     if (!await bcrypt.compare (password, user.password))

@@ -14,6 +14,7 @@ import adminVerificationsRoute from './routes/admin/adminVerificationsRoute.js';
 import adminPlansRoute from './routes/admin/adminPackagesRoute.js';
 import adminRolesRoute from './routes/admin/adminRolesRoute.js';
 import adminUsersRoute from './routes/admin/adminUsersRoute.js';
+import adminTeamsRoute from './routes/admin/adminTeamsRoute.js';
 
 // using dotenv config
 config ();
@@ -38,6 +39,7 @@ app.use ('/api/v1/packages', plansRoute);
 app.use ('/api/v1/admin/packages', adminPlansRoute);
 app.use ('/api/v1/admin/roles', adminRolesRoute);
 app.use ('/api/v1/admin/users', adminUsersRoute);
+app.use ('/api/v1/admin/teams', adminTeamsRoute);
 app.use ('/api/v1/admin/verifications', adminVerificationsRoute);
 
 // listening port
