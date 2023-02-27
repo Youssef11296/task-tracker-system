@@ -61,6 +61,12 @@ type CreateRoleFormValues = {
   roleDescription: string;
 };
 
+type CreatePackageFormValues = {
+  packageName: string;
+  packageDescription: string;
+  packagePrice: number;
+};
+
 type LoginFormValues = {
   email: string;
   password: string;

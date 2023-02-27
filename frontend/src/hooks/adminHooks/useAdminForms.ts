@@ -51,7 +51,24 @@ const useAdminForms = () => {
     };
   };
 
-  return { createRoleFormResolver };
+  const createPackageFormResolver: Resolver<CreatePackageFormValues> = (
+    values
+  ) => {
+    const { packageName, packageDescription, packagePrice } = values;
+    return {
+      values: packageName && packageDescription && packagePrice ? values : {},
+      errors: !packageName
+        ? {
+            packageName: {
+              type: "required",
+              message: "Package name is required.",
+            },
+          }
+        : {},
+    };
+  };
+
+  return { createRoleFormResolver, createPackageFormResolver };
 };
 
 export default useAdminForms;

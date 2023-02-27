@@ -2,11 +2,18 @@
 import { useEffect } from 'react'
 import usePackages from '../hooks/usePackages'
 // mui
-import { Container, Typography } from '@mui/material'
-import PackagesList from '../components/pagesComponents/packagesComponents/PackagesList'
+import { Button, Container, Typography } from '@mui/material'
+import { CreatePackage, PackagesList } from '../components/pagesComponents/packagesComponents'
 
 const PackagesPage = () => {
-    const { packagesList, getAllPackagesHandler, choosePackageHandler } = usePackages()
+    const {
+        packagesList,
+        getAllPackagesHandler,
+        choosePackageHandler,
+        openCreatePackage,
+        openCreatePackageHandler,
+        closeCreatePackageHandler
+    } = usePackages()
 
     useEffect(() => {
         getAllPackagesHandler()
@@ -15,6 +22,12 @@ const PackagesPage = () => {
     return (
         <section style={{ padding: '1rem 2rem', flex: 1, background: '#ecf0f1' }}>
             <Container>
+                <Button
+                    variant="outlined"
+                    onClick={openCreatePackageHandler}
+                    sx={{ textTransform: "capitalize" }}
+                >
+                    Create Package</Button>
                 <Typography
                     variant="h5"
                     sx={{
@@ -27,6 +40,10 @@ const PackagesPage = () => {
                     Our Packages
                 </Typography>
                 <PackagesList packagesList={packagesList} choosePackageHandler={choosePackageHandler} />
+                <CreatePackage
+                    open={openCreatePackage}
+                    onClose={closeCreatePackageHandler}
+                />
             </Container>
         </section>
     )
