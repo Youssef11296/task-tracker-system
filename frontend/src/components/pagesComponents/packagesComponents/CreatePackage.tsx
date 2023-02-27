@@ -1,6 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import useAdminForms from '../../../hooks/adminHooks/useAdminForms'
+import useAdminPackages from '../../../hooks/adminHooks/useAdminPackages'
 import { Box, Button, Grid, Modal, Typography } from '@mui/material'
 import { MODAL_STYLE } from '../../../utils/constants';
 import { ErrorMessage } from '@hookform/error-message';
@@ -12,13 +13,15 @@ interface Props {
 
 const CreatePackage: React.FC<Props> = ({ open, onClose }) => {
     const { createPackageFormResolver } = useAdminForms()
+    const { createPackageHandler } = useAdminPackages()
 
     const { handleSubmit, register, reset, formState: { errors } } =
         useForm<CreatePackageFormValues>({ resolver: createPackageFormResolver })
 
     const onSubmit = (values: CreatePackageFormValues) => {
-        console.log(values)
+        createPackageHandler({ ...values })
         reset()
+        onClose()
     }
 
     return (

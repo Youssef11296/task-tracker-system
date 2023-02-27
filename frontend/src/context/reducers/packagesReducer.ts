@@ -15,7 +15,7 @@ const packagesReducer = (state = initialState, action: any) => {
     case actionTypes.GET_ALL_PACKAGES:
       return {
         ...state,
-        packagesList: action.payload,
+        packagesList: action.payload.data,
       };
     case actionTypes.CHOOSE_PACKAGE:
       useToast("success", action.payload.message);

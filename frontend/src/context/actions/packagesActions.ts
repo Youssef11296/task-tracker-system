@@ -8,12 +8,18 @@ import { useToast } from "../../hooks/useToast";
 //* Packages Actions
 const getAllPackages = () => async (dispatch: any) => {
   try {
-    // dispatch(setLoading(true));
     const { data } = await api.packagesAPI.getAllPackages();
-    dispatch({
-      type: actionTypes.GET_ALL_PACKAGES,
-      payload: data.data,
-    });
+    if (!data) {
+      dispatch(setLoading(true));
+    }
+    if (data) {
+      dispatch({
+        type: actionTypes.GET_ALL_PACKAGES,
+        payload: {
+          data: data.data,
+        },
+      });
+    }
     dispatch(setLoading(false));
   } catch (error) {
     dispatch({
@@ -27,7 +33,7 @@ const choosePackage =
   (token: User["token"], packageId: Package["_id"]) =>
   async (dispatch: any) => {
     try {
-      dispatch(setLoading(true));
+      // dispatch(setLoading(true));
       const { data } = await api.packagesAPI.choosePackage(token, packageId);
       dispatch({
         type: actionTypes.CHOOSE_PACKAGE,
@@ -36,7 +42,7 @@ const choosePackage =
           message: data?.message,
         },
       });
-      dispatch(setLoading(false));
+      // dispatch(setLoading(false));
     } catch (error) {
       useToast("error", error as string);
     }
