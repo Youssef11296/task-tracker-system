@@ -16,10 +16,7 @@ const adminPackagesReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.CREATE_PACKAGE:
       useToast("success", action.payload.message);
-      return {
-        ...state,
-        packagesList: action.payload.data,
-      };
+      break;
     case actionTypes.SELECT_PACKAGE:
       return {
         ...state,

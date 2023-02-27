@@ -19,7 +19,7 @@ const packagesReducer = (state = initialState, action: any) => {
       };
     case actionTypes.CHOOSE_PACKAGE:
       useToast("success", action.payload.message);
-      return { ...state };
+      break;
     default:
       return {
         ...state,

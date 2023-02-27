@@ -42,7 +42,7 @@ const PackagesPage = () => {
                         textAlign: 'center', pb: 2,
                         borderBottom: '2px solid #000',
                         width: '200px',
-                        margin: '1rem auto 2rem'
+                        margin: '1rem auto 4rem'
                     }}
                 >
                     Our Packages

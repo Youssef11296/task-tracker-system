@@ -53,7 +53,8 @@ const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler, openC
         <Grid item lg={4} md={4} xs={12} sm={12}>
             <Card sx={{ width: '100%' }} style={{
                 background: '#ddd', color: '#000',
-                boxShadow: user?.package?.packageId === packageItem?._id ? '0 4px 8px rgba(0,0,0,.2)' : ''
+                transform: user?.package?.packageId === packageItem?._id ? 'translate(0, -20px)' : '',
+                boxShadow: user?.package?.packageId === packageItem?._id ? '0 4px 8px rgba(0,0,0,.2)' : '',
             }}>
                 <CardContent>
                     <Grid container flexDirection="row" justifyContent="space-between" alignItems="center">

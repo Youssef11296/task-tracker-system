@@ -33,7 +33,7 @@ const choosePackage =
   (token: User["token"], packageId: Package["_id"]) =>
   async (dispatch: any) => {
     try {
-      // dispatch(setLoading(true));
+      dispatch(setLoading(true));
       const { data } = await api.packagesAPI.choosePackage(token, packageId);
       dispatch({
         type: actionTypes.CHOOSE_PACKAGE,
@@ -42,8 +42,7 @@ const choosePackage =
           message: data?.message,
         },
       });
-      console.log("hereeee");
-      // dispatch(setLoading(false));
+      dispatch(setLoading(false));
     } catch (error) {
       useToast("error", error as string);
     }
