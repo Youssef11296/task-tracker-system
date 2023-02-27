@@ -6,6 +6,7 @@ import {
 } from "../context/actions/packagesActions";
 import { useAuth } from "./useAuth";
 import { useState } from "react";
+import useAdminPackages from "./adminHooks/useAdminPackages";
 
 const usePackages = () => {
   const { packagesList } = useSelector((state: RootState) => state.packages);
@@ -22,17 +23,10 @@ const usePackages = () => {
     await dispatch(getMeHandler());
   };
 
-  const [openCreatePackage, setOpenCreatePackage] = useState<boolean>(false);
-  const openCreatePackageHandler = () => setOpenCreatePackage(true);
-  const closeCreatePackageHandler = () => setOpenCreatePackage(false);
-
   return {
     packagesList,
     getAllPackagesHandler,
     choosePackageHandler,
-    openCreatePackage,
-    openCreatePackageHandler,
-    closeCreatePackageHandler,
   };
 };
 

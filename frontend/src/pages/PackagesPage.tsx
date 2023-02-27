@@ -4,16 +4,20 @@ import usePackages from '../hooks/usePackages'
 // mui
 import { Button, Container, Typography } from '@mui/material'
 import { CreatePackage, PackagesList } from '../components/pagesComponents/packagesComponents'
+import useAdminPackages from '../hooks/adminHooks/useAdminPackages'
 
 const PackagesPage = () => {
     const {
         packagesList,
         getAllPackagesHandler,
         choosePackageHandler,
+    } = usePackages()
+
+    const {
         openCreatePackage,
         openCreatePackageHandler,
         closeCreatePackageHandler
-    } = usePackages()
+    } = useAdminPackages()
 
     useEffect(() => {
         getAllPackagesHandler()
@@ -39,7 +43,11 @@ const PackagesPage = () => {
                 >
                     Our Packages
                 </Typography>
-                <PackagesList packagesList={packagesList} choosePackageHandler={choosePackageHandler} />
+                <PackagesList
+                    packagesList={packagesList}
+                    choosePackageHandler={choosePackageHandler}
+                    openCreatePackageHandler={openCreatePackageHandler}
+                />
                 <CreatePackage
                     open={openCreatePackage}
                     onClose={closeCreatePackageHandler}

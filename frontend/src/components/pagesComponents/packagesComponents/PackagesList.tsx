@@ -5,9 +5,10 @@ import PackageItem from './PackageItem'
 interface Props {
     packagesList: Package[]
     choosePackageHandler: (packageId: Package["_id"]) => Promise<void>
+    openCreatePackageHandler: () => void
 }
 
-const PackagesList: React.FC<Props> = ({ packagesList, choosePackageHandler }) => {
+const PackagesList: React.FC<Props> = ({ packagesList, choosePackageHandler, openCreatePackageHandler }) => {
     return (
         <Container>
             <Grid spacing={3} container flexDirection="row">
@@ -16,6 +17,7 @@ const PackagesList: React.FC<Props> = ({ packagesList, choosePackageHandler }) =
                         key={packageItem?._id}
                         packageItem={packageItem}
                         choosePackageHandler={choosePackageHandler}
+                        openCreatePackageHandler={openCreatePackageHandler}
                     />
                 ))}
             </Grid>

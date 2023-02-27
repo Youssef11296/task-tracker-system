@@ -5,6 +5,8 @@ import useAdminPackages from '../../../hooks/adminHooks/useAdminPackages'
 import { Box, Button, Grid, Modal, Typography } from '@mui/material'
 import { MODAL_STYLE } from '../../../utils/constants';
 import { ErrorMessage } from '@hookform/error-message';
+import { useSelector } from 'react-redux'
+import { RootState } from '../../../context'
 
 interface Props {
     open: boolean;
@@ -14,9 +16,17 @@ interface Props {
 const CreatePackage: React.FC<Props> = ({ open, onClose }) => {
     const { createPackageFormResolver } = useAdminForms()
     const { createPackageHandler } = useAdminPackages()
+    const { selectedPackage } = useSelector((state: RootState) => state.adminPackages)
 
     const { handleSubmit, register, reset, formState: { errors } } =
-        useForm<CreatePackageFormValues>({ resolver: createPackageFormResolver })
+        useForm<CreatePackageFormValues>({
+            resolver: createPackageFormResolver,
+            defaultValues: {
+                packageName: selectedPackage ? selectedPackage?.packageName : '',
+                packageDescription: selectedPackage ? selectedPackage?.packageDescription : '',
+                packagePrice: selectedPackage ? selectedPackage?.packagePrice : ''
+            }
+        })
 
     const onSubmit = (values: CreatePackageFormValues) => {
         createPackageHandler({ ...values })

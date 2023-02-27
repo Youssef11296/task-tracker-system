@@ -7,10 +7,22 @@ import {
 } from "../../context/actions/adminActions/adminPackagesActions";
 import { useAuth } from "../useAuth";
 import usePackages from "../usePackages";
+import { useState } from "react";
 
 const useAdminPackages = () => {
   const { authToken } = useAuth();
   const { getAllPackagesHandler } = usePackages();
+  const { selectedPackage } = useSelector(
+    (state: RootState) => state.adminPackages
+  );
+
+  const [openCreatePackage, setOpenCreatePackage] = useState<boolean>(false);
+  const openCreatePackageHandler = () => setOpenCreatePackage(true);
+
+  const closeCreatePackageHandler = () => {
+    dispatch(selectPackage(null));
+    setOpenCreatePackage(false);
+  };
 
   const dispatch: AppDispatch = useDispatch();
 
@@ -32,6 +44,9 @@ const useAdminPackages = () => {
     createPackageHandler,
     selectPackageHandler,
     deletePackageHandler,
+    openCreatePackage,
+    closeCreatePackageHandler,
+    openCreatePackageHandler,
   };
 };
 

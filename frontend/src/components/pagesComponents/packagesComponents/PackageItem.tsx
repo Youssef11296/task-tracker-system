@@ -10,9 +10,10 @@ import { ConfirmComponent } from '../../uiComponents/sharedComponents'
 interface Props {
     packageItem: Package
     choosePackageHandler: (packageId: Package["_id"]) => Promise<void>
+    openCreatePackageHandler: () => void
 }
 
-const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler }) => {
+const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler, openCreatePackageHandler }) => {
     const { user } = useAuth()
 
     // popover funcs
@@ -33,10 +34,13 @@ const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler }) => 
     const onClickDeleteBtn = () => {
         setOpenConfirmComponent(true)
         selectPackageHandler(packageItem)
+        handleClose()
     }
 
     const onClickEditBtn = () => {
-        console.log("Edit package!")
+        selectPackageHandler(packageItem)
+        openCreatePackageHandler()
+        handleClose()
     }
 
     // confirm component funcs
