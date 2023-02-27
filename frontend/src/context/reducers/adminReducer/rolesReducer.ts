@@ -1,4 +1,5 @@
 // action types
+import { useToast } from "../../../hooks/useToast";
 import * as actionTypes from "../../actions/actionTypes";
 
 // initial state
@@ -19,10 +20,14 @@ const rolesReducer = (state = initialState, action: any) => {
         rolesList: action.payload.data,
       };
     case actionTypes.CREATE_ROLE:
-      return {
-        ...state,
-        rolesList: [...state.rolesList, action.payload.data],
-      };
+      useToast("success", action.payload.message);
+      break;
+    case actionTypes.DELETE_ROLE:
+      useToast("success", action.payload.message);
+      break;
+    case actionTypes.EDIT_ROLE:
+      useToast("success", action.payload.message);
+      break;
     case actionTypes.SELECT_ROLE:
       return {
         ...state,
