@@ -8,6 +8,7 @@ import {
 import { useAuth } from "../useAuth";
 import usePackages from "../usePackages";
 import { useState } from "react";
+import useUsers from "./useUsers";
 
 const useAdminPackages = () => {
   const { authToken } = useAuth();
@@ -40,6 +41,15 @@ const useAdminPackages = () => {
     getAllPackagesHandler();
   };
 
+  const { usersList } = useUsers();
+
+  const getPackageNumOfUsers = (packageId: Package["_id"]) => {
+    console.log({ usersList });
+    return usersList?.filter(
+      (user: User) => user?.package?.packageId === packageId
+    ).length;
+  };
+
   return {
     createPackageHandler,
     selectPackageHandler,
@@ -47,6 +57,7 @@ const useAdminPackages = () => {
     openCreatePackage,
     closeCreatePackageHandler,
     openCreatePackageHandler,
+    getPackageNumOfUsers,
   };
 };
 

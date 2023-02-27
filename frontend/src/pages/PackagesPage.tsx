@@ -5,6 +5,7 @@ import usePackages from '../hooks/usePackages'
 import { Button, Container, Typography } from '@mui/material'
 import { CreatePackage, PackagesList } from '../components/pagesComponents/packagesComponents'
 import useAdminPackages from '../hooks/adminHooks/useAdminPackages'
+import useUsers from '../hooks/adminHooks/useUsers'
 
 const PackagesPage = () => {
     const {
@@ -12,6 +13,8 @@ const PackagesPage = () => {
         getAllPackagesHandler,
         choosePackageHandler,
     } = usePackages()
+
+    const { getAllUsersHandler } = useUsers()
 
     const {
         openCreatePackage,
@@ -21,6 +24,7 @@ const PackagesPage = () => {
 
     useEffect(() => {
         getAllPackagesHandler()
+        getAllUsersHandler()
     }, [])
 
     return (

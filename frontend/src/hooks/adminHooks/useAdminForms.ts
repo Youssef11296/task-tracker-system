@@ -64,6 +64,56 @@ const useAdminForms = () => {
               message: "Package name is required.",
             },
           }
+        : packageName?.length < 3
+        ? {
+            packageName: {
+              type: "minLength",
+              message: "Package name must contain 3 letters at least.",
+            },
+          }
+        : packageName?.length > 30
+        ? {
+            packageName: {
+              type: "maxLength",
+              message: "Package name can not contain more than 30 letters.",
+            },
+          }
+        : !packageDescription
+        ? {
+            packageDescription: {
+              type: "required",
+              message: "Package description is required.",
+            },
+          }
+        : packageDescription?.length < 10
+        ? {
+            packageDescription: {
+              type: "minLength",
+              message: "Package description must contain 10 letters at least.",
+            },
+          }
+        : packageDescription?.length > 300
+        ? {
+            packageDescription: {
+              type: "maxLength",
+              message:
+                "Package description can not contain more than 300 letters.",
+            },
+          }
+        : !packagePrice
+        ? {
+            packagePrice: {
+              type: "required",
+              message: "Package price is required.",
+            },
+          }
+        : packagePrice < 0
+        ? {
+            packagePrice: {
+              type: "min",
+              message: "Package price can not be less than 0.",
+            },
+          }
         : {},
     };
   };

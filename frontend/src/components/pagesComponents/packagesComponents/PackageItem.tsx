@@ -28,7 +28,7 @@ const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler, openC
     };
 
     // popover btns funcs
-    const { selectPackageHandler } = useAdminPackages()
+    const { selectPackageHandler, getPackageNumOfUsers } = useAdminPackages()
 
 
     const onClickDeleteBtn = () => {
@@ -61,6 +61,9 @@ const PackageItem: React.FC<Props> = ({ packageItem, choosePackageHandler, openC
                             user?.role?.roleName === USER_ROLE.ADMIN ?
                                 (
                                     <>
+                                        <Typography variant="caption" ml={2}>
+                                            Num of users: {getPackageNumOfUsers(packageItem?._id)}
+                                        </Typography>
                                         <IconButton sx={{ marginLeft: 'auto' }} onClick={handleClick}>
                                             <MoreVert />
                                         </IconButton>

@@ -18,9 +18,9 @@ const usePackages = () => {
   const { authToken, getMeHandler } = useAuth();
 
   const choosePackageHandler = async (packageId: Package["_id"]) => {
-    await dispatch(choosePackage(authToken, packageId));
+    dispatch(choosePackage(authToken, packageId));
     await getAllPackagesHandler();
-    await dispatch(getMeHandler());
+    await getMeHandler();
   };
 
   return {

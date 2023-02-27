@@ -42,6 +42,7 @@ const choosePackage =
           message: data?.message,
         },
       });
+      console.log("hereeee");
       // dispatch(setLoading(false));
     } catch (error) {
       useToast("error", error as string);
