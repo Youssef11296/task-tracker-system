@@ -15,7 +15,7 @@ interface Props {
 
 const CreatePackage: React.FC<Props> = ({ open, onClose }) => {
     const { createPackageFormResolver } = useAdminForms()
-    const { createPackageHandler } = useAdminPackages()
+    const { createPackageHandler, editPackageHandler } = useAdminPackages()
     const { selectedPackage } = useSelector((state: RootState) => state.adminPackages)
 
     const { handleSubmit, register, reset, formState: { errors } } =
@@ -29,7 +29,8 @@ const CreatePackage: React.FC<Props> = ({ open, onClose }) => {
         })
 
     const onSubmit = (values: CreatePackageFormValues) => {
-        createPackageHandler({ ...values })
+        selectedPackage ? editPackageHandler(selectedPackage?._id, values)
+            : createPackageHandler({ ...values })
         reset()
         onClose()
     }

@@ -34,6 +34,33 @@ const selectPackage = (packageData: Package | null) => {
   };
 };
 
+//* Edit Package
+const editPackage =
+  (token: User["token"], packageId: Package["_id"], newPackageData: Package) =>
+  async (dispatch: any) => {
+    try {
+      dispatch(setLoading(true));
+      const { data } = await api.adminAPI.editPackage(
+        token,
+        packageId,
+        newPackageData
+      );
+      dispatch({
+        type: actionTypes.EDIT_PACKAGE,
+        payload: {
+          data: data.data,
+          message: data.message,
+        },
+      });
+      setLoading(false);
+    } catch (error) {
+      dispatch({
+        type: actionTypes.SOME_ERROR_OCCURED,
+        message: error,
+      });
+    }
+  };
+
 //* Delete Package
 const deletePackage =
   (token: User["token"], packageId: Package["_id"]) =>
@@ -57,4 +84,4 @@ const deletePackage =
     }
   };
 
-export { createPackage, deletePackage, selectPackage };
+export { createPackage, editPackage, deletePackage, selectPackage };

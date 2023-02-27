@@ -1,8 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../context";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../context";
 import {
   createPackage,
   deletePackage,
+  editPackage,
   selectPackage,
 } from "../../context/actions/adminActions/adminPackagesActions";
 import { useAuth } from "../useAuth";
@@ -13,9 +14,6 @@ import useUsers from "./useUsers";
 const useAdminPackages = () => {
   const { authToken } = useAuth();
   const { getAllPackagesHandler } = usePackages();
-  const { selectedPackage } = useSelector(
-    (state: RootState) => state.adminPackages
-  );
 
   const [openCreatePackage, setOpenCreatePackage] = useState<boolean>(false);
   const openCreatePackageHandler = () => setOpenCreatePackage(true);
@@ -41,6 +39,14 @@ const useAdminPackages = () => {
     getAllPackagesHandler();
   };
 
+  const editPackageHandler = (
+    packageId: Package["_id"],
+    newPackageData: Package
+  ) => {
+    dispatch(editPackage(authToken, packageId, newPackageData));
+    getAllPackagesHandler();
+  };
+
   const { usersList } = useUsers();
 
   const getPackageNumOfUsers = (packageId: Package["_id"]) => {
@@ -58,6 +64,7 @@ const useAdminPackages = () => {
     closeCreatePackageHandler,
     openCreatePackageHandler,
     getPackageNumOfUsers,
+    editPackageHandler,
   };
 };
 

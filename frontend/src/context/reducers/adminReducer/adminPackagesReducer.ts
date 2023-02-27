@@ -15,6 +15,7 @@ const initialState: {
 const adminPackagesReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case actionTypes.CREATE_PACKAGE:
+      useToast("success", action.payload.message);
       return {
         ...state,
         packagesList: action.payload.data,
@@ -26,6 +27,10 @@ const adminPackagesReducer = (state = initialState, action: any) => {
       };
     case actionTypes.DELETE_PACKAGE:
       useToast("success", action.payload.message);
+      break;
+    case actionTypes.EDIT_PACKAGE:
+      useToast("success", action.payload.message);
+      break;
     default:
       return {
         ...state,

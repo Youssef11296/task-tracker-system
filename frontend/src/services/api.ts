@@ -120,6 +120,18 @@ export const adminAPI = {
         headers: { Authorization: `Bearer ${token}` },
       }
     ),
+  editPackage: (
+    token: User["token"],
+    packageId: Package["_id"],
+    newPackageData: Package
+  ) =>
+    axios.patch(
+      `${adminBaseUrlV1}/packages/${packageId}`,
+      { ...newPackageData },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    ),
   deletePackage: (token: User["token"], packageId: Package["_id"]) =>
     axios.delete(`${adminBaseUrlV1}/packages/${packageId}`, {
       headers: { Authorization: `Bearer ${token}` },
