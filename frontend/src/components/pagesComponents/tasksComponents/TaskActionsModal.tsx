@@ -1,21 +1,22 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Button, Popover } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../context';
 import { setSelectedTask } from '../../../context/actions/tasksActions';
 import { useTasks } from '../../../hooks/useTasks';
-import { Delete, Edit, ViewAgenda, ViewCarousel } from '@mui/icons-material';
 import { ConfirmComponent } from '../../uiComponents/sharedComponents';
 import CreateTask from './CreateTask';
 import TaskModal from './TaskModal';
 
 interface Props {
-    open: Boolean;
-    handleClose: () => void
+    open: boolean;
     task: Task;
+    anchorEl: any;
+    setAnchorEl: any;
+    onClose: () => void
 }
 
-const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
+const TaskActionsModal: React.FC<Props> = ({ open, task, onClose, anchorEl }) => {
     const {
         onOpenConfirmModal,
         onOpenCreateTaskModal,
@@ -41,6 +42,7 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
         !openCustomModalState && e.stopPropagation();
         dispatch(setSelectedTask(task));
         onOpenCreateTaskModal();
+        onClose()
     };
 
     const onClickDeleteBtn = (e: any) => {
@@ -49,68 +51,72 @@ const TaskActionsModal: React.FC<Props> = ({ open, handleClose, task }) => {
         setConfirmationPurpose("DELETE_TASK")
         setConfirmationQuestion("Are you sure, you want to delete this task?")
         onOpenConfirmModal();
+        onClose()
     };
 
     const onClickViewBtn = (e: any) => {
         !openCustomModalState && e.stopPropagation()
         dispatch(setSelectedTask(task));
         onOpenTaskModal();
+        onClose()
     };
 
     useEffect(() => {
-        if (openCustomModalState === false) handleClose()
+        if (openCustomModalState === false) onClose()
     }, [openCustomModalState, task])
+
+    // confirm component funcs
+    const openPopover = Boolean(anchorEl);
+    const id = openPopover ? 'simple-popover' : undefined;
 
 
     return (
         <>
-            <Box
-                sx={{
-                    position: 'absolute',
-                    top: '2rem',
-                    zIndex: 2,
-                    display: openCustomModalState && open ? 'block' : 'none',
-                    right: '-8rem',
-                    background: '#fff',
-                    padding: '.25rem 1rem',
-                    borderRadius: '2px',
-                    width: 150,
-                    boxShadow: '0 1px 1px rgba(0,0,0,.2)'
+            <Popover
+                id={id}
+                open={open}
+                anchorEl={anchorEl}
+                onClose={onClose}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
                 }}
-                display="flex"
-                flexDirection="column"
-                justifyContent="flex-start"
-                alignItems="center"
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'column !important'
+                }}
             >
                 <Button
-                    variant="text"
-                    fullWidth
                     onClick={onClickEditBtn}
-                    startIcon={<Edit />}
-                    sx={{ textTransform: 'capitalize', fontWeight: 'bold', alignItems: 'center', justifyContent: 'space-around' }}
+                    sx={{
+                        p: 2, display: 'block',
+                        textTransform: 'capitalize',
+                        fontWeight: 600
+                    }}
                 >
                     Edit
                 </Button>
                 <Button
-                    variant="text"
-                    fullWidth
                     onClick={onClickDeleteBtn}
-                    startIcon={<Delete />}
-                    sx={{ textTransform: 'capitalize', fontWeight: 'bold', alignItems: 'center', justifyContent: 'space-around' }}
+                    sx={{
+                        p: 2, display: 'block',
+                        textTransform: 'capitalize',
+                        fontWeight: 600
+                    }}
                 >
                     Delete
                 </Button>
                 <Button
-                    variant="text"
-                    fullWidth
                     onClick={onClickViewBtn}
-                    startIcon={<ViewAgenda />}
-                    sx={{ textTransform: 'capitalize', fontWeight: 'bold', alignItems: 'center', justifyContent: 'space-around' }}
+                    sx={{
+                        p: 2, display: 'block',
+                        textTransform: 'capitalize',
+                        fontWeight: 600
+                    }}
                 >
                     View
                 </Button>
-            </Box>
-
+            </Popover>
             <ConfirmComponent
                 open={openConfirmModal}
                 onClose={onCloseConfirmModal}

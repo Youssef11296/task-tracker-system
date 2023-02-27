@@ -5,10 +5,15 @@ import { AppDispatch, RootState } from "../../../context";
 // components
 import TaskActionsModal from "./TaskActionsModal";
 // mui
-import { IconButton } from "@mui/material";
+import { Button, IconButton, Popover } from "@mui/material";
 import { MoreVert } from '@mui/icons-material';
 import { toggleCustomModal } from "../../../context/actions/uiActions";
 import { StyledTableCell, StyledTableRow } from "../../uiComponents/muiComponents/TableComponents";
+import { useTasks } from "../../../hooks/useTasks";
+import { setSelectedTask } from "../../../context/actions/tasksActions";
+import { ConfirmComponent } from "../../uiComponents/sharedComponents";
+import CreateTask from "./CreateTask";
+import TaskModal from "./TaskModal";
 
 
 interface Props {
@@ -27,12 +32,19 @@ const TaskItem: React.FC<Props> = ({
 
   const { openCustomModalState } = useSelector((state: RootState) => state.ui)
 
-  const [openActionsModal, setOpenActionsModal] = useState<Boolean>(false)
+  const [openActionsModal, setOpenActionsModal] = useState<boolean>(false)
 
-  const openActionsModalHandler = (e: any) => {
-    !openCustomModalState && e.stopPropagation()
-    dispatch(toggleCustomModal(true))
+  // popover props
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
     setOpenActionsModal(true)
+  };
+
+  const onClose = () => {
+    setOpenActionsModal(false)
+    setAnchorEl(null)
   }
 
   return (
@@ -52,14 +64,15 @@ const TaskItem: React.FC<Props> = ({
         {task?.createdAt}
       </StyledTableCell>
       <StyledTableCell component="th" scope="row" sx={{ position: 'relative' }}>
-        <IconButton onClick={openActionsModalHandler}>
+        <IconButton onClick={handleClick}>
           <MoreVert />
         </IconButton>
         <TaskActionsModal
           open={openActionsModal}
-          handleClose={() => setOpenActionsModal(false)}
           task={task}
-          key={task?._id}
+          anchorEl={anchorEl}
+          setAnchorEl={setAnchorEl}
+          onClose={onClose}
         />
       </StyledTableCell>
     </StyledTableRow >
